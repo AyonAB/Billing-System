@@ -1427,7 +1427,7 @@ header .form-inline {
     color: #878787;
     display: inline-block;
     font-size: 16px;
-    float: left;
+    float: none;
     padding: 0 7px;
     width: inherit;
     text-align: center; }
@@ -1475,7 +1475,7 @@ header .form-inline {
   left: 40%; }
 
 .twt-feed {
-  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
   color: #FFFFFF;
   padding: 40px 10px 10px;
   position: relative;
@@ -2159,7 +2159,7 @@ header .form-inline {
       aside.left-panel .navbar .navbar-brand {
         border-bottom: none;
         display: inline-block;
-        float: left;
+        float: none;
         line-height: 1;
         margin-top: 11px;
         min-height: inherit; }
