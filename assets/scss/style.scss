@@ -1,14 +1,11 @@
 /* This css file is to over write bootstarp css
 --------------------------------------------------------- /
-* Theme Name: Sufee-Admin Admin Template
-* Theme URI: http://demos.jeweltheme.com/Sufee-Admin/
-* Author: jewel_theme
-* Author URI: http://themeforest.net/user/jewel_theme/portfolio
-* Description:
+* Theme Name: Admin Panel - GST Billing System
+* Theme URI: 
+* Author: Susanta & Ayon
+* Author URI: https://susanta96.github.io/
+* Description: An online GST billing system for companies and industries.
 * Version: 1.0.0
-* License: GNU General Public License v2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
-* Tags: html, themplate, Sufee-Admin
 --------------------------------------------------------- */
 
 @import "variables";
@@ -1076,7 +1073,7 @@ header .form-inline {
 
 
 .login-logo {
-  text-align: center;
+  text-align: right;
   margin-bottom: 15px;
   span{
       color: #ffffff;
@@ -1095,7 +1092,7 @@ header .form-inline {
 }
 .login-form h4 {
   color: #878787;
-  text-align: center;
+  text-align: right;
   margin-bottom: 50px;
 }
 .login-form .checkbox {
