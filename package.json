@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/AyonAB/Billing-System#readme",
   "dependencies": {
+    "ejs": "^2.5.8",
     "express": "^4.16.3"
   }
 }
