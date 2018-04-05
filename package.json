@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/AyonAB/Billing-System/issues"
   },
-  "homepage": "https://github.com/AyonAB/Billing-System#readme"
+  "homepage": "https://github.com/AyonAB/Billing-System#readme",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
 }
