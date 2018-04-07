@@ -18,9 +18,36 @@ app.get('/', function(req,res){
 });
 
 app.get('/dashboard', function(req,res){
-    res.render("index");
+    res.render("dashboard");
 });
 
+app.get('/addbill', function(req,res){
+    res.render("addbill");
+});
+
+app.get('/addemp', function(req,res){
+    res.render("addemp");
+});
+
+app.get('/addproduct', function(req,res){
+    res.render("addproduct");
+});
+
+app.get('/manage-bill', function(req,res){
+    res.render("manage-bill");
+});
+
+app.get('/manage-emp', function(req,res){
+    res.render("manage-emp");
+});
+
+app.get('/manage-product', function(req,res){
+    res.render("manage-product");
+});
+
+app.get('/pages-forget', function(req,res){
+    res.render("pages-forget");
+});
 // Port deploy & debug
 app.listen(PORT,
   function(){
