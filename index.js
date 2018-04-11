@@ -3,35 +3,32 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 var passport = require('passport');
-var User = require('./app/models/User');
-const PORT = process.env.PORT || 3000;
+const logger = require('morgan');
+var config = require('./config/main');
+const PORT = process.env.PORT || 5000;
 
 // Setting up express
 var app = express();
 
+// Setting up basic middleware for all Express requests
+app.use(logger('dev')); // Log requests to API using morgan
+
+// Enable CORS from client-side
+app.use(function(req, res, next) {  
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
+  res.header("Access-Control-Allow-Credentials", "true");
+  next();
+});
+
 // Database Connection
-mongoose.connect('mongodb://AyonAB:Ayan1996@ds241489.mlab.com:41489/billing-system');
+mongoose.connect(config.database);
 
 // Template Engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-//Passport
-passport.use(User.localStrategy);
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
-
-// Default session handling. Won't explain it as there are a lot of resources out there
-app.use(express.session({
-    secret: "mylittlesecret",
-    cookie: {maxAge: new Date(Date.now() + 3600000)}, // 1 hour
-    maxAge: new Date(Date.now() + 3600000), // 1 hour
-    store: new RedisStore(config.database.redis), // You can not use Redis 
-}));
-
-// The important part. Must go AFTER the express session is initialized
-app.use(passport.initialize());
-app.use(passport.session());
 
 //urlencoded
 var jsonParser = bodyParser.json()
