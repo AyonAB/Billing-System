@@ -1,0 +1,32 @@
+{
+  "name": "billing-system",
+  "version": "1.0.0",
+  "description": "An online GST billing system for companies and industries.",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AyonAB/Billing-System.git"
+  },
+  "keywords": [
+    "GST",
+    "Billing"
+  ],
+  "author": "Ayan,Susu",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/AyonAB/Billing-System/issues"
+  },
+  "homepage": "https://github.com/AyonAB/Billing-System#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.8",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.14",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}

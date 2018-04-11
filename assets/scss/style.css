@@ -1,14 +1,11 @@
 /* This css file is to over write bootstarp css
 --------------------------------------------------------- /
-* Theme Name: Sufee-Admin Admin Template
-* Theme URI: http://demos.jeweltheme.com/Sufee-Admin/
-* Author: jewel_theme
-* Author URI: http://themeforest.net/user/jewel_theme/portfolio
-* Description:
+* Theme Name: Admin Panel - GST Billing System
+* Theme URI: 
+* Author: Susanta & Ayon
+* Author URI: https://susanta96.github.io/
+* Description: An online GST billing system for companies and industries.
 * Version: 1.0.0
-* License: GNU General Public License v2 or later
-* License URI: http://www.gnu.org/licenses/gpl-2.0.html
-* Tags: html, themplate, Sufee-Admin
 --------------------------------------------------------- */
 /* Bootstrap */
 @import url(../css/animate.css);
@@ -755,7 +752,9 @@ body {
   display: table;
   font-family: 'Open Sans' sans-serif !important;
   font-size: 16px;
-  width: 100%; }
+  width: 100%;
+  height: 100%;
+ }
 
 div[class*="col-"] {
   float: left; }
@@ -804,8 +803,8 @@ button:focus {
   outline: 0; }
 
 img {
-  max-width: 100%; }
-
+  max-width: 100%; 
+  max-height: 100%; }
 .btn,
 button,
 input,
@@ -820,8 +819,8 @@ textarea {
 /* Main Styles */
 .basix-container {
   display: table;
-  min-height: 100vh;
-  position: relative;
+  min-height: 100%;
+  position: absolute;
   width: 100%; }
 
 aside.left-panel {
@@ -1168,7 +1167,7 @@ header .form-inline {
       background: #263238;
       border: none;
       border-radius: 0;
-      box-shadow: none;
+      box-shadow: darkgrey;
       color: #d3d3d3;
       font-size: 16px;
       height: inherit;
@@ -1429,7 +1428,7 @@ header .form-inline {
     color: #878787;
     display: inline-block;
     font-size: 16px;
-    float: left;
+    float: none;
     padding: 0 7px;
     width: inherit;
     text-align: center; }
@@ -1477,7 +1476,7 @@ header .form-inline {
   left: 40%; }
 
 .twt-feed {
-  -webkit-border-radius: 4px 4px 0 0;
+  border-radius: 4px 4px 0 0;
   color: #FFFFFF;
   padding: 40px 10px 10px;
   position: relative;
@@ -1598,16 +1597,18 @@ header .form-inline {
     font-size: 24px; }
 
 .login-content {
-  max-width: 540px;
+  max-width: 360px;
+  max-height: 600px;
   margin: 8vh auto; }
 
 .login-form {
-  background: #ffffff;
+  
+  background: #2383c4;
   padding: 30px 30px 20px;
-  border-radius: 2px; }
+  border-radius: 35px; }
 
 .login-form h4 {
-  color: #878787;
+  color: #27f7f7;
   text-align: center;
   margin-bottom: 50px; }
 
@@ -1620,16 +1621,17 @@ header .form-inline {
 .login-form .btn {
   width: 100%;
   text-transform: uppercase;
-  font-size: 14px;
-  padding: 15px;
-  border: 0px; }
+  align-self: auto;
+  font-size: 18px;
+  padding: 25px;
+  border: 5px; }
 
 .login-form label {
-  color: #878787;
+  color: #ff2e44;
   text-transform: uppercase; }
 
 .login-form label a {
-  color: #ff2e44; }
+  color: #a526ee; }
 
 .social-login-content {
   margin: 0px -30px;
@@ -2161,7 +2163,7 @@ header .form-inline {
       aside.left-panel .navbar .navbar-brand {
         border-bottom: none;
         display: inline-block;
-        float: left;
+        float: none;
         line-height: 1;
         margin-top: 11px;
         min-height: inherit; }
