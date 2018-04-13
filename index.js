@@ -1,29 +1,27 @@
 // Imports
 const express = require('express');
-var bodyParser = require('body-parser');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-var passport = require('passport');
-const logger = require('morgan');
-var config = require('./config/main');
+const cookie = require('cookie-parser');
+const session = require('express-session');
+const passport = require('./config/passport');
 const PORT = process.env.PORT || 5000;
 
 // Setting up express
 var app = express();
 
-// Setting up basic middleware for all Express requests
-app.use(logger('dev')); // Log requests to API using morgan
-
-// Enable CORS from client-side
-app.use(function(req, res, next) {  
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Access-Control-Allow-Credentials");
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+//Routes
+var routes = require('./routes/route');
 
 // Database Connection
-mongoose.connect(config.database);
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://AyonAB:Ayan1996@ds241489.mlab.com:41489/billing-system');
+
+// Middlewares for Static files
+//app.use('/assets', express.static('assets'));
+//app.use('/images', express.static('images'));
+app.use(express.static(__dirname + '/assets'));
+app.use(express.static(__dirname + '/images'));
 
 // Template Engine
 app.set('views', __dirname + '/views');
@@ -31,17 +29,37 @@ app.set('view engine', 'ejs');
 
 
 //urlencoded
-var jsonParser = bodyParser.json()
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
+app.use(bodyParser.urlencoded({extended : true}));
+app.use(bodyParser.json());
 
-// Middlewares for Static files
-app.use('/assets', express.static('assets'));
-app.use('/images', express.static('images'));
+//Cookie
+app.use(cookie());
+
+//Session
+app.use(session({
+    secret: 'Site visit',
+    resave: true,
+    saveUninitialized: true,
+    cookie: { secure: false, maxAge : 6000000 }
+}));
+passport(app);
+
+// call the routes
+app.use(routes);
 
 // Routes
 app.get('/', function(req,res){
     res.render("index");
 });
+
+// call middleware after all routes
+app.use(function (request, response) {
+    response.send("Oops Nothing found");
+ });
+ // error handler middleware
+ app.use(function (err,request, response, next) {
+     response.send("Error Occured : " + err);
+ });
 
 app.post('/', urlencodedParser, function(req, res) {
     email = req.body.email;
@@ -83,6 +101,7 @@ app.get('/manage-product', function(req,res){
 app.get('/pages-forget', function(req,res){
     res.render("pages-forget");
 });
+
 // Port deploy & debug
 app.listen(PORT,
   function(){
