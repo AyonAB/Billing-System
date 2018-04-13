@@ -48,7 +48,7 @@ passport(app);
 app.use(routes);
 
 // Routes
-app.get('/', function(req,res){
+/*app.get('/', function(req,res){
     res.render("index");
 });
 
@@ -61,7 +61,7 @@ app.use(function (request, response) {
      response.send("Error Occured : " + err);
  });
 
-app.post('/', urlencodedParser, function(req, res) {
+app.post('/', function(req, res) {
     email = req.body.email;
     pass = req.body.password;
     res.render('login', {
@@ -100,7 +100,7 @@ app.get('/manage-product', function(req,res){
 
 app.get('/pages-forget', function(req,res){
     res.render("pages-forget");
-});
+});*/
 
 // Port deploy & debug
 app.listen(PORT,

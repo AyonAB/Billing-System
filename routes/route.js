@@ -8,20 +8,20 @@ var express = require('express'),
 //router.post('/saveUser', indexController.saveUser);
 router.use(middleware.isLoginCheck);
 router.get('/', indexController.index);
-router.get('/login', indexController.login);
-router.post('/login', function(request, response, next){
+router.get('/index', indexController.index);
+router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {
           if (err) {
               return next(err);
           }
           if (!user) {
               var message = "Invalid credentials";
-              return response.render('login',{message: info.message, userLoggedIn : null});
+              return response.render('index',{message: info.message, userLoggedIn : null});
           }
           request.logIn(user, function(err) {
               if (err) { return next(err); }
               request.session.user = request.user;
-              response.redirect('/userList');
+              response.redirect('/dashboard');
           });
       })(request, response, next);
   });

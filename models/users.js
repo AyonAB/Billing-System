@@ -1,62 +1,82 @@
-const mongoose = require('mongoose'),  
-      Schema = mongoose.Schema,
-      bcrypt = require('bcrypt-nodejs');
+var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
+var bcrypt = require('bcrypt');
+var saltRounds = 10;
 
-//================================
-// User Schema
-//================================
-const UserSchema = new Schema({  
-  email: {
-    type: String,
-    lowercase: true,
-    unique: true,
-    required: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  profile: {
-    firstName: { type: String },
-    lastName: { type: String }
-  },
-  role: {
-    type: String,
-    enum: ['Member', 'Client', 'Owner', 'Admin'],
-    default: 'Member'
-  },
-  resetPasswordToken: { type: String },
-  resetPasswordExpires: { type: Date }
-},
-{
-  timestamps: true
+//custom validator
+var minDigitsvalidator = function(val) {
+        return val.toString().length >= 6;
+    };
+
+//create schema
+//parent User Schema
+var user = new Schema({
+    name:{type: String, required: [true, '{PATH} is required']},
+    username: {type: String, required: [true, '{PATH} is required']},
+    password: {type: String, required: [true, '{PATH} is required'] },
+    line1: {type: String, required: [true, '{PATH} is required']},
+    line2: {type: String, required: [true, '{PATH} is required']},
+    city: {type: String, required: [true, '{PATH} is required']},
+    state: {type: String, required: [true, '{PATH} is required']},
+    country: {type: String, required: [true, '{PATH} is required']},
+    pincode: {type: Number, required: [true, '{PATH} is required'],
+        validate: [minDigitsvalidator, '{PATH} must have 6 digits']},
+    created_at: {type: Date, default: Date.now},
+    updated_at: {type: Date, default: Date.now}
 });
 
-// Pre-save of user to database, hash password if password is modified or new
-UserSchema.pre('save', function(next) {  
-  const user = this,
-        SALT_FACTOR = 5;
+/*user.pre('update', function(next) {
+});
+user.pre('validate', function(next) {
+});*/
 
-  if (!user.isModified('password')) return next();
-
-  bcrypt.genSalt(SALT_FACTOR, function(err, salt) {
-    if (err) return next(err);
-
-    bcrypt.hash(user.password, salt, null, function(err, hash) {
-      if (err) return next(err);
-      user.password = hash;
-      next();
+// before saving document to mongodb
+user.pre('save', function (next) {
+    var self = this;
+    mongoose.models["User"].findOne({username : self.username}, function(err, user) {
+        if (!user){
+            bcrypt.hash(self.password, saltRounds, function (err, hash) {
+                if (err) {
+                    return next (err);
+                } else {
+                    self.password = hash;
+                    next();
+                }
+            });
+        }else{
+            next(new Error("Username already exists!"));
+        }
     });
-  });
 });
 
-// Method to compare password for login
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {  
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-    if (err) { return cb(err); }
+// static methods which can be called on document
+user.statics = {
+    bcryptpassword: function (data, cb) {
+        bcrypt.hash(data, saltRounds, function (err, hash) {
+            if (err) {
+                return cb(err);
+            } else {
+                return cb(null, hash);
+            }
+        });
+    },
+};
 
-    cb(null, isMatch);
-  });
-}
+// instance methods which can be called on instacnce only
+user.methods = {
+    comparePassword: function (data, cb) {
+        bcrypt.compare(data, this.password, function (err, passRes) {
+            if (err) {
+                return cb(err);
+            } else {
+                return cb(null, passRes);
+            }
+        });
+    },
+};
 
-module.exports = mongoose.model('User', UserSchema);
+// we need to create a model using it
+var User = mongoose.model('User', user);
+
+// make this available to our users in our Node applications
+module.exports = User;
