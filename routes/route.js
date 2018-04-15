@@ -1,5 +1,5 @@
 var express = require('express'),
-    indexController = require('./../controller/authentication'),
+    indexController = require('./../controllers/authentication'),
     middleware = require('./../middleware/middle'),
     passport = require('passport'),
     router = express.Router();
@@ -7,7 +7,7 @@ var express = require('express'),
 //router.get('/addUser', indexController.addUser);
 //router.post('/saveUser', indexController.saveUser);
 router.use(middleware.isLoginCheck);
-router.get('/', indexController.index);
+//router.get('/', indexController.index);
 router.get('/index', indexController.index);
 router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {
@@ -29,10 +29,10 @@ router.post('/index', function(request, response, next){
   router.get('/dashboard', indexController.dashboard);
   
   router.get('/addbill', indexController.addBill);
-  router.post('/addemp', indexController.addEmp);
+  router.get('/addemp', indexController.addEmp);
   router.get('/addproduct', indexController.addProduct);
   router.get('/manage-bill', indexController.manageBill);
-  router.post('/manage-emp', indexController.manageEmp);  
+  router.get('/manage-emp', indexController.manageEmp);  
   router.get('/manage-product', indexController.manageProduct);
-  router.post('/pages-forget', indexController.pagesForget);
+  router.get('/pages-forget', indexController.pagesForget);
   module.exports = router;
