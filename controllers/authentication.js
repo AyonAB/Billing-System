@@ -1,5 +1,5 @@
 'use strict';
-var User = require('./model/users');
+var User = require('.././model/users');
 module.exports = {
     index: function (request, response) {
         var user = request.session.user;
@@ -13,10 +13,50 @@ module.exports = {
     },
     logout: function (request, response) {
         request.session.user = '';
-        response.redirect('/login');
+        response.redirect('/index');
     },
-    userList: function (request, response) {
+    dashboard: function (request, response) {
         var loginUser = request.session.user;
+        var message = '';
+        response.render('dashboard', {message: message, userLoggedIn: loginUser});
+    },
+    addBill: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('addbill', {message: message, userLoggedIn: loginUser});
+    },
+    addEmp: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('addemp', {message: message, userLoggedIn: loginUser});
+    },
+    addProduct: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('addproduct', {message: message, userLoggedIn: loginUser});
+    },
+    manageBill: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('manage-bill', {message: message, userLoggedIn: loginUser});
+    },
+    manageEmp: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('manage-emp', {message: message, userLoggedIn: loginUser});
+    },
+    manageProduct: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('manage-product', {message: message, userLoggedIn: loginUser});
+    },
+    pagesForget: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        response.render('pages-forget', {message: message, userLoggedIn: loginUser});
+    },
+    /*userList: function (request, response) {
+        var loginUser = request.session.user;*/
         /*User.find(function(err, data){
          if(err){
          console.log(err);
@@ -24,7 +64,7 @@ module.exports = {
          response.render('userList', { 'user' : data});
          }
          });*/
-        var query = User.find();
+        /*var query = User.find();
         query.sort({created_at: 'desc'})
             .exec(function (err, data) {
                 if (err) {
@@ -115,7 +155,7 @@ module.exports = {
             }
         });
 
-
+        */
         /*
          var userData = new User({
          name: request.body.name,
@@ -145,8 +185,8 @@ module.exports = {
          response.redirect('/userList');
          }
          });*/
-    },
-    deleteUser: function (request, response) {
+    //},
+    /*deleteUser: function (request, response) {
         var query = User.remove({_id: request.params.id});
         query.exec();
         response.redirect('/userList');
@@ -157,5 +197,5 @@ module.exports = {
          response.redirect('/userList');
          }
          });*/
-    }
+    //}
 };
