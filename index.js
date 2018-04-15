@@ -18,10 +18,10 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://AyonAB:Ayan1996@ds241489.mlab.com:41489/billing-system');
 
 // Middlewares for Static files
-//app.use('/assets', express.static('assets'));
-//app.use('/images', express.static('images'));
-app.use(express.static(__dirname + '/assets'));
-app.use(express.static(__dirname + '/images'));
+app.use('/assets', express.static('assets'));
+app.use('/images', express.static('images'));
+//app.use(express.static(__dirname + '/assets'));
+//app.use(express.static(__dirname + '/images'));
 
 // Template Engine
 app.set('views', __dirname + '/views');
@@ -46,61 +46,6 @@ passport(app);
 
 // call the routes
 app.use(routes);
-
-// Routes
-/*app.get('/', function(req,res){
-    res.render("index");
-});
-
-// call middleware after all routes
-app.use(function (request, response) {
-    response.send("Oops Nothing found");
- });
- // error handler middleware
- app.use(function (err,request, response, next) {
-     response.send("Error Occured : " + err);
- });
-
-app.post('/', function(req, res) {
-    email = req.body.email;
-    pass = req.body.password;
-    res.render('login', {
-      email: email, 
-      password: pass
-    });
-});
-
-app.get('/dashboard', function(req,res){
-    res.render("dashboard");
-});
-
-app.get('/addbill', function(req,res){
-    res.render("addbill");
-});
-
-app.get('/addemp', function(req,res){
-    res.render("addemp");
-});
-
-app.get('/addproduct', function(req,res){
-    res.render("addproduct");
-});
-
-app.get('/manage-bill', function(req,res){
-    res.render("manage-bill");
-});
-
-app.get('/manage-emp', function(req,res){
-    res.render("manage-emp");
-});
-
-app.get('/manage-product', function(req,res){
-    res.render("manage-product");
-});
-
-app.get('/pages-forget', function(req,res){
-    res.render("pages-forget");
-});*/
 
 // Port deploy & debug
 app.listen(PORT,
