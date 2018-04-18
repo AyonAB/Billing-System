@@ -5,7 +5,7 @@ var saltRounds = 10;
 
 //custom validator
 var minDigitsvalidator = function(val) {
-        return val.toString().length >= 6;
+        return val.toString().length >= 10;
     };
 
 //create schema
@@ -14,15 +14,11 @@ var user = new Schema({
     name:{type: String, required: [true, '{PATH} is required']},
     username: {type: String, required: [true, '{PATH} is required']},
     password: {type: String, required: [true, '{PATH} is required'] },
-    line1: {type: String, required: [true, '{PATH} is required']},
-    line2: {type: String, required: [true, '{PATH} is required']},
-    city: {type: String, required: [true, '{PATH} is required']},
-    state: {type: String, required: [true, '{PATH} is required']},
-    country: {type: String, required: [true, '{PATH} is required']},
-    pincode: {type: Number, required: [true, '{PATH} is required'],
+    address: {type: String, required: [true, '{PATH} is required']},
+    email: {type: String, required: [true, '{PATH} is required']},
+    mobile: {type: Number, required: [true, '{PATH} is required'],
     validate: [minDigitsvalidator, '{PATH} must have 6 digits']},
-    created_at: {type: Date, default: Date.now},
-    updated_at: {type: Date, default: Date.now}
+    created_at: {type: Date, default: Date.now}
 });
 
 /*user.pre('update', function(next) {
