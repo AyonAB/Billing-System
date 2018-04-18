@@ -121,7 +121,7 @@
 
         </header><!-- /header --> <!-- Header-->
         <div class="col-lg-1"></div>
-        <form>
+        <form method="POST" action="/addproduct">
         <div class="col-lg-10">
             <div class="card">
                 <div class="card-header">
@@ -129,36 +129,41 @@
                     <small> Form</small>
                 </div>
                 <div class="card-body card-block">
+                        <% if(message){ %>
+                            <div class="alert alert-danger alert-error text-center">
+                                <%= message %>
+                            </div>
+                            <% } %>
                     <div class="form-group">
                         <label for="brand" class=" form-control-label">Brand/Company Name</label>
-                        <input type="text" id="brand" placeholder="Enter brand name" class="form-control">
+                        <input type="text" id="brand" name="brand" placeholder="Enter brand name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="name" class=" form-control-label">Product Name</label>
-                        <input type="text" id="pname" placeholder="Enter product name" class="form-control">
+                        <label for="pname" class=" form-control-label">Product Name</label>
+                        <input type="text" id="pname" name="pname" placeholder="Enter product name" class="form-control">
                     </div>
                     <div class="form-group">
                         <label for="serialno" class=" form-control-label">Serial No.</label>
-                        <input type="text" id="serialno" placeholder="Enter Unique Serial No." class="form-control">
+                        <input type="text" id="serialno" name="serialno" placeholder="Enter Unique Serial No." class="form-control">
                     </div>
                     <hr/>
                     <div class="row form-group">
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="buy" class=" form-control-label">Buying Price</label>
-                                <input type="text" id="buy" placeholder="Enter buying price" class="form-control">
+                                <input type="text" id="buy" name="buy" placeholder="Enter buying price" class="form-control">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="sell" class=" form-control-label">Selling Price</label>
-                                <input type="text" id="sell" placeholder="Enter selling price" class="form-control">
+                                <input type="text" id="sell" name="sell" placeholder="Enter selling price" class="form-control">
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="CGST" class=" form-control-label">CGST(%)</label>
-                                <select class="form-control" id="CGST" required>
+                                <select class="form-control" id="CGST" name="CGST" required>
                                     <optgroup label="CGST">
                                         <option value="#" selected>Choose CGST</option>
                                         <option value="2.5">2.5%</option>
@@ -167,13 +172,12 @@
                                         <option value="14">14%</option>
                                     </optgroup>
                                 </select>
-
                             </div>
                         </div>
                         <div class="col-3">
                             <div class="form-group">
                                 <label for="SGST" class=" form-control-label">SGST/UTGST(%)</label>
-                                <select class="form-control" id="SGST" required>
+                                <select class="form-control" id="SGST" name="SGST" required>
                                     <optgroup label="SGST/UTGST">
                                         <option value="#" selected>Choose SGST/UTGST</option>
                                         <option value="2.5">2.5%</option>
