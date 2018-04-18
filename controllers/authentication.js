@@ -1,15 +1,11 @@
 'use strict';
 var User = require('.././model/users');
+var Product = require('.././model/product');
 module.exports = {
     index: function (request, response) {
         var user = request.session.user;
         var message = '';
         response.render('index', {message: message, userLoggedIn: user});
-    },
-    login: function (request, response) {
-        var user;
-        var message = '';
-        response.render('login', {message: message, userLoggedIn: user});
     },
     logout: function (request, response) {
         request.session.user = '';
@@ -51,10 +47,35 @@ module.exports = {
         response.render('manage-product', {message: message, userLoggedIn: loginUser});
     },
     pagesForget: function (request, response) {
-        var loginUser = request.session.user;
+        var user = request.session.user;
         var message = '';
-        response.render('pages-forget', {message: message, userLoggedIn: loginUser});
+        response.render('pages-forget', {message: message, userLoggedIn: user});
     },
+    saveProduct: function(request, response) {
+        var loginUser = request.session.user;
+        var product = new Product({
+            brand: request.body.brand,
+            pname: request.body.pname,
+            serialno: request.body.serialno,
+            buy: request.body.buy,
+            sell: request.body.sell,
+            CGST: request.body.CGST,
+            SGST: request.body.SGST,
+        });
+        var error = product.validateSync();
+        if (error) {
+            response.render('addproduct', {message: error, userLoggedIn: loginUser});
+        } else {
+            product.save(function (err) {
+                if (err) {
+                    // response.render('addproduct', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
+                    response.render('addproduct', {message: err, userLoggedIn: loginUser});
+                } else {
+                    response.redirect('/addproduct');
+                }
+            });
+        }
+    }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
         /*User.find(function(err, data){
