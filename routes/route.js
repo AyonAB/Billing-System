@@ -9,6 +9,7 @@ var express = require('express'),
 router.use(middleware.isLoginCheck);
 //router.get('/', indexController.index);
 router.get('/index', indexController.index);
+router.get('/pages-forget', indexController.pagesForget);
 router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {
           if (err) {
@@ -27,12 +28,11 @@ router.post('/index', function(request, response, next){
   });
   router.get('/logout', indexController.logout);
   router.get('/dashboard', indexController.dashboard);
-  
   router.get('/addbill', indexController.addBill);
   router.get('/addemp', indexController.addEmp);
   router.get('/addproduct', indexController.addProduct);
   router.get('/manage-bill', indexController.manageBill);
   router.get('/manage-emp', indexController.manageEmp);  
   router.get('/manage-product', indexController.manageProduct);
-  router.get('/pages-forget', indexController.pagesForget);
+  router.post('/addproduct', indexController.saveProduct);
   module.exports = router;
