@@ -9,7 +9,7 @@ var minDigitsvalidator = function(val) {
     };
 
 //create schema
-//parent User Schema
+//parent User/Employee Schema
 var user = new Schema({
     name:{type: String, required: [true, '{PATH} is required']},
     username: {type: String, required: [true, '{PATH} is required']},
