@@ -19,9 +19,11 @@
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
+    <!--<link rel="stylesheet" href="assets/css/bootstrap-select.less">-->
     <link rel="stylesheet" href="assets/scss/style.css">
     <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
 
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 
@@ -128,27 +130,45 @@
         <!-- Header-->
 
         <div class="col-lg-1"></div>
-        <form>
+        <form action="/addbill" method="POST">
         <div class="col-lg-10">
             <div class="card">
               <div class="card-header"><strong>Add Bill</strong><small> Form</small></div>
               <div class="card-body card-block">
-                <div class="form-group"><label for="name" class=" form-control-label">Full Name</label><input type="text" id="name" placeholder="Enter your full name" class="form-control"></div>
-                <div class="form-group"><label for="company" class=" form-control-label">Company Name</label><input type="text" id="company" placeholder="Enter company name (Optional)" class="form-control"></div>                
-                <div class="form-group"><label for="address" class=" form-control-label">Address</label><input type="text" id="address" placeholder="Enter your address" class="form-control"></div>
+                <div class="form-group"><label for="name" class=" form-control-label">Full Name</label><input type="text" name="name" id="name" placeholder="Enter your full name" class="form-control" required></div>
+                <div class="form-group"><label for="company" class=" form-control-label">Company Name</label><input type="text" name="cname" id="company" placeholder="Enter company name (Optional)" class="form-control"></div>                
+                <div class="form-group"><label for="address" class=" form-control-label">Address</label><input type="text" id="address" name="address" placeholder="Enter your address" class="form-control" required></div>
                 <div class="row form-group">
                   <div class="col-6">
-                    <div class="form-group"><label for="city" class=" form-control-label">City</label><input type="text" id="city" placeholder="Enter your city" class="form-control"></div>
+                    <div class="form-group"><label for="city" class=" form-control-label">City</label><input type="text" id="city" name="city" placeholder="Enter your city" class="form-control" required></div>
                   </div>
                   <div class="col-6">
-                    <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" id="postal-code" placeholder="Postal Code" class="form-control"></div>
+                    <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" name="postal" id="postal-code" placeholder="Postal Code" class="form-control" required></div>
                   </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-4"><label for="mobile" class=" form-control-label">Mobile No</label><input type="number" id="mobile" placeholder="Enter Mobile No" class="form-control"></div>
-                    <div class="col-4"><label for="email" class=" form-control-label">Email ID</label><input type="email" id="email" placeholder="Enter Email ID" class="form-control"></div>
-                    <div class="col-4"><label for="date" class="form-control-label">Invoice Date</label><input class="form-control" type="date" placeholder="dd/mm/yyyy" id="date"></div>                
-                </div>                              
+                    <div class="col-4"><label for="mobile" class=" form-control-label">Mobile No</label><input type="number" id="mobile" name="mobile" placeholder="Enter Mobile No" class="form-control" required></div>
+                    <div class="col-4"><label for="email" class=" form-control-label">Email ID</label><input type="email" id="email" name="email" placeholder="Enter Email ID" class="form-control" required></div>
+                    <div class="col-4"><label for="date" class="form-control-label">Invoice Date</label><input class="form-control" type="date" name="date" placeholder="dd/mm/yyyy" id="date" required></div>                
+                </div>
+                <hr>
+                <div class="row form-group">
+                    <div class="col-6">
+                        <label for="product" class="form-control-label">Product</label>
+                        <select class="form-control" id="product" name="product" required>
+                            <optgroup label="Available Products">
+                                <option value="#" selected>Choose One or More Product</option>
+                                <option value="2.5">2.5%</option>
+                                <option value="6">6%</option>
+                                <option value="9">9%</option>
+                                <option value="14">14%</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" class="form-control" required>
+                    </div>
+                </div>                          
                 <div class="row form-group">
                     <div class="col-4"></div>
                     <div class="col-2">                              
@@ -165,7 +185,9 @@
     </div>
 
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
 </body>
