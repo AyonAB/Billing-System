@@ -17,7 +17,7 @@ var user = new Schema({
     address: {type: String, required: [true, '{PATH} is required']},
     email: {type: String, required: [true, '{PATH} is required']},
     mobile: {type: Number, required: [true, '{PATH} is required'],
-    validate: [minDigitsvalidator, '{PATH} must have 6 digits']},
+    validate: [minDigitsvalidator, '{PATH} must have 10 digits']},
     created_at: {type: Date, default: Date.now}
 });
 
