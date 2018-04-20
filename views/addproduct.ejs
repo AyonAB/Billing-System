@@ -130,11 +130,24 @@
                     <small> Form</small>
                 </div>
                 <div class="card-body card-block">
-                        <% if(message){ %>
-                            <div class="alert alert-danger alert-error text-center">
-                                <%= message %>
-                            </div>
-                            <% } %>
+                    <% if(message){ %>
+                        <div class="alert alert-error alert-danger alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-danger">Error</span>
+                            <%= message %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% } %>
+                    <% if(successMessage){ %>
+                        <div class="alert  alert-success alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-success">Success</span>
+                            <%= successMessage %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% } %>
                     <div class="form-group">
                         <label for="brand" class="form-control-label">Brand/Company Name</label>
                         <input type="text" id="brand" name="brand" placeholder="Enter brand name" class="form-control">
