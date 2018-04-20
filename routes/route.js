@@ -36,4 +36,5 @@ router.post('/index', function(request, response, next){
   router.get('/manage-product', indexController.manageProduct);
   router.post('/addproduct', indexController.saveProduct);
   //router.post('/addbill', indexController.saveBill);
+  router.post('/addemp', indexController.saveEmp);
   module.exports = router;
