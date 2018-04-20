@@ -6,6 +6,7 @@ module.exports = {
     index: function (request, response) {
         var user = request.session.user;
         var message = '';
+        var successMessage = '';
         response.render('index', {message: message, userLoggedIn: user});
     },
     logout: function (request, response) {
@@ -15,42 +16,50 @@ module.exports = {
     dashboard: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
+        var successMessage = '';
         response.render('dashboard', {message: message, userLoggedIn: loginUser});
     },
     addBill: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
-        response.render('addbill', {message: message, userLoggedIn: loginUser});
+        var successMessage = '';
+        response.render('addbill', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
     },
     addEmp: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
-        response.render('addemp', {message: message, userLoggedIn: loginUser});
+        var successMessage = '';
+        response.render('addemp', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
     },
     addProduct: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
-        response.render('addproduct', {message: message, userLoggedIn: loginUser});
+        var successMessage = '';
+        response.render('addproduct', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
     },
     manageBill: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
+        var successMessage = '';
         response.render('manage-bill', {message: message, userLoggedIn: loginUser});
     },
     manageEmp: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
+        var successMessage = '';
         response.render('manage-emp', {message: message, userLoggedIn: loginUser});
     },
     manageProduct: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
+        var successMessage = '';
         response.render('manage-product', {message: message, userLoggedIn: loginUser});
     },
     pagesForget: function (request, response) {
         var user = request.session.user;
         var message = '';
-        response.render('pages-forget', {message: message, userLoggedIn: user});
+        var successMessage = '';
+        response.render('pages-forget', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
     saveProduct: function(request, response) {
         var loginUser = request.session.user;
@@ -65,19 +74,20 @@ module.exports = {
         });
         var error = product.validateSync();
         if (error) {
-            response.render('addproduct', {message: error, userLoggedIn: loginUser});
+            response.render('addproduct', {message: error, successMessage: '', userLoggedIn: loginUser});
         } else {
             product.save(function (err) {
                 if (err) {
                     // response.render('addproduct', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
-                    response.render('addproduct', {message: err, userLoggedIn: loginUser});
+                    response.render('addproduct', {message: err, successMessage: '', userLoggedIn: loginUser});
                 } else {
-                    response.redirect('/addproduct');
+                    //response.redirect('/addproduct');
+                    response.render('addproduct', {successMessage: 'New Product is successfully added.', message: '', userLoggedIn: loginUser});
                 }
             });
         }
     },
-    saveEmp: function(request, response){
+    saveEmp: function(request, response) {
         var loginUser = request.session.user;
         var user = new User({
             name: request.body.name,
@@ -90,14 +100,15 @@ module.exports = {
         });
         var error = user.validateSync();
         if (error) {
-            response.render('addemp', {message: error, userLoggedIn: loginUser});
+            response.render('addemp', {message: error, successMessage: '', userLoggedIn: loginUser});
         } else {
             user.save(function (err) {
                 if (err) {
                     // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
-                    response.render('addemp', {message: err, userLoggedIn: loginUser});
+                    response.render('addemp', {message: err, successMessage: '', userLoggedIn: loginUser});
                 } else {
-                    response.redirect('/addemp');
+                    //response.redirect('/addemp');
+                    response.render('addemp', {successMessage: 'New Employee is successfully registered.', message: '', userLoggedIn: loginUser});
                 }
             });
         }
