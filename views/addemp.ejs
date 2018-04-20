@@ -132,10 +132,23 @@
               <div class="card-header"><strong>Add Employee</strong><small> Form</small></div>
               <div class="card-body card-block">
                     <% if(message){ %>
-                        <div class="alert alert-danger alert-error text-center">
+                        <div class="alert alert-error alert-danger alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-danger">Error</span>
                             <%= message %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        <% } %>
+                    <% } %>
+                    <% if(successMessage){ %>
+                        <div class="alert  alert-success alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-success">Success</span>
+                            <%= successMessage %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% } %>
                 <div class="form-group"><label for="name" class=" form-control-label">Full Name</label><input type="text" id="name" name="name" placeholder="Enter Employee name" class="form-control"></div>
                 <div class="form-group"><label for="address" class=" form-control-label">Address</label><input type="text" id="address" name="address" placeholder="Enter the address" class="form-control"></div>
                 <hr/>
