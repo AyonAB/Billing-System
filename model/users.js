@@ -18,7 +18,7 @@ var user = new Schema({
     email: {type: String, required: [true, '{PATH} is required']},
     mobile: {type: Number, required: [true, '{PATH} is required'],
     validate: [minDigitsvalidator, '{PATH} must have 10 digits']},
-    created_at: {type: Date, default: Date.now}
+    joining_date: {type: Date, required: [true, '{PATH} is required']}
 });
 
 /*user.pre('update', function(next) {
