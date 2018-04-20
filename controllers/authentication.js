@@ -1,6 +1,7 @@
 'use strict';
 var User = require('.././model/users');
 var Product = require('.././model/product');
+var Bill = require('.././model/bill');
 module.exports = {
     index: function (request, response) {
         var user = request.session.user;
@@ -72,6 +73,31 @@ module.exports = {
                     response.render('addproduct', {message: err, userLoggedIn: loginUser});
                 } else {
                     response.redirect('/addproduct');
+                }
+            });
+        }
+    },
+    saveEmp: function(request, response){
+        var loginUser = request.session.user;
+        var user = new User({
+            name: request.body.name,
+            username: request.body.username,
+            password: request.body.password,
+            address: request.body.address,
+            email: request.body.email,
+            mobile: request.body.mobile,
+            joining_date: request.body.date,
+        });
+        var error = user.validateSync();
+        if (error) {
+            response.render('addemp', {message: error, userLoggedIn: loginUser});
+        } else {
+            user.save(function (err) {
+                if (err) {
+                    // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
+                    response.render('addemp', {message: err, userLoggedIn: loginUser});
+                } else {
+                    response.redirect('/addemp');
                 }
             });
         }
