@@ -147,90 +147,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                          <td>PRO10003J</td>
-                          <td>R8</td>
-                          <td>Audi</td>
-                          <td>2.0 Crore</td>
-                          <td>2.6 Crore</td>
-                        </tr>
-                        <tr>
-                          <td>PRO12345E</td>
-                          <td>Street 750</td>
-                          <td>Harley Davidson</td>
-                          <td>5 Lakh</td>
-                          <td>5.5 Lakh</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Cedric Kelly</td>
-                          <td>Senior Javascript Developer</td>
-                          <td>Edinburgh</td>
-                          <td>$433,060</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Airi Satou</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Brielle Williamson</td>
-                          <td>Integration Specialist</td>
-                          <td>New York</td>
-                          <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Herrod Chandler</td>
-                          <td>Sales Assistant</td>
-                          <td>San Francisco</td>
-                          <td>$137,500</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Rhona Davidson</td>
-                          <td>Integration Specialist</td>
-                          <td>Tokyo</td>
-                          <td>$327,900</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Colleen Hurst</td>
-                          <td>Javascript Developer</td>
-                          <td>San Francisco</td>
-                          <td>$205,500</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Sonya Frost</td>
-                          <td>Software Engineer</td>
-                          <td>Edinburgh</td>
-                          <td>$103,600</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Jena Gaines</td>
-                          <td>Office Manager</td>
-                          <td>London</td>
-                          <td>$90,560</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Quinn Flynn</td>
-                          <td>Support Lead</td>
-                          <td>Edinburgh</td>
-                          <td>$342,000</td>
-                        </tr>
+                        <% if(product) { %>
+                            <% for(var i = 0; i < product.length; i++) { %>
+                                <tr>
+                                    <td><%= product[i].serialno %></td>
+                                    <td><%= product[i].pname %></td>
+                                    <td><%= product[i].brand %></td>
+                                    <td><%= product[i].buy %></td>
+                                    <td><%= product[i].sell %></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
                     </tbody>
                 </table>
                       </div>
