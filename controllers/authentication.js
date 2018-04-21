@@ -47,13 +47,31 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('manage-emp', {message: message, userLoggedIn: loginUser});
+        var query = User.find();
+        query.sort({joining_date: 'desc'})
+            .exec(function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    response.render('manage-emp', {userLoggedIn: loginUser , user : data});
+                }
+            });
+        //response.render('manage-emp', {message: message, userLoggedIn: loginUser});
     },
     manageProduct: function (request, response) {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('manage-product', {message: message, userLoggedIn: loginUser});
+        var query = Product.find();
+        query.sort({buy: 'desc'})
+            .exec(function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    response.render('manage-product', {userLoggedIn: loginUser , product : data});
+                }
+            });
+        //response.render('manage-product', {message: message, userLoggedIn: loginUser});
     },
     pagesForget: function (request, response) {
         var user = request.session.user;
