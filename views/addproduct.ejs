@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.less"> -->
     <link rel="stylesheet" href="assets/scss/style.css">
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css">
+    <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 </head>
 <body>
     <!-- Left Panel -->
@@ -129,28 +130,41 @@
                     <small> Form</small>
                 </div>
                 <div class="card-body card-block">
-                        <% if(message){ %>
-                            <div class="alert alert-danger alert-error text-center">
-                                <%= message %>
-                            </div>
-                            <% } %>
+                    <% if(message){ %>
+                        <div class="alert alert-error alert-danger alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-danger">Error</span>
+                            <%= message %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% } %>
+                    <% if(successMessage){ %>
+                        <div class="alert  alert-success alert-dismissible fade show text-center" role="alert">
+                            <span class="badge badge-pill badge-success">Success</span>
+                            <%= successMessage %>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <% } %>
                     <div class="form-group">
-                        <label for="brand" class=" form-control-label">Brand/Company Name</label>
+                        <label for="brand" class="form-control-label">Brand/Company Name</label>
                         <input type="text" id="brand" name="brand" placeholder="Enter brand name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="pname" class=" form-control-label">Product Name</label>
+                        <label for="pname" class="form-control-label">Product Name</label>
                         <input type="text" id="pname" name="pname" placeholder="Enter product name" class="form-control">
                     </div>
                     <div class="form-group">
-                        <label for="serialno" class=" form-control-label">Serial No.</label>
+                        <label for="serialno" class="form-control-label">Serial No.</label>
                         <input type="text" id="serialno" name="serialno" placeholder="Enter Unique Serial No." class="form-control">
                     </div>
                     <hr/>
                     <div class="row form-group">
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="buy" class=" form-control-label">Buying Price</label>
+                                <label for="buy" class="form-control-label">Buying Price</label>
                                 <input type="text" id="buy" name="buy" placeholder="Enter buying price" class="form-control">
                             </div>
                         </div>
@@ -162,7 +176,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="CGST" class=" form-control-label">CGST(%)</label>
+                                <label for="CGST" class="form-control-label">CGST(%)</label>
                                 <select class="form-control" id="CGST" name="CGST" required>
                                     <optgroup label="CGST">
                                         <option value="#" selected>Choose CGST</option>
@@ -176,7 +190,7 @@
                         </div>
                         <div class="col-3">
                             <div class="form-group">
-                                <label for="SGST" class=" form-control-label">SGST/UTGST(%)</label>
+                                <label for="SGST" class="form-control-label">SGST/UTGST(%)</label>
                                 <select class="form-control" id="SGST" name="SGST" required>
                                     <optgroup label="SGST/UTGST">
                                         <option value="#" selected>Choose SGST/UTGST</option>
@@ -204,7 +218,8 @@
         </form>
     </div>
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/bootstrap-select.min.js"></script>
 </body>

@@ -8,7 +8,9 @@
     <meta name="description" content="Admin Panel - GST Billing System">
     <link rel="shortcut icon" href="images/favicon.ico">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+    <!--<link rel="stylesheet" href="assets/css/animate.css">-->
     <link rel="stylesheet" href="assets/css/styles.min.css">
     <style>
         @keyframes zoomin {
@@ -27,11 +29,11 @@
     <div class="login-dark" style="background-image:url(&quot;images/background.png&quot;);background-position:center;background-size:cover;animation:zoomin 3s;transition:all .3s;background-repeat:no-repeat;">
         <form method="post" action="/index" style="width:320px;margin:0px;">
             <% if(message){%>
-                <div class="alert alert-danger alert-error text-center"><%= message%></div>
+                <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
             <% }%>
             <h2 class="sr-only">Login Form</h2>
             <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/img/logo_bakbak.png&quot;);background-size:contain;background-position:center;background-repeat:no-repeat;max-height:160px;height:160px;min-height:10px;"></div>
-            <div class="form-group"><input class="form-control" type="email" name="username" placeholder="Email"></div>
+            <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Email"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-outline-primary active btn-block btn-lg" type="submit" data-bs-hover-animate="shake" style="background-image:url(&quot;none&quot;);">Log In</button></div>
             <a class="text-success forgot" href="pages-forget">Forgot your email or password?</a>

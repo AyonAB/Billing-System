@@ -24,7 +24,7 @@
     <link rel="stylesheet" href="assets/scss/style.css">
     <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
@@ -147,90 +147,17 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                          <td><label class="checkbox-inline"><input type="checkbox" value=""> Active</label></td>
-                          <td>Ayon Das</td>
-                          <td>7003247631</td>
-                          <td>ayantorres@gmail.com</td>
-                          <td>30/03/2018</td>
-                        </tr>
-                        <tr>
-                          <td><label class="checkbox-inline"><input type="checkbox" value=""> Active</label></td>
-                          <td>Susanta Chakraborty</td>
-                          <td>9062921952</td>
-                          <td>susant.vanu7278@gmail.com</td>
-                          <td>29/03/2018</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Ashton Cox</td>
-                          <td>Junior Technical Author</td>
-                          <td>San Francisco</td>
-                          <td>$86,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Cedric Kelly</td>
-                          <td>Senior Javascript Developer</td>
-                          <td>Edinburgh</td>
-                          <td>$433,060</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Airi Satou</td>
-                          <td>Accountant</td>
-                          <td>Tokyo</td>
-                          <td>$162,700</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Brielle Williamson</td>
-                          <td>Integration Specialist</td>
-                          <td>New York</td>
-                          <td>$372,000</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Herrod Chandler</td>
-                          <td>Sales Assistant</td>
-                          <td>San Francisco</td>
-                          <td>$137,500</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Rhona Davidson</td>
-                          <td>Integration Specialist</td>
-                          <td>Tokyo</td>
-                          <td>$327,900</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Colleen Hurst</td>
-                          <td>Javascript Developer</td>
-                          <td>San Francisco</td>
-                          <td>$205,500</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Sonya Frost</td>
-                          <td>Software Engineer</td>
-                          <td>Edinburgh</td>
-                          <td>$103,600</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Jena Gaines</td>
-                          <td>Office Manager</td>
-                          <td>London</td>
-                          <td>$90,560</td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                          <td>Quinn Flynn</td>
-                          <td>Support Lead</td>
-                          <td>Edinburgh</td>
-                          <td>$342,000</td>
-                        </tr>
+                        <% if(user) { %>
+                            <% for(var i = 0; i < user.length; i++) { %>
+                                <tr>
+                                    <td><label class="checkbox-inline"><input type="checkbox" value=""> Active</label></td>
+                                    <td><%= user[i].name %></td>
+                                    <td><%= user[i].mobile %></td>
+                                    <td><%= user[i].email %></td>
+                                    <td><%= user[i].joining_date %></td>
+                                </tr>
+                            <% } %>
+                        <% } %>
                     </tbody>
                 </table>
                       </div>

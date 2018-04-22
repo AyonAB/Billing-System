@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var saltRounds = 10;
 
 //custom validator
@@ -9,7 +9,7 @@ var minDigitsvalidator = function(val) {
     };
 
 //create schema
-//parent User Schema
+//parent User/Employee Schema
 var user = new Schema({
     name:{type: String, required: [true, '{PATH} is required']},
     username: {type: String, required: [true, '{PATH} is required']},
@@ -17,8 +17,8 @@ var user = new Schema({
     address: {type: String, required: [true, '{PATH} is required']},
     email: {type: String, required: [true, '{PATH} is required']},
     mobile: {type: Number, required: [true, '{PATH} is required'],
-    validate: [minDigitsvalidator, '{PATH} must have 6 digits']},
-    created_at: {type: Date, default: Date.now}
+    validate: [minDigitsvalidator, '{PATH} must have 10 digits']},
+    joining_date: {type: Date, required: [true, '{PATH} is required']}
 });
 
 /*user.pre('update', function(next) {
