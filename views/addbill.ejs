@@ -135,6 +135,24 @@
             <div class="card">
               <div class="card-header"><strong>Add Bill</strong><small> Form</small></div>
               <div class="card-body card-block">
+                <% if(message){ %>
+                        <div class="alert alert-error alert-danger alert-dismissible fade show text-center" role="alert">
+                        <span class="badge badge-pill badge-danger">Error</span>
+                        <%= message %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
+                <% if(successMessage){ %>
+                    <div class="alert  alert-success alert-dismissible fade show text-center" role="alert">
+                        <span class="badge badge-pill badge-success">Success</span>
+                        <%= successMessage %>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <% } %>
                 <div class="form-group"><label for="name" class=" form-control-label">Full Name</label><input type="text" name="name" id="name" placeholder="Enter your full name" class="form-control" required></div>
                 <div class="form-group"><label for="company" class=" form-control-label">Company Name</label><input type="text" name="cname" id="company" placeholder="Enter company name (Optional)" class="form-control"></div>                
                 <div class="form-group"><label for="address" class=" form-control-label">Address</label><input type="text" id="address" name="address" placeholder="Enter your address" class="form-control" required></div>
@@ -158,10 +176,9 @@
                         <select class="form-control" id="product" name="product" required>
                             <optgroup label="Available Products">
                                 <option value="#" selected>Choose One or More Product</option>
-                                <option value="2.5">2.5%</option>
-                                <option value="6">6%</option>
-                                <option value="9">9%</option>
-                                <option value="14">14%</option>
+                                <option value="Zenfone Max">Zenfone Max</option>
+                                <option value="Lenovo K6 Power">Lenovo K6 Power</option>
+                                <option value="ParleG Biscuit">ParleG Biscuit</option>
                             </optgroup>
                         </select>
                     </div>
