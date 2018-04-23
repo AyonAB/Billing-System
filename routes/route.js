@@ -7,7 +7,7 @@ var express = require('express'),
 //router.get('/addUser', indexController.addUser);
 //router.post('/saveUser', indexController.saveUser);
 router.use(middleware.isLoginCheck);
-//router.get('/', indexController.index);
+// router.get('/test', indexController.test);
 router.get('/index', indexController.index);
 router.get('/pages-forget', indexController.pagesForget);
 router.post('/index', function(request, response, next){

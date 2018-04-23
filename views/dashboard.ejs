@@ -20,7 +20,11 @@
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
     
     <link rel="stylesheet" href="assets/scss/style.css">
-    <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
+
+    <link href="assets/css/jquery.multiselect.css" rel="stylesheet" type="text/css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css"> -->
+
 
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 
@@ -318,21 +322,126 @@
                     </div>
                 </div>
             </div>
+            <!-- <select class="selectpicker" id="product" name="product" multiple>
+                <optgroup label="Available Products">
+                    <option value="#" selected>Choose One or More Product</option>                                <option value="pink">PINK</option>
+                    <option value="black">BLACk</option>
+                    <option value="yellow">yellow</option>
+                    <option value="white">White</option>
+                    
+                        
+                </optgroup>
+            </select> -->
+
+            <!-- <select id="example-multiple-select" multiple>
+                <option value="cheese">Cheese</option>
+                <option value="tomatoes">Tomatoes</option>
+                <option value="mozarella">Mozzarella</option>
+                <option value="mushrooms">Mushrooms</option>
+                <option value="pepperoni">Pepperoni</option>
+                <option value="onions">Onions</option>
+                </select> -->
+                
+<!--                 
+                <div class="form-group">
+                    <label class="col-md-4 control-label" for="rolename">Role Name</label>
+                    <div class="col-md-4">
+                        <select id="dates-field2" name="dates[]"class="multiselect-ui form-control" multiple="multiple">
+                            <option value="cheese">Cheese</option>
+                            <option value="tomatoes">Tomatoes</option>
+                            <option value="mozarella">Mozzarella</option>
+                            <option value="mushrooms">Mushrooms</option>
+                            <option value="pepperoni">Pepperoni</option>
+                            <option value="onions">Onions</option>
+                        </select>
+                    </div>
+                </div> -->
+
+
+                <h2>A demo of using multi-select with checkboxes</h2>
+    <select name="multicheckbox[]" multiple="multiple" class="4colactive">
+        <option value="AK">Alaska</option>
+        <option value="AZ">Arizona</option>
+        <option value="AR">Arkansas</option>
+        <option value="CA">California</option>
+        <option value="CO">Colorado</option>
+        <option value="CT">Connecticut</option>
+        <option value="DE">Delaware</option>
+        <option value="FL">Florida</option>
+        <option value="GA">Georgia</option>
+        <option value="HI">Hawaii</option>
+        <option value="ID">Idaho</option>
+        <option value="IL">Illinois</option>
+        <option value="IN">Indiana</option>
+        <option value="IA">Iowa</option>
+        <option value="KS">Kansas</option>
+        <option value="KY">Kentucky</option>
+        <option value="LA">Louisiana</option>
+        <option value="ME">Maine</option>
+        <option value="MD">Maryland</option>
+        <option value="MA">Massachusetts</option>
+        <option value="MI">Michigan</option>
+        <option value="MN">Minnesota</option>
+        <option value="MS">Mississippi</option>
+        <option value="MO">Missouri</option>
+        <option value="MT">Montana</option>
+        <option value="NE">Nebraska</option>
+        <option value="NV">Nevada</option>
+        <option value="NH">New Hampshire</option>
+        <option value="NJ">New Jersey</option>
+        <option value="NM">New Mexico</option>
+        <option value="NY">New York</option>
+        <option value="NC">North Carolina</option>
+        <option value="ND">North Dakota</option>
+        <option value="OH">Ohio</option>
+        <option value="OK">Oklahoma</option>
+        <option value="OR">Oregon</option>
+        <option value="PA">Pennsylvania</option>
+        <option value="RI">Rhode Island</option>
+        <option value="SC">South Carolina</option>
+        <option value="SD">South Dakota</option>
+        <option value="TN">Tennessee</option>
+        <option value="TX">Texas</option>
+        <option value="UT">Utah</option>
+        <option value="VT">Vermont</option>
+        <option value="VA">Virginia</option>
+        <option value="WA" selected="selected">Washington</option>
+        <option value="WV">West Virginia</option>
+        <option value="WI">Wisconsin</option>
+        <option value="WY">Wyoming</option>
+    </select>
+
+
+                
+                
+                
 
         </div> <!-- .content -->
     </div><!-- /#right-panel -->
 
     <!-- Right Panel -->
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+<script src="assets/js/jquery.multiselect.js"></script>
+<script>
+$('select[multiple]').multiselect({
+    columns: 4,
+    placeholder: 'Select options'
+});
+</script>
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
-
+   
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script> -->
 
     <script src="assets/js/lib/chart-js/Chart.bundle.js"></script>
     <script src="assets/js/dashboard.js"></script>
     <script src="assets/js/widgets.js"></script>
 
+    <!-- Initialize the plugin: -->
+    <!-- <script type="text/javascript">
+        $('.example-multiple-selected').multiselect();
+    </script> -->
 </body>
 </html>

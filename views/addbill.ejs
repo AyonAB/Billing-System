@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="assets/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/flag-icon.min.css">
     <link rel="stylesheet" href="assets/css/cs-skin-elastic.css">
-    <!--<link rel="stylesheet" href="assets/css/bootstrap-select.less">-->
+    <!-- <link rel="stylesheet" href="assets/css/bootstrap-select.min.css"> -->
     <link rel="stylesheet" href="assets/scss/style.css">
     <link href="assets/css/lib/vector-map/jqvmap.min.css" rel="stylesheet">
     <!-- Latest compiled and minified CSS -->
@@ -28,6 +28,8 @@
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
+    <!-- CSS for Product multi selection -->
+    <link href="assets/css/jquery.multiselect.css" rel="stylesheet" type="text/css">
 
 </head>
 <body>
@@ -164,37 +166,39 @@
                     <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" name="postal" id="postal-code" placeholder="Postal Code" class="form-control" required></div>
                   </div>
                 </div>
+                <label for="product" class="form-control-label">Products</label>
+                <!-- <div class="form-control"> -->
+                    
+                    <!-- <select class="selectpicker form-control" id="product" name="product" multiple> -->
+                        <select name="products[]"  id="product" multiple="multiple" class="1colactive form-control">
+                            <!-- <optgroup label="Available Products"> -->
+                                <!-- <option value="" disabled="disabled">Choose One or More Product</option> -->
+                                <% if(product) { %>
+                                    <% for(var i = 0; i < product.length; i++) { %>
+                                        <option value=product[i].pname><%= product[i].pname %></option>
+                                    <% } %>
+                                <% } %>
+                            <!-- </optgroup> -->
+                    </select>
+                
+                <!-- <div class="col-6">
+                    <label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" class="form-control" required>
+                </div> -->
+            <!-- </div>                        --><br> 
                 <div class="row form-group">
                     <div class="col-4"><label for="mobile" class=" form-control-label">Mobile No</label><input type="number" id="mobile" name="mobile" placeholder="Enter Mobile No" class="form-control" required></div>
                     <div class="col-4"><label for="email" class=" form-control-label">Email ID</label><input type="email" id="email" name="email" placeholder="Enter Email ID" class="form-control" required></div>
                     <div class="col-4"><label for="date" class="form-control-label">Invoice Date</label><input class="form-control" type="date" name="date" placeholder="dd/mm/yyyy" id="date" required></div>                
                 </div>
                 <hr>
-                <div class="row form-group">
-                    <div class="col-6">
-                        <label for="product" class="form-control-label">Product</label>
-                        <select class="form-control" id="product" name="product" required>
-                            <optgroup label="Available Products">
-                                <option value="#" selected>Choose One or More Product</option>
-                                <% if(product) { %>
-                                    <% for(var i = 0; i < product.length; i++) { %>
-                                            <option value=product[i].pname><%= product[i].pname %></option>
-                                    <% } %>
-                                <% } %>
-                            </optgroup>
-                        </select>
-                    </div>
-                    <div class="col-6">
-                        <label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" class="form-control" required>
-                    </div>
-                </div>                          
+                  
                 <div class="row form-group">
                     <div class="col-4"></div>
                     <div class="col-2">                              
-                        <div class="form-group text-center"><button type="submit" class="btn btn-outline-success"><i class="fa fa-magic"></i>&nbsp; Submit</button></div>
+                        <button type="submit" class="btn btn-outline-success"><i class="fa fa-magic"></i>&nbsp; Submit</button>
                     </div>
                     <div class="col-2">
-                        <div class="form-group text-center"><button type="reset" class="btn btn-outline-warning"><i class="fa fa-map-marker"></i>&nbsp; Reset</button></div>
+                        <button type="reset" class="btn btn-outline-warning"><i class="fa fa-map-marker"></i>&nbsp; Reset</button>
                     </div>    
                 </div>
             </div>
@@ -202,7 +206,17 @@
           </div>
         </form>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> 
+    <script src="assets/js/jquery.multiselect.js"></script>
+    <script>
+        $('select[multiple]').multiselect({
+        columns: 2,
+        placeholder: 'Select Products',
+        search : true,
+        selectAll : false
 
+    });
+    </script>
     <script src="assets/js/vendor/jquery-2.1.4.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
