@@ -23,7 +23,16 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('addbill', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+        var query = Product.find();
+        query.sort({pname: 'desc'})
+            .exec(function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    response.render('addbill', {userLoggedIn: loginUser, message: message, successMessage: successMessage, product : data});
+                }
+            });
+        //response.render('addbill', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
     },
     addEmp: function (request, response) {
         var loginUser = request.session.user;
@@ -145,7 +154,7 @@ module.exports = {
             product: request.body.product,
             quantity: request.body.quantity,
         });
-        var query = Product.findOne({ pname: request.body.product });
+        var query = Product.find({ pname: request.body.product });
         query.select('sell CGST SGST');
         query.exec(function (err, product) {
             if (err) return handleError(err);
