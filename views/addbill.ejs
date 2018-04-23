@@ -176,9 +176,11 @@
                         <select class="form-control" id="product" name="product" required>
                             <optgroup label="Available Products">
                                 <option value="#" selected>Choose One or More Product</option>
-                                <option value="Zenfone Max">Zenfone Max</option>
-                                <option value="Lenovo K6 Power">Lenovo K6 Power</option>
-                                <option value="ParleG Biscuit">ParleG Biscuit</option>
+                                <% if(product) { %>
+                                    <% for(var i = 0; i < product.length; i++) { %>
+                                            <option value=product[i].pname><%= product[i].pname %></option>
+                                    <% } %>
+                                <% } %>
                             </optgroup>
                         </select>
                     </div>
@@ -207,4 +209,7 @@
     <script src="assets/js/main.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+    <script>
+        document.getElementById("date").valueAsDate = new Date();
+    </script>
 </body>
