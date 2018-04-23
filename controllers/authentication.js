@@ -130,6 +130,29 @@ module.exports = {
                 }
             });
         }
+    },
+    saveBill: function(request, response) {
+        var loginUser = request.session.user;
+        var bill = new Bill({
+            name: request.body.name,
+            cname: request.body.cname,
+            address: request.body.address,
+            city: request.body.city,
+            postal: request.body.postal,
+            mobile: request.body.mobile,
+            email: request.body.email,
+            date: request.body.date,
+            product: request.body.product,
+            quantity: request.body.quantity,
+        });
+        var query = Product.findOne({ pname: request.body.product });
+        query.select('sell CGST SGST');
+        query.exec(function (err, product) {
+            if (err) return handleError(err);
+            console.log('%d   %s    %s.', product.sell, product.CGST,
+              product.SGST);
+            response.render('addbill', {message: product.CGST, successMessage: product.sell, userLoggedIn: loginUser});
+          });
     }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
