@@ -142,11 +142,15 @@ module.exports = {
     },
     saveBill: function(request, response) {
         var loginUser = request.session.user;
-        var query = Product.find({ pname: request.body.product });
+        console.log(request.body.product);
+        var query = Product.findOne({ pname: request.body.product });
         query.select('sell CGST SGST');
         query.exec(function (err, product) {
-            var price = product.sell * request.body.quantity;
+            var price = product.sell;
+            console.log(product.sell);
+            console.log(price);
             price = price + ((price * (product.CGST + product.SGST)) / 100);
+            console.log(price);
             if (err) return handleError(err);
             var bill = new Bill({
                 name: request.body.name,

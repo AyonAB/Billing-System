@@ -166,21 +166,20 @@
                     <div class="form-group"><label for="postal-code" class=" form-control-label">Postal Code</label><input type="text" name="postal" id="postal-code" placeholder="Postal Code" class="form-control" required></div>
                   </div>
                 </div>
-                <label for="product" class="form-control-label">Products</label>
-                <!-- <div class="form-control"> -->
-                    
+                <div class="form-group">
+                    <label for="product" class="form-control-label">Products</label>  
                     <!-- <select class="selectpicker form-control" id="product" name="product" multiple> -->
-                        <select name="products[]"  id="product" multiple="multiple" class="1colactive form-control">
-                            <!-- <optgroup label="Available Products"> -->
-                                <!-- <option value="" disabled="disabled">Choose One or More Product</option> -->
-                                <% if(product) { %>
-                                    <% for(var i = 0; i < product.length; i++) { %>
-                                        <option value=product[i].pname><%= product[i].pname %></option>
-                                    <% } %>
+                    <select name="product"  id="product" multiple="multiple" class="1colactive form-control">
+                        <!-- <optgroup label="Available Products"> -->
+                            <!-- <option value="" disabled="disabled">Choose One or More Product</option> -->
+                            <% if(product) { %>
+                                <% for(var i = 0; i < product.length; i++) { %>
+                                    <option value = <%= product[i].pname %>> <%= product[i].pname %> </option>
                                 <% } %>
-                            <!-- </optgroup> -->
+                            <% } %>
+                        <!-- </optgroup> -->
                     </select>
-                
+                </div>
                 <!-- <div class="col-6">
                     <label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" class="form-control" required>
                 </div> -->
