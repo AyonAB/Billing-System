@@ -13,8 +13,8 @@ var bill = new Schema({
     date: {type: Date, required: [true, '{PATH} is required'] },
     product: {type: String, required: [true, '{PATH} is required'] },
     quantity: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required'] },
-    CGST: {type: String},
-    SGST: {type: String},
+    CGST: {type: Number},
+    SGST: {type: Number},
     price: {type: Number}
 });
 
