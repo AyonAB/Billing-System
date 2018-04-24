@@ -168,22 +168,15 @@
                 </div>
                 <div class="form-group">
                     <label for="product" class="form-control-label">Products</label>  
-                    <!-- <select class="selectpicker form-control" id="product" name="product" multiple> -->
                     <select name="product"  id="product" multiple="multiple" class="1colactive form-control">
-                        <!-- <optgroup label="Available Products"> -->
-                            <!-- <option value="" disabled="disabled">Choose One or More Product</option> -->
                             <% if(product) { %>
                                 <% for(var i = 0; i < product.length; i++) { %>
                                     <option value = <%= product[i].pname %>> <%= product[i].pname %> </option>
                                 <% } %>
                             <% } %>
-                        <!-- </optgroup> -->
+                
                     </select>
-                </div>
-                <!-- <div class="col-6">
-                    <label for="quantity" class=" form-control-label">Quantity</label><input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" class="form-control" required>
-                </div> -->
-            <!-- </div>                        --><br> 
+                </div><br> 
                 <div class="row form-group">
                     <div class="col-4"><label for="mobile" class=" form-control-label">Mobile No</label><input type="number" id="mobile" name="mobile" placeholder="Enter Mobile No" class="form-control" required></div>
                     <div class="col-4"><label for="email" class=" form-control-label">Email ID</label><input type="email" id="email" name="email" placeholder="Enter Email ID" class="form-control" required></div>
