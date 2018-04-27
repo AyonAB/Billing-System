@@ -15,7 +15,7 @@ var bill = new Schema({
     //quantity: {type: Number, min: [0, 'Can not be a negetive value'] },
     CGST: {type: Number},
     SGST: {type: Number},
-    price: {type: Number, default: null}
+    price: {type: Number}
 });
 
 // we need to create a model using it
