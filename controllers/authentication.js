@@ -88,6 +88,12 @@ module.exports = {
         var successMessage = '';
         response.render('pages-forget', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
+    invoice: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        var successMessage = '';
+        response.render('invoice', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+    },
     saveProduct: function(request, response) {
         var loginUser = request.session.user;
         var product = new Product({
@@ -142,44 +148,50 @@ module.exports = {
     },
     saveBill: function(request, response) {
         var loginUser = request.session.user;
-        var arr = [];
-        var pricep = 0;
-        arr = request.body.product;
-        for(var i = 0; i<arr.length; i++){
-            var query = Product.findOne({ pname: arr[i] });
-            query.select('sell CGST SGST');
-            query.exec(function (err, product){
-                var tempPrice = product.sell;
-                tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
-                pricep = pricep + tempPrice;
-                if (err) return handleError(err);
-                console.log(pricep);
-            });
-        }
-        console.log(pricep);
-        var bill = new Bill({
-            name: request.body.name,
-            cname: request.body.cname,
-            address: request.body.address,
-            city: request.body.city,
-            postal: request.body.postal,
-            mobile: request.body.mobile,
-            email: request.body.email,
-            date: request.body.date,
-            product: request.body.product,
-            CGST: 9,
-            SGST: 9,
-            price: pricep,
-        });
-        console.log('The price is: ' + pricep);
-        var error = bill.validateSync();
+            var arr = [];
+            var bill = new Bill();
+                arr = request.body.product;
+                for(var i = 0; i<arr.length; i++){
+                    var query = Product.findOne({ pname: arr[i] });
+                    query.select('sell CGST SGST');
+                    query.exec(function (err, product){
+                        var tempPrice = product.sell;
+                        tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
+                        bill.price = bill.price + tempPrice;
+                        if (err) return handleError(err);
+                        console.log(bill.price);
+                    });
+                }        
+            bill.name = request.body.name;
+            bill.cname = request.body.cname;
+            bill.address = request.body.address;
+            bill.city = request.body.city;
+            bill.postal = request.body.postal;
+            bill.mobile = request.body.mobile;
+            bill.email = request.body.email;
+            bill.date = request.body.date;
+            bill.product = request.body.product;
+            /*var bill = new Bill({
+                name: request.body.name,
+                cname: request.body.cname,
+                address: request.body.address,
+                city: request.body.city,
+                postal: request.body.postal,
+                mobile: request.body.mobile,
+                email: request.body.email,
+                date: request.body.date,
+                product: request.body.product,
+            });*/
+            var error = bill.validateSync();
             if (error) {
-                response.render('addbill', {message: error, successMessage: '', product: product, userLoggedIn: loginUser});
+                console.log(error);
+                response.render('dashboard', {message: error, successMessage: '', userLoggedIn: loginUser});
             } else {
                 bill.save(function (err) {
+                    console.log("Price from DB: " + bill.price);
                     if (err) {
                         // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
-                        response.render('addbill', {message: err, successMessage: '', product: product, userLoggedIn: loginUser});
+                        response.render('dashboard', {message: err, successMessage: '', userLoggedIn: loginUser});
                     } else {
                         //response.redirect('/addemp');
                         response.render('dashboard', {successMessage: 'New Bill is successfully generated.', message: '', userLoggedIn: loginUser});
