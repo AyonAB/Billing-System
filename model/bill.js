@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Product = require('.././model/product');
 var Schema = mongoose.Schema;
 
 //create schema for product
@@ -13,9 +14,9 @@ var bill = new Schema({
     date: {type: Date, required: [true, '{PATH} is required'] },
     product: {type: String, required: [true, '{PATH} is required'] },
     //quantity: {type: Number, min: [0, 'Can not be a negetive value'] },
-    CGST: {type: Number},
-    SGST: {type: Number},
-    price: {type: Number}
+    CGST: {type: Array},
+    SGST: {type: Array},
+    price: {type: Number, default: 0}
 });
 
 // we need to create a model using it
