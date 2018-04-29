@@ -50,7 +50,16 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('manage-bill', {message: message, userLoggedIn: loginUser});
+        var query = Bill.find();
+        query.sort({date: 'desc'})
+            .exec(function (err, data) {
+                if (err) {
+                    console.log(err);
+                } else {
+                    response.render('manage-bill', {userLoggedIn: loginUser , bill : data});
+                }
+            });
+        //response.render('manage-bill', {message: message, userLoggedIn: loginUser});
     },
     manageEmp: function (request, response) {
         var loginUser = request.session.user;
@@ -148,29 +157,47 @@ module.exports = {
     },
     saveBill: function(request, response) {
         var loginUser = request.session.user;
-            var arr = [];
-            var bill = new Bill();
-                arr = request.body.product;
-                for(var i = 0; i<arr.length; i++){
-                    var query = Product.findOne({ pname: arr[i] });
-                    query.select('sell CGST SGST');
-                    query.exec(function (err, product){
-                        var tempPrice = product.sell;
-                        tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
-                        bill.price = bill.price + tempPrice;
-                        if (err) return handleError(err);
-                        console.log(bill.price);
-                    });
-                }        
-            bill.name = request.body.name;
-            bill.cname = request.body.cname;
-            bill.address = request.body.address;
-            bill.city = request.body.city;
-            bill.postal = request.body.postal;
-            bill.mobile = request.body.mobile;
-            bill.email = request.body.email;
-            bill.date = request.body.date;
-            bill.product = request.body.product;
+        var arr = [];
+        var bill = new Bill();
+            arr = request.body.product;
+            for(var i = 0; i<arr.length; i++){
+                var query = Product.findOne({ pname: arr[i] });
+                query.select('sell CGST SGST');
+                query.exec(function (err, product){
+                    var tempPrice = product.sell;
+                    tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
+                    bill.price = bill.price + tempPrice;
+                    bill.CGST.push(product.CGST);
+                    bill.SGST.push(product.SGST);
+                    if (err) return handleError(err);
+                });
+            }        
+        bill.name = request.body.name;
+        bill.cname = request.body.cname;
+        bill.address = request.body.address;
+        bill.city = request.body.city;
+        bill.postal = request.body.postal;
+        bill.mobile = request.body.mobile;
+        bill.email = request.body.email;
+        bill.date = request.body.date;
+        bill.product = request.body.product;
+        setTimeout(function() {
+            var error = bill.validateSync();
+            if (error) {
+                console.log(error);
+                response.render('addbill', {message: error, successMessage: '', userLoggedIn: loginUser});
+            } else {
+                bill.save(function (err) {
+                    if (err) {
+                        // response.render('addbill', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
+                        response.render('addbill', {message: err, successMessage: '', userLoggedIn: loginUser});
+                    } else {
+                        //response.redirect('/addemp');
+                        response.render('invoice', {successMessage: '', message: '', userLoggedIn: loginUser});
+                    }
+                });
+            }
+        }, 3000);
             /*var bill = new Bill({
                 name: request.body.name,
                 cname: request.body.cname,
@@ -182,61 +209,7 @@ module.exports = {
                 date: request.body.date,
                 product: request.body.product,
             });*/
-            var error = bill.validateSync();
-            if (error) {
-                console.log(error);
-                response.render('dashboard', {message: error, successMessage: '', userLoggedIn: loginUser});
-            } else {
-                bill.save(function (err) {
-                    console.log("Price from DB: " + bill.price);
-                    if (err) {
-                        // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
-                        response.render('dashboard', {message: err, successMessage: '', userLoggedIn: loginUser});
-                    } else {
-                        //response.redirect('/addemp');
-                        response.render('dashboard', {successMessage: 'New Bill is successfully generated.', message: '', userLoggedIn: loginUser});
-                    }
-                });
-            }
 
-        /*query.exec(function (err, product) {
-            var price = product.sell;
-            console.log(product.sell);
-            console.log(price);
-            price = price + ((price * (product.CGST + product.SGST)) / 100);
-            console.log(price);
-            if (err) return handleError(err);
-            var bill = new Bill({
-                name: request.body.name,
-                cname: request.body.cname,
-                address: request.body.address,
-                city: request.body.city,
-                postal: request.body.postal,
-                mobile: request.body.mobile,
-                email: request.body.email,
-                date: request.body.date,
-                product: request.body.product,
-                quantity: request.body.quantity,
-                CGST: product.CGST,
-                SGST: product.SGST,
-                price: price
-            });
-            var error = bill.validateSync();
-            if (error) {
-                response.render('addbill', {message: error, successMessage: '', product: product, userLoggedIn: loginUser});
-            } else {
-                bill.save(function (err) {
-                    if (err) {
-                        // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
-                        response.render('addbill', {message: err, successMessage: '', product: product, userLoggedIn: loginUser});
-                    } else {
-                        //response.redirect('/addemp');
-                        response.render('addbill', {successMessage: 'New Bill is successfully generated.', message: '', product: product, userLoggedIn: loginUser});
-                    }
-                });
-            }
-            //response.render('addbill', {message: product.CGST, successMessage: product.sell, userLoggedIn: loginUser});
-          });*/
     }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
