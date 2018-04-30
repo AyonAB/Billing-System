@@ -62,7 +62,7 @@
                <h4>  <strong>Payment Details </strong></h4>
             <b>Bill Amount : <%= bill.price %> </b>
               <br />
-               Bill Date : <%= bill.date %>
+               <b>Bill Date :</b> <%= bill.date %>
          </div>
      </div>
      <div class="row">
@@ -123,12 +123,12 @@
       <div class="row pad-top-botm">
          <div class="col-lg-12 col-md-12 col-sm-12">
              <hr />
-             <input id="print" class="btn btn-primary btn-lg" onclick="print()" value="Print The Invoice" />
+             <input id="print" type="button" class="btn btn-primary btn-lg" onclick="printInvoice()" value="Print The Invoice" />
              </div>
          </div>
  </div>
   <script  type="text/javascript">
-    function print() {
+    function printInvoice() {
         window.print();
     }
   </script>
