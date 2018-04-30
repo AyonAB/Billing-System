@@ -13,9 +13,9 @@ var bill = new Schema({
     date: {type: Date, required: [true, '{PATH} is required'], default: Date.now },
     product: {type:[[String]], required: [true, '{PATH} is required'] },
     //quantity: {type: Number, min: [0, 'Can not be a negetive value'] },
-    CGST: {type: [Number]},
-    SGST: {type: [Number]},
-    price:{type: Number}
+    CGST: {type: Number},
+    SGST: {type: Number},
+    price: {type: Number}
 });
 
 // we need to create a model using it

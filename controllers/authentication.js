@@ -142,10 +142,52 @@ module.exports = {
     },
     saveBill: function(request, response) {
         var loginUser = request.session.user;
-        console.log(request.body.product);
-        var query = Product.findOne({ pname: request.body.product });
-        query.select('sell CGST SGST');
-        query.exec(function (err, product) {
+        var arr = [];
+        var pricep = 0;
+        arr = request.body.product;
+        for(var i = 0; i<arr.length; i++){
+            var query = Product.findOne({ pname: arr[i] });
+            query.select('sell CGST SGST');
+            query.exec(function (err, product){
+                var tempPrice = product.sell;
+                tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
+                pricep = pricep + tempPrice;
+                if (err) return handleError(err);
+                console.log(pricep);
+            });
+        }
+        console.log(pricep);
+        var bill = new Bill({
+            name: request.body.name,
+            cname: request.body.cname,
+            address: request.body.address,
+            city: request.body.city,
+            postal: request.body.postal,
+            mobile: request.body.mobile,
+            email: request.body.email,
+            date: request.body.date,
+            product: request.body.product,
+            CGST: 9,
+            SGST: 9,
+            price: pricep,
+        });
+        console.log('The price is: ' + pricep);
+        var error = bill.validateSync();
+            if (error) {
+                response.render('addbill', {message: error, successMessage: '', product: product, userLoggedIn: loginUser});
+            } else {
+                bill.save(function (err) {
+                    if (err) {
+                        // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
+                        response.render('addbill', {message: err, successMessage: '', product: product, userLoggedIn: loginUser});
+                    } else {
+                        //response.redirect('/addemp');
+                        response.render('dashboard', {successMessage: 'New Bill is successfully generated.', message: '', userLoggedIn: loginUser});
+                    }
+                });
+            }
+
+        /*query.exec(function (err, product) {
             var price = product.sell;
             console.log(product.sell);
             price = price + ((price * (product.CGST + product.SGST)) / 100);
@@ -181,7 +223,7 @@ module.exports = {
                 });
             }
             //response.render('addbill', {message: product.CGST, successMessage: product.sell, userLoggedIn: loginUser});
-          });
+          });*/
     }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
