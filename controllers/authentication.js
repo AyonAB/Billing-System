@@ -193,7 +193,7 @@ module.exports = {
                         response.render('addbill', {message: err, successMessage: '', userLoggedIn: loginUser});
                     } else {
                         //response.redirect('/addemp');
-                        response.render('invoice', {successMessage: '', message: '', userLoggedIn: loginUser});
+                        response.render('invoice', {successMessage: '', message: '', bill: bill, userLoggedIn: loginUser});
                     }
                 });
             }
