@@ -26,6 +26,9 @@
 
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
 
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
@@ -39,8 +42,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./dashboard"><img src="images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./dashboard"><img src="images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -150,7 +153,7 @@
                         <% if(user) { %>
                             <% for(var i = 0; i < user.length; i++) { %>
                                 <tr>
-                                    <td><label class="checkbox-inline"><input type="checkbox" value=""> Active</label></td>
+                                    <td><input type="checkbox" checked data-toggle="toggle" data-on="Active" data-off="Inactive"></td>
                                     <td><%= user[i].name %></td>
                                     <td><%= user[i].mobile %></td>
                                     <td><%= user[i].email %></td>
@@ -174,6 +177,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
 
     <script src="assets/js/lib/data-table/datatables.min.js"></script>
     <script src="assets/js/lib/data-table/dataTables.bootstrap.min.js"></script>
