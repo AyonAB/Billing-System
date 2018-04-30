@@ -34,6 +34,7 @@ router.post('/index', function(request, response, next){
   router.get('/manage-bill', indexController.manageBill);
   router.get('/manage-emp', indexController.manageEmp);  
   router.get('/manage-product', indexController.manageProduct);
+  router.get('/invoice',indexController.invoice);
   router.post('/addproduct', indexController.saveProduct);
   router.post('/addbill', indexController.saveBill);
   router.post('/addemp', indexController.saveEmp);

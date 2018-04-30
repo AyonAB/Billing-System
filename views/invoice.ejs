@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <!--[if IE]>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <![endif]-->
+    <title> <%= bill.name %> - Invoice </title>
+    <!-- BOOTSTRAP CORE STYLE  -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+	  <!-- CUSTOM STYLE  -->
+    <link href="assets/css/custom-style.css" rel="stylesheet" />
+    <!-- GOOGLE FONTS -->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />-->
+    <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
+
+</head>
+<body>
+ <div class="container">
+     
+      <div class="row pad-top-botm ">
+         <div class="col-lg-6 col-md-6 col-sm-6 ">
+            <img src="assets/img/logo.jpg" style="padding-bottom:20px;" /> 
+         </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+               <strong> GST Billing System </strong>
+              <br />
+                  <i>Address :</i> 108, Some Road
+              <br />
+                  Kolkata , West Bengal, India.
+         </div>
+     </div>
+     <div  class="row text-center contact-info">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <hr />
+             <span>
+                 <strong>Email : </strong>  gst.portal@gmail.com 
+             </span>
+             <span>
+                 <strong>Call : </strong>  +91 700 324 7631 // +91 824 016 1374
+             </span>
+             <hr />
+         </div>
+     </div>
+     <div  class="row pad-top-botm client-info">
+         <div class="col-lg-6 col-md-6 col-sm-6">
+         <h4>  <strong>Client Information</strong></h4>
+           <strong>  <%= bill.name %> </strong>
+             <br />
+                  <b>Address :</b> <%= bill.address %>, India
+              <br />
+             <b>Call :</b> <%= bill.mobile %>
+              <br />
+             <b>E-mail :</b> <%= bill.email %>
+         </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            
+               <h4>  <strong>Payment Details </strong></h4>
+            <b>Bill Amount : <%= bill.price %> </b>
+              <br />
+               Bill Date : <%= bill.date %>
+         </div>
+     </div>
+     <div class="row">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+           <div class="table-responsive">
+                          <table class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>S. No.</th>
+                                    <th>Product Name</th>
+                                    <th>CGST</th>
+                                    <th>SGST</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% if(bill) { %>
+                                    <% for(var i = 0; i < bill.product.length; i++) { %>
+                                        <tr>
+                                            <td><%= i+1 %></td>
+                                            <td><%= bill.product[i] %></td>
+                                            <td><%= bill.CGST[i] %></td>
+                                            <td><%= bill.SGST[i] %></td>
+                                        </tr>
+                                    <% } %>
+                                <% } %>
+                            </tbody>
+                        </table>
+               </div>
+             <hr />
+             <div class="ttl-amts">
+               <h5>  Total Amount : <%= bill.price %> </h5>
+             </div>
+             <hr />
+              <div class="ttl-amts">
+                  <h5>  Tax : 90 USD ( by 10 % on bill ) </h5>
+             </div>
+             <hr />
+              <div class="ttl-amts">
+                  <h4> <strong>Bill Amount : <%= bill.price %> </strong> </h4>
+             </div>
+         </div>
+     </div>
+      <div class="row">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+            <strong> Important: </strong>
+             <ol>
+                  <li>
+                    This is an electronic generated invoice so doesn't require any signature.
+                 </li>
+             </ol>
+             </div>
+         </div>
+      <div class="row pad-top-botm">
+         <div class="col-lg-12 col-md-12 col-sm-12">
+             <hr />
+             <input id="print" class="btn btn-primary btn-lg" onclick="print()" value="Print The Invoice" />
+             </div>
+         </div>
+ </div>
+  <script  type="text/javascript">
+    function print() {
+        document.getElementById('print').style.visibility = 'hidden';
+        window.print();
+        document.getElementById('print').style.visibility = 'visible';
+    }
+  </script>
+</body>
+</html>
