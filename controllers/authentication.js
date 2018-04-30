@@ -160,6 +160,7 @@ module.exports = {
         var arr = [];
         var bill = new Bill();
             arr = request.body.product;
+            console.log(arr.length);
             for(var i = 0; i<arr.length; i++){
                 var query = Product.findOne({ pname: arr[i] });
                 query.select('sell CGST SGST');
