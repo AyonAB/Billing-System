@@ -167,6 +167,7 @@ module.exports = {
                     var tempPrice = product.sell;
                     tempPrice = tempPrice + ((tempPrice * (product.CGST + product.SGST)) / 100);
                     bill.price = bill.price + tempPrice;
+                    bill.sell.push(product.sell);
                     bill.CGST.push(product.CGST);
                     bill.SGST.push(product.SGST);
                     if (err) return handleError(err);
