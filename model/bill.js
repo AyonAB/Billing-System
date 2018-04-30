@@ -12,10 +12,11 @@ var bill = new Schema({
     email: {type: String, required: [true, '{PATH} is required'] },
     date: {type: Date, required: [true, '{PATH} is required'] },
     product: {type: Array, required: [true, '{PATH} is required'] },
+    sell: {type: Array, required: [true]},
     //quantity: {type: Number, min: [0, 'Can not be a negetive value'] },
-    CGST: {type: Array},
-    SGST: {type: Array},
-    price: {type: Number, default: 0}
+    CGST: {type: Array, required: [true]},
+    SGST: {type: Array, required: [true]},
+    price: {type: Number, default: 0, required: [true]}
 });
 
 // we need to create a model using it
