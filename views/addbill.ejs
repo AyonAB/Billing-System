@@ -167,7 +167,7 @@
                 </div>
                 <div class="form-group">
                     <label for="product" class="form-control-label">Products</label>  
-                    <select name="product"  id="product" multiple="multiple" class="1colactive form-control">
+                    <select name="product[]"  id="product" multiple="multiple" class="1colactive form-control">
                             <% if(product) { %>
                                 <% for(var i = 0; i < product.length; i++) { %>
                                     <option value = '<%= product[i].pname %>'> <%= product[i].pname %> </option>
