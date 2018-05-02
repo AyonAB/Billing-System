@@ -2,6 +2,10 @@
     display : none;
     margin: none;
 }
+#back{
+    display : none;
+    margin: none;
+}
 
 @media print { .title-logo { 
     width: 460px; 
