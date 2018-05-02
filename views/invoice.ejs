@@ -17,23 +17,41 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />-->
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" media="print" href="assets/css/print.css" />
+    <style>
+     @media print { .title-logo { 
+         width: 460px; 
+         float: left; 
+         } 
+         .details-container { 
+             width: 250px; 
+             float: right; 
+             } 
+         }
+     </style>
 
 </head>
 <body>
  <div class="container">
      
       <div class="row pad-top-botm ">
+<<<<<<< HEAD
          <div class="col-lg-6 col-md-6 col-sm-6">
             <img src="images/logo.png" style="width: 200px;height: 200px;" /> 
+=======
+         <div class="col-lg-8 col-md-8 col-sm-8 title-logo">
+            <img src="images/logo.png" style="width: 150px;height: 150px;" /> 
+>>>>>>> 33ce995bc8cd953ec49243e7b55b0f6bbf5f25d1
          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-4 col-sm-4 details-container">
+              <br />
                <strong> GST Billing System </strong>
               <br />
-                  <i>Address :</i> 108, Some Road
+                  <i>Address :</i> 422/A, GST Road, 
               <br />
                   Kolkata , West Bengal, India.
          </div>
      </div>
+
      <div  class="row text-center contact-info">
          <div class="col-lg-12 col-md-12 col-sm-12">
              <hr />
@@ -47,7 +65,7 @@
          </div>
      </div>
      <div  class="row pad-top-botm client-info">
-         <div class="col-lg-6 col-md-6 col-sm-6">
+         <div class="col-lg-6 col-md-6 col-sm-6 title-logo">
          <h4>  <strong>Client Information</strong></h4>
            <strong>  <%= bill.name %> </strong>
              <br />
@@ -57,7 +75,7 @@
               <br />
              <b>E-mail :</b> <%= bill.email %>
          </div>
-          <div class="col-lg-6 col-md-6 col-sm-6">
+          <div class="col-lg-6 col-md-6 col-sm-6 details-container">
             
                <h4>  <strong>Payment Details </strong></h4>
             <b>Bill Amount : <%= bill.price %> </b>
@@ -106,23 +124,18 @@
              </div>
              <hr />-->
               <div class="ttl-amts">
-                  <h4> <strong>Bill Amount : <%= bill.price %> </strong> </h4>
+                  <h4> <strong>Grand Total : <%= bill.price %> </strong> </h4>
              </div>
          </div>
      </div>
       <div class="row">
          <div class="col-lg-12 col-md-12 col-sm-12">
-            <strong> Important: </strong>
-             <ol>
-                  <li>
-                    This is an electronic generated invoice so doesn't require any signature.
-                 </li>
-             </ol>
+            <hr /> *This is an electronic generated invoice so doesn't require any signature.
              </div>
-         </div>
+      </div>
       <div class="row pad-top-botm">
          <div class="col-lg-12 col-md-12 col-sm-12">
-             <hr />
+             
              <input id="print" type="button" class="btn btn-primary btn-lg" onclick="printInvoice()" value="Print The Invoice" />
              </div>
          </div>

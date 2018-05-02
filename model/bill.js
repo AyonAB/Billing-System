@@ -10,7 +10,7 @@ var bill = new Schema({
     postal: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required']},
     mobile: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required']},
     email: {type: String, required: [true, '{PATH} is required'] },
-    date: {type: Date, required: [true, '{PATH} is required'] },
+    date: {type: String, required: [true, '{PATH} is required'] },
     product: {type: Array, required: [true, '{PATH} is required'] },
     sell: {type: Array, required: [true]},
     //quantity: {type: Number, min: [0, 'Can not be a negetive value'] },
