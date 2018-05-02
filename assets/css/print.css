@@ -6,6 +6,10 @@
     display : none;
     margin: none;
 }
+#PDF{
+    display : none;
+    margin: none;
+}
 
 @media print { .title-logo { 
     width: 460px; 
