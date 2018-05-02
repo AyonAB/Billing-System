@@ -41,8 +41,8 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand" href="./"><img src="images/logo.png" alt="Logo"></a>
-                <a class="navbar-brand hidden" href="./"><img src="images/logo2.png" alt="Logo"></a>
+                <a class="navbar-brand" href="./dashboard"><img src="/images/logo.png" alt="Logo"></a>
+                <a class="navbar-brand hidden" href="./dashboard"><img src="/images/logo2.png" alt="Logo"></a>
             </div>
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
@@ -201,7 +201,7 @@
     <script src="assets/js/jquery.multiselect.js"></script>
     <script>
         $('select[multiple]').multiselect({
-        columns: 2,
+        columns: 1,
         placeholder: 'Select Products',
         search : true,
         selectAll : false
@@ -218,5 +218,16 @@
         document.getElementById("date").value = new Date().toJSON().slice(0,10);
         console.log(new Date().toJSON().slice(0,10));
         //document.getElementById("date").valueAsDate = now;
+        // document.getElementById("date").value = formattedDate;
+        // function formattedDate(d = new Date) {
+        //     let month = String(d.getMonth() + 1);
+        //     let day = String(d.getDate());
+        //     const year = String(d.getFullYear());
+
+        //     if (month.length < 2) month = '0' + month;
+        //     if (day.length < 2) day = '0' + day;
+
+        //     return `${month}/${day}/${year}`;
+        // }
     </script>
 </body>
