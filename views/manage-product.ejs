@@ -138,10 +138,10 @@
                             <strong class="card-title">Products Data Table</strong>
                         </div>
                         <div class="card-body">
-                  <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                  <table id="bootstrap-data-table" class="table table-striped table-bordered text-center">
                     <thead class="thead-dark">
                       <tr>
-                        <th>Serial No</th>
+                        <th>Operations</th>
                         <th>Product Name</th>
                         <th>Brand Name</th>
                         <th>Buying Price</th>
@@ -152,7 +152,7 @@
                         <% if(product) { %>
                             <% for(var i = 0; i < product.length; i++) { %>
                                 <tr>
-                                    <td><%= product[i].serialno %></td>
+                                    <td><a href="/deleteProduct/<%= product[i]._id %>" class="btn btn-sm btn-danger"><span class="fa fa-trash"></span> Delete</a></td>
                                     <td><%= product[i].pname %></td>
                                     <td><%= product[i].brand %></td>
                                     <td><%= product[i].buy %></td>
