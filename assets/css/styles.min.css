@@ -1,3 +1,5 @@
+/* // background-color : #1e2833; */
+
 /* @keyframes zoomin {
     0% {
         transform: scale(-1);
@@ -10,7 +12,7 @@
 
 /* .login-dark{-webkit-transition: -webkit-transform 0.2s ease-out;
 	transition: transform 0.2s ease-out;} */
-.login-dark form{max-width:320px;width:90%;background-color:#1e2833;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:80%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
+.login-dark form{max-width:320px;width:90%;background-color:#ffffffc7;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:80%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
 .login-dark .illustration{text-align:center;padding:15px 0 20px;font-size:100px;color:#2980ef}
 .login-dark form .form-control{background:0 0;border:none;border-bottom:1px solid #434a52;border-radius:0;box-shadow:none;outline:0;color:inherit}
 .login-dark form .btn-primary{background:#214a80;border:none;border-radius:4px;padding:11px;box-shadow:none;margin-top:26px;text-shadow:none;outline:0}
@@ -35,7 +37,7 @@
 }
 body {
     /* Location of the image */
-    background-image: url(../../images/background-photo.png);
+    background-image: url(../../images/main.jpg);
     
     /* Image is centered vertically and horizontally at all times */
     background-position: center center;
@@ -68,7 +70,7 @@ body {
     body {
       /* The file size of this background image is 93% smaller
        * to improve page load speed on mobile internet connections */
-      background-image: url(../../images/background-photo-mobile-devices.jpg);
+      background-image: url(../../images/mob4.jpg);
     }
-    .login-dark form{max-width:320px;width:90%;background-color:#1e2833;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:50%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
+    .login-dark form{max-width:280px;width:70%;background-color:#a5acb373;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:50%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
 }
