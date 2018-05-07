@@ -17,7 +17,22 @@
 .login-dark form .btn-primary:active,.login-dark form .btn-primary:hover{background:#214a80;outline:0}.login-dark form .forgot{display:block;text-align:center;font-size:12px;color:#6f7a85;opacity:.9;text-decoration:none}
 .login-dark form .forgot:active,.login-dark form .forgot:hover{opacity:1;text-decoration:none}
 .login-dark form .btn-primary:active{transform:translateY(1px)}
-
+.intro{
+    padding-top:100px;
+    padding-left: 40px;
+    color: whitesmoke;
+    font-family: "Segoe Print" ;
+    font-size: 12mm;
+    /* font-style: */
+    
+}
+.head{
+    text-align: center;
+    padding-top:40px;
+    color: rgb(14, 214, 121);
+    font-family: "Segoe UI" ;
+    font-size: 10mm;
+}
 body {
     /* Location of the image */
     background-image: url(../../images/background-photo.png);
@@ -45,6 +60,7 @@ body {
      * background: url(background-photo.jpg) center center cover no-repeat fixed;
      */
   }
+
   
   /* For mobile devices */
   @media only screen and (max-width: 767px) {
