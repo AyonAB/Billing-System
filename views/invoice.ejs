@@ -5,16 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="Admin Panel - GST Billing System" />
     <link rel="shortcart icon" href="/images/logo2.png">
-    <!--[if IE]>
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <![endif]-->
+    
     <title> <%= bill.name %> - Invoice </title>
     <!-- BOOTSTRAP CORE STYLE  -->
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
 	  <!-- CUSTOM STYLE  -->
     <link href="assets/css/custom-style.css" rel="stylesheet" />
     <!-- GOOGLE FONTS -->
-    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />-->
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css" />
     <!--<script src=”//mrrio.github.io/jsPDF/dist/jspdf.debug.js”></script>-->
@@ -74,7 +71,7 @@
               <br />
                <b>Bill Date :</b>  <%= bill.date %>
                <br />
-               <b>Bill No :</b>  <%= bill.id %>
+               <b>Bill No :</b> <%= bill.id %>
          </div>
      </div>
      <div class="row">
@@ -124,7 +121,7 @@
      </div>
       <div class="row">
          <div class="col-lg-12 col-md-12 col-sm-12">
-            <hr /> *This is an electronic generated invoice so doesn't require any signature.
+            <hr border="2"/> *This is an electronic generated invoice so doesn't require any signature.
              </div>
       </div>
       <div class="row pad-top-botm" id="ignore">
@@ -132,7 +129,6 @@
             <a href="./addbill"><input id="back" type="button" class="btn btn-primary btn-md" value="Back" /></a>
              <input id="print" type="button" class="btn btn-primary btn-md" onclick="printInvoice()" value="Print Now" />
              <!--<a class="btn btn-primary btn-md" id="pdf">Generate PDF</a>-->
-             <!-- <input id="PDF" type="button" class="btn btn-primary btn-md" href="javascript:demoFromHTML()" value="Save As PDF" /> -->
              </div>
          </div>
  </div>
@@ -141,46 +137,5 @@
         window.print();
     }
   </script>
-  <!--<script>
-        function demoFromHTML() {
-            var pdf = new jsPDF('p', 'pt', 'letter');
-            // source can be HTML-formatted string, or a reference
-            // to an actual DOM element from which the text will be scraped.
-            source = $('#testcase')[0];
-    
-            // we support special element handlers. Register them with jQuery-style 
-            // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
-            // There is no support for any other type of selectors 
-            // (class, of compound) at this time.
-            specialElementHandlers = {
-                // element with id of "bypass" - jQuery style selector
-                '#bypassme': function (element, renderer) {
-                    // true = "handled elsewhere, bypass text extraction"
-                    return true
-                }
-            };
-            margins = {
-                top: 80,
-                bottom: 60,
-                left: 40,
-                width: 522
-            };
-            // all coords and widths are in jsPDF instance's declared units
-            // 'inches' in this case
-            pdf.fromHTML(
-            invoice.ejs, // HTML string or DOM elem ref.
-            margins.left, // x coord
-            margins.top, { // y coord
-                'width': margins.width, // max width of content on PDF
-                'elementHandlers': specialElementHandlers
-            },
-    
-            function (dispose) {
-                // dispose: object with X, Y of the last line add to the PDF 
-                //          this allow the insertion of new lines after html
-                pdf.save('Test.pdf');
-            }, margins);
-        }
-     </script>-->
 </body>
 </html>
