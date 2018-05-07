@@ -61,6 +61,7 @@
                     <li>
                         <a href="manage-product"> <i class="menu-icon fa fa-flag-checkered"></i> Manage Product </a>
                     </li>
+                    <% if(userLoggedIn.admin == true) { %>
                     <h3 class="menu-title">Super Admin Panel</h3><!-- /.menu-title -->
                     <li class="active">
                         <a href="addemp"> <i class="menu-icon fa fa-user-circle"></i> Add Employee </a>
@@ -71,6 +72,7 @@
                     <!--<li>
                         <a href="#"> <i class="menu-icon fa fa-file-text"></i> Reports </a>
                     </li>-->
+                    <% } %>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -195,6 +197,7 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        document.getElementById("date").valueAsDate = new Date();
+        document.getElementById("date").value = new Date().toJSON().slice(0,10);
+        console.log(new Date().toJSON().slice(0,10));
     </script>
 </body>
