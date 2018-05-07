@@ -236,6 +236,18 @@ module.exports = {
                 product: request.body.product,
             });*/
 
+    },
+    deleteProduct: function (request, response) {
+        var query = Product.remove({_id: request.params.id});
+        query.exec();
+        response.redirect('/manage-product');
+        /*User.remove({ _id : request.params.id}, function(err, data) {
+         if (err){
+         console.log(err);
+         }else {
+         response.redirect('/userList');
+         }
+         });*/
     }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
