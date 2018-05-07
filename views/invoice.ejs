@@ -17,8 +17,9 @@
     <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css' />-->
     <link href="assets/css/google-fonts.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" media="print" href="/assets/css/print.css" />
-    <script src=”//mrrio.github.io/jsPDF/dist/jspdf.debug.js”></script>
+    <!--<script src=”//mrrio.github.io/jsPDF/dist/jspdf.debug.js”></script>-->
     <!-- <script>var jsPDF = require('jsPDF');</script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.debug.js"></script>
 </head>
 <body>
  <div class="container" id="testcase">
@@ -126,11 +127,11 @@
             <hr /> *This is an electronic generated invoice so doesn't require any signature.
              </div>
       </div>
-      <div class="row pad-top-botm">
+      <div class="row pad-top-botm" id="ignore">
          <div class="col-lg-12 col-md-12 col-sm-12">
             <a href="./addbill"><input id="back" type="button" class="btn btn-primary btn-md" value="Back" /></a>
              <input id="print" type="button" class="btn btn-primary btn-md" onclick="printInvoice()" value="Print Now" />
-             <a class="btn btn-primary btn-md" href="javascript:demoFromHTML()">Generate PDF</a>
+             <!--<a class="btn btn-primary btn-md" id="pdf">Generate PDF</a>-->
              <!-- <input id="PDF" type="button" class="btn btn-primary btn-md" href="javascript:demoFromHTML()" value="Save As PDF" /> -->
              </div>
          </div>
@@ -140,7 +141,7 @@
         window.print();
     }
   </script>
-  <script>
+  <!--<script>
         function demoFromHTML() {
             var pdf = new jsPDF('p', 'pt', 'letter');
             // source can be HTML-formatted string, or a reference
@@ -180,7 +181,6 @@
                 pdf.save('Test.pdf');
             }, margins);
         }
-     </script>
-    
+     </script>-->
 </body>
 </html>

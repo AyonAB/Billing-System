@@ -65,6 +65,7 @@
                     <li>
                         <a href="manage-product"> <i class="menu-icon fa fa-flag-checkered"></i> Manage Product </a>
                     </li>
+                    <% if(userLoggedIn.admin == true) { %>
                     <h3 class="menu-title">Super Admin Panel</h3><!-- /.menu-title -->
                     <li>
                         <a href="addemp"> <i class="menu-icon fa fa-user-circle"></i> Add Employee </a>
@@ -75,6 +76,7 @@
                     <!--<li>
                         <a href="#"> <i class="menu-icon fa fa-file-text"></i> Reports </a>
                     </li>-->
+                    <% } %>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>

@@ -17,7 +17,20 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('dashboard', {message: message, userLoggedIn: loginUser});
+        if(request.session.message){
+            message = request.session.message;
+            request.session.message = '';
+        }
+        var userquery = User.count();
+        userquery.exec(function(err1, usercount){
+            var productquery = Product.count();
+            productquery.exec(function(err2, productcount){
+                var billquery = Bill.count();
+                billquery.exec(function(err3, billcount){
+                    response.render('dashboard', {message: message, successMessage: '', usercount: usercount, productcount: productcount, billcount: billcount, userLoggedIn: loginUser});
+                });
+            });
+        });
     },
     addBill: function (request, response) {
         var loginUser = request.session.user;
@@ -38,7 +51,14 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('addemp', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+        if(loginUser.admin == true){
+            response.render('addemp', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+        }else{
+            request.session.message = 'You do not have enough permission to access The Admin Section!';
+            response.redirect('/dashboard');
+            //response.render('dashboard', {message: 'You do not have enough permission to access The Admin Section!', successMessage: '' ,userLoggedIn: loginUser});
+        }
+        
     },
     addProduct: function (request, response) {
         var loginUser = request.session.user;
@@ -70,7 +90,11 @@ module.exports = {
             .exec(function (err, data) {
                 if (err) {
                     console.log(err);
-                } else {
+                } else if(loginUser.admin == false) {
+                    request.session.message = 'You do not have enough permission to access The Admin Section!';
+                    response.redirect('/dashboard');
+                    //response.render('dashboard', {message: 'You do not have enough permission to access The Admin Section!', successMessage: '' ,userLoggedIn: loginUser});
+                } else{
                     response.render('manage-emp', {userLoggedIn: loginUser , user : data});
                 }
             });
