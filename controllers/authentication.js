@@ -125,7 +125,12 @@ module.exports = {
         var loginUser = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('invoice', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+        var bill = '';
+        if(request.session.bill){
+            bill = request.session.bill;
+            request.session.bill = '';
+        }
+        response.render('invoice', {message: message, successMessage: successMessage, bill: bill, userLoggedIn: loginUser});
     },
     saveProduct: function(request, response) {
         var loginUser = request.session.user;
@@ -241,6 +246,21 @@ module.exports = {
         var query = Product.remove({_id: request.params.id});
         query.exec();
         response.redirect('/manage-product');
+        /*User.remove({ _id : request.params.id}, function(err, data) {
+         if (err){
+         console.log(err);
+         }else {
+         response.redirect('/userList');
+         }
+         });*/
+    },
+    showBill: function (request, response) {
+        var loginUser = request.session.user;
+        var query = Bill.findOne({_id: request.params.id});
+        query.exec(function(err, bill){
+            request.session.bill = bill;
+            response.redirect('/invoice');  
+        });
         /*User.remove({ _id : request.params.id}, function(err, data) {
          if (err){
          console.log(err);
