@@ -64,6 +64,7 @@
                     <li>
                         <a href="manage-product"> <i class="menu-icon fa fa-flag-checkered"></i> Manage Product </a>
                     </li>
+                    <% if(userLoggedIn.admin == true) { %>
                     <h3 class="menu-title">Super Admin Panel</h3><!-- /.menu-title -->
                     <li>
                         <a href="addemp"> <i class="menu-icon fa fa-user-circle"></i> Add Employee </a>
@@ -74,6 +75,7 @@
                     <!--<li>
                         <a href="#"> <i class="menu-icon fa fa-file-text"></i> Reports </a>
                     </li>-->
+                    <% } %>
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -153,13 +155,23 @@
 
             <div class="col-sm-12">
                 <div class="alert  alert-success alert-dismissible fade show" role="alert">
-                  <span class="badge badge-pill badge-success">Success</span> You successfully read this important alert message.
+                  <span class="badge badge-pill badge-success">Success</span> Welcome to The System <%= userLoggedIn.name %>!
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
             </div>
 
+            <% if(message) { %>
+            <div class="col-sm-12">
+                <div class="alert  alert-danger alert-dismissible fade show" role="alert">
+                  <span class="badge badge-pill badge-danger">Error</span> <%= message %>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
+            <% } %>
 
            <div class="col-sm-6 col-lg-3">
                 <div class="card text-white bg-flat-color-1">
@@ -284,8 +296,8 @@
                         <div class="stat-widget-one">
                             <div class="stat-icon dib"><i class="ti-money text-success border-success"></i></div>
                             <div class="stat-content dib">
-                                <div class="stat-text">Total Profit</div>
-                                <div class="stat-digit">1,012</div>
+                                <div class="stat-text">Total Bills</div>
+                                <div class="stat-digit"><%= billcount %></div>
                             </div>
                         </div>
                     </div>
@@ -299,8 +311,8 @@
                         <div class="stat-widget-one">
                             <div class="stat-icon dib"><i class="ti-user text-primary border-primary"></i></div>
                             <div class="stat-content dib">
-                                <div class="stat-text">New Customer</div>
-                                <div class="stat-digit">961</div>
+                                <div class="stat-text">Total Users</div>
+                                <div class="stat-digit"><%= usercount %></div>
                             </div>
                         </div>
                     </div>
@@ -313,8 +325,8 @@
                         <div class="stat-widget-one">
                             <div class="stat-icon dib"><i class="ti-layout-grid2 text-warning border-warning"></i></div>
                             <div class="stat-content dib">
-                                <div class="stat-text">Active Projects</div>
-                                <div class="stat-digit">770</div>
+                                <div class="stat-text">Total Products</div>
+                                <div class="stat-digit"><%= productcount %></div>
                             </div>
                         </div>
                     </div>
