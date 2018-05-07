@@ -19,18 +19,18 @@
 .login-dark form .btn-primary:active{transform:translateY(1px)}
 .intro{
     padding-top:100px;
-    padding-left: 40px;
+    padding-left: 60px;
     color: whitesmoke;
     font-family: "Segoe Print" ;
     font-size: 12mm;
-    /* font-style: */
+    font-style: inherit;
     
 }
 .head{
     text-align: center;
     padding-top:40px;
     color: rgb(14, 214, 121);
-    font-family: "Segoe UI" ;
+    font-family: "Segoe Print" ;
     font-size: 10mm;
 }
 body {
@@ -59,6 +59,7 @@ body {
     /* SHORTHAND CSS NOTATION
      * background: url(background-photo.jpg) center center cover no-repeat fixed;
      */
+     
   }
 
   
