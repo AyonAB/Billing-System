@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="assets/css/animate.css">-->
     <link rel="stylesheet" href="assets/css/styles.min.css">
-    <style>
+    <!-- <style>
         @keyframes zoomin {
             0% {
                 transform: scale(1);
@@ -22,12 +22,12 @@
                 transform: scale(1.2);
             }
         }
-    </style>
+    </style> -->
 
 </head>
-
-<body>
-    <div class="login-dark" style="background-image:url(&quot;images/background.png&quot;);background-position:center;background-size:cover;animation:zoomin 3s;transition:all .3s;background-repeat:no-repeat;">
+<!-- //style="animation:zoomin 3s;transition:all .3s;" -->
+<body >
+    <div class="login-dark" >
         <form method="post" action="/index" style="width:320px;margin:0px;">
             <% if(message){%>
                 <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
