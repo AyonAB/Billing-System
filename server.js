@@ -40,7 +40,7 @@ app.use(session({
     secret: 'Site visit',
     resave: true,
     saveUninitialized: true,
-    cookie: { secure: false, maxAge : 600000 }
+    cookie: { secure: false, maxAge : 900000 }
 }));
 passport(app);
 
