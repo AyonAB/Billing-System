@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="assets/css/animate.css">-->
     <link rel="stylesheet" href="assets/css/styles.min.css">
-    <!-- <style>
+    <style>
         @keyframes zoomin {
             0% {
                 transform: scale(1);
@@ -22,11 +22,11 @@
                 transform: scale(1.2);
             }
         }
-    </style> -->
+    </style>
 
 </head>
-<!-- //style="animation:zoomin 3s;transition:all .3s;" -->
-<body >
+<!-- < //style="animation:zoomin 3s;transition:all .3s;" -->
+<body  >
     <div class="head">
         <!-- <b> Admin Panel</b> -->
     </div>
@@ -34,7 +34,9 @@
             <!-- <i> GST Billing System</i> -->
     </div>
     <div class="login-dark" >
+
         <form method="post" action="/index" style="width:320px;margin:0px;">
+          <div style="animation:zoomin 3s;transition:all .3s;">
             <% if(message){%>
                 <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
             <% }%>
@@ -43,8 +45,10 @@
             <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username"></div>
             <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
             <div class="form-group"><button class="btn btn-outline-primary active btn-block btn-lg" type="submit" data-bs-hover-animate="shake" style="background-image:url(&quot;none&quot;);">Log In</button></div>
-            <a class="text-success forgot" href="pages-forget">Forgot your email or password?</a>
+            <a class=" forgot" href="pages-forget" >Forgot your email or password?</a>
+          </div>
         </form>
+      
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
