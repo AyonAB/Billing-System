@@ -72,6 +72,10 @@ body {
       /* The file size of this background image is 93% smaller
        * to improve page load speed on mobile internet connections */
       background-image: url(../../images/mob4.jpg);
+
+      background-attachment: fixed;
+
+      background-size: cover;
     }
     .login-dark form{max-width:280px;width:70%;background-color:#a5acb373;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:50%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
 }
