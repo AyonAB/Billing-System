@@ -73,9 +73,18 @@ body {
        * to improve page load speed on mobile internet connections */
       background-image: url(../../images/mob4.jpg);
 
-      background-attachment: fixed;
+      /* Image is centered vertically and horizontally at all times */
+    background-position: center center;
 
-      background-size: cover;
+    /* Image doesn't repeat */
+    background-repeat: no-repeat;
+
+    /* Makes the image fixed in the viewport so that it doesn't move when
+       the content height is greater than the image height */
+    background-attachment: fixed;
+
+    /* This is what makes the background image rescale based on its container's size */
+    background-size: cover;
     }
     .login-dark form{max-width:300px;width:80%;background-color:#fafafa7c;padding:40px;border-radius:4px;transform:translate(-50%,-50%);position:absolute;top:50%;left:50%;color:#fff;box-shadow:3px 3px 4px rgba(0,0,0,.2)}
 }
