@@ -1,14 +1,5 @@
 /* // background-color : #1e2833; */
 
-/* @keyframes zoomin {
-    0% {
-        transform: scale(-1);
-    }
-    -5% {
-        transform: scale(1.2);
-    }
-} */
-
 
 /* .login-dark{-webkit-transition: -webkit-transform 0.2s ease-out;
 	transition: transform 0.2s ease-out;} */
@@ -20,22 +11,7 @@
 .login-dark form .forgot{display:block;text-align:center;font-size:12px;color:#FF0000	;opacity:.9;text-decoration:none}
 .login-dark form .forgot:active,.login-dark form .forgot:hover{opacity:1;text-decoration:none}
 .login-dark form .btn-primary:active{transform:translateY(1px)}
-.intro{
-    padding-top:100px;
-    padding-left: 60px;
-    color: whitesmoke;
-    font-family: "Segoe Print" ;
-    font-size: 12mm;
-    font-style: inherit;
 
-}
-.head{
-    text-align: center;
-    padding-top:40px;
-    color: rgb(14, 214, 121);
-    font-family: "Segoe Print" ;
-    font-size: 10mm;
-}
 body {
     /* Location of the image */
     background-image: url(../../images/main.jpg);
@@ -81,7 +57,7 @@ body {
 
     /* Makes the image fixed in the viewport so that it doesn't move when
        the content height is greater than the image height */
-    background-attachment: fixed;
+    background-attachment: auto;
 
     /* This is what makes the background image rescale based on its container's size */
     background-size: cover;
