@@ -261,13 +261,23 @@ module.exports = {
             request.session.bill = bill;
             response.redirect('/invoice');  
         });
-        /*User.remove({ _id : request.params.id}, function(err, data) {
-         if (err){
-         console.log(err);
-         }else {
-         response.redirect('/userList');
-         }
-         });*/
+    },
+    activeEmp: function (request, response) {
+        User.findById(request.params.id, function (err, user) {
+            if (err) {
+                console.log(err);
+            } else {
+                user._id = request.params.id;
+                user.active = !user.active;
+                user.update(function(error){
+                    if(error){
+                        console.log(error);
+                    } else{
+                        response.redirect('/manage-emp');
+                    }
+                });
+            }
+        });
     }
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
