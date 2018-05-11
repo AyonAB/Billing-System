@@ -229,30 +229,11 @@ module.exports = {
                 });
             }
         }, 3000);
-            /*var bill = new Bill({
-                name: request.body.name,
-                cname: request.body.cname,
-                address: request.body.address,
-                city: request.body.city,
-                postal: request.body.postal,
-                mobile: request.body.mobile,
-                email: request.body.email,
-                date: request.body.date,
-                product: request.body.product,
-            });*/
-
     },
     deleteProduct: function (request, response) {
         var query = Product.remove({_id: request.params.id});
         query.exec();
         response.redirect('/manage-product');
-        /*User.remove({ _id : request.params.id}, function(err, data) {
-         if (err){
-         console.log(err);
-         }else {
-         response.redirect('/userList');
-         }
-         });*/
     },
     showBill: function (request, response) {
         var loginUser = request.session.user;
@@ -267,18 +248,18 @@ module.exports = {
             if (err) {
                 console.log(err);
             } else {
-                user._id = request.params.id;
-                user.active = !user.active;
-                user.update(function(error){
-                    if(error){
-                        console.log(error);
-                    } else{
+                var temp = !user.active;
+                var query = { _id:  request.params.id };
+                User.update(query,{$set: {'active': temp}},function(err){
+                    if(err){
+                        console.log(err);
+                    }else {
                         response.redirect('/manage-emp');
                     }
                 });
             }
         });
-    }
+    },
     /*userList: function (request, response) {
         var loginUser = request.session.user;*/
         /*User.find(function(err, data){
