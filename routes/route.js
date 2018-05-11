@@ -19,6 +19,10 @@ router.post('/index', function(request, response, next){
               var message = "Invalid credentials";
               return response.render('index',{message: info.message, userLoggedIn : null});
           }
+          if (user.active == false) {
+              var message = "Deactivated Account! Contact Your Admin!";
+              return response.render('index',{message: message, userLoggedIn : null});
+          }
           request.logIn(user, function(err) {
               if (err) { return next(err); }
               request.session.user = request.user;
