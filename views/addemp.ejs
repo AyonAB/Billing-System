@@ -174,8 +174,8 @@
                         <input type="text" id="email" name="email"placeholder="Enter Email ID" class="form-control">
                     </div>
                     <div class="col-4">
-                        <label for="date" class="form-control-label">Joining Date</label>
-                        <input class="form-control" type="date" name="date" placeholder="dd/mm/yyyy" id="date">
+                        <label for="joining_date" class="form-control-label">Joining Date</label>
+                        <input class="form-control" type="date" name="joining_date" placeholder="dd/mm/yyyy" id="joining_date">
                     </div>
                 </div>
                 <div class="row form-group">
@@ -197,7 +197,7 @@
     <script src="assets/js/plugins.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        document.getElementById("date").value = new Date().toJSON().slice(0,10);
+        document.getElementById("joining_date").value = new Date().toJSON().slice(0,10);
         console.log(new Date().toJSON().slice(0,10));
     </script>
 </body>

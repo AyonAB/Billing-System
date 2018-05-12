@@ -167,7 +167,7 @@ module.exports = {
             address: request.body.address,
             email: request.body.email,
             mobile: request.body.mobile,
-            joining_date: request.body.date,
+            joining_date: request.body.joining_date,
         });
         var error = user.validateSync();
         if (error) {
