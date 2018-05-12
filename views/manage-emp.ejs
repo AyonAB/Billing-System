@@ -146,6 +146,7 @@
                       <tr>
                         <th>Status</th>
                         <th>Name</th>
+                        <th>Username</th>
                         <th>Mobile No.</th>
                         <th>Email ID</th>
                         <th>Joining Date</th>
@@ -157,6 +158,7 @@
                                 <tr>
                                     <td><input type="checkbox" data-toggle="toggle" data-on="Active" data-off="Inactive" onChange="location.href='/activeEmp/<%= user[i]._id %>';" <% if(user[i].active == true){%>checked<% } %>></td>
                                     <td><%= user[i].name %></td>
+                                    <td><%= user[i].username %></td>
                                     <td><%= user[i].mobile %></td>
                                     <td><%= user[i].email %></td>
                                     <td><%= user[i].joining_date %></td>
