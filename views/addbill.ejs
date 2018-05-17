@@ -93,16 +93,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="col-sm-5">
@@ -133,7 +124,7 @@
         <!-- Header-->
 
         <div class="col-lg-1"></div>
-        <form action="/addbill" method="POST">
+        <form action="/addbill" method="POST" name="form" onsubmit="return Validation()">
         <div class="col-lg-10">
             <div class="card">
               <div class="card-header"><strong>Add Bill</strong><small> Form</small></div>
@@ -218,6 +209,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
     <script>
         document.getElementById("date").value = new Date().toJSON().slice(0,10);
-        console.log(new Date().toJSON().slice(0,10));
+        //console.log(new Date().toJSON().slice(0,10));
+    </script>
+    <script type="text/javascript">
+        function Validation()
+        {
+            var a = document.form.mobile.value;
+            var b = document.form.postal.value;
+            if(isNaN(a))
+            {
+                alert("Enter the valid Mobile Number(Like : 9566137117)!");
+                document.form.mobile.focus();
+                return false;
+            }
+            if(a.length != 10)
+            {
+                alert("Your Mobile Number must 10 Integers!");
+                document.form.mobile.select();
+                return false;
+            }
+            if(isNaN(b))
+            {
+                alert("Enter the valid Postal Code!");
+                document.form.postal.focus();
+                return false;
+            }
+            if(b.length != 6)
+            {
+                alert("Your Postal Code must be 6 Integers!");
+                document.form.postal.select();
+                return false;
+            }
+        }
     </script>
 </body>

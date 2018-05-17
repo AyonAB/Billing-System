@@ -90,16 +90,7 @@
             <div class="header-menu">
 
                 <div class="col-sm-7">
-                    <a id="menuToggle" class="menutoggle pull-left"><i class="fa fa fa-tasks"></i></a>
-                    <div class="header-left">
-                        <button class="search-trigger"><i class="fa fa-search"></i></button>
-                        <div class="form-inline">
-                            <form class="search-form">
-                                <input class="form-control mr-sm-2" type="text" placeholder="Search ..." aria-label="Search">
-                                <button class="search-close" type="submit"><i class="fa fa-close"></i></button>
-                            </form>
-                        </div>
-                    </div>
+                    
                 </div>
 
                 <div class="col-sm-5">
@@ -128,7 +119,7 @@
 
         </header><!-- /header --> <!-- Header-->
         <div class="col-lg-1"></div>
-        <form method="POST" action="/addemp">
+        <form method="POST" action="/addemp" name="form" onsubmit="return Validation()">
         <div class="col-lg-10">
             <div class="card">
               <div class="card-header"><strong>Add Employee</strong><small> Form</small></div>
@@ -167,11 +158,11 @@
                 <div class="row form-group">
                     <div class="col-4">
                         <label for="mobile" class=" form-control-label">Mobile No</label>
-                        <input type="number" id="mobile" name="mobile" placeholder="Enter Mobile No" class="form-control">
+                        <input type="text" id="mobile" name="mobile" placeholder="Enter Mobile No" class="form-control">
                     </div>
                     <div class="col-4">
                         <label for="email" class=" form-control-label">Email ID</label>
-                        <input type="text" id="email" name="email"placeholder="Enter Email ID" class="form-control">
+                        <input type="email" id="email" name="email"placeholder="Enter Email ID" class="form-control">
                     </div>
                     <div class="col-4">
                         <label for="date" class="form-control-label">Joining Date</label>
@@ -198,6 +189,31 @@
     <script src="assets/js/main.js"></script>
     <script>
         document.getElementById("date").value = new Date().toJSON().slice(0,10);
-        console.log(new Date().toJSON().slice(0,10));
+        //console.log(new Date().toJSON().slice(0,10));
     </script>
+    <script type="text/javascript">
+        function Validation()
+        {
+            var a = document.form.mobile.value;
+            if(a == "")
+            {
+                alert("Please Enter the Contact Number");
+                document.form.mobile.focus();
+                return false;
+            }
+            if(isNaN(a))
+            {
+                alert("Enter the valid Mobile Number(Like : 9566137117)");
+                document.form.mobile.focus();
+                return false;
+            }
+            if(a.length != 10)
+            {
+                alert("Your Mobile Number must be 10 Integers");
+                document.form.mobile.select();
+                return false;
+            }
+        }
+    </script>
+    
 </body>
