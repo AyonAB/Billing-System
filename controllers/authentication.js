@@ -2,6 +2,9 @@
 var User = require('.././model/users');
 var Product = require('.././model/product');
 var Bill = require('.././model/bill');
+var nodemailer = require('nodemailer');
+var async = require('async');
+var crypto = require('crypto');
 module.exports = {
     index: function (request, response) {
         var user = request.session.user;
@@ -119,7 +122,65 @@ module.exports = {
         var user = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('pages-forget', {message: message, successMessage: successMessage, userLoggedIn: user});
+        if(request.session.message){
+            message = request.session.message;
+            request.session.message = '';
+        }
+        if(request.session.successMessage){
+            successMessage = request.session.successMessage;
+            request.session.successMessage = '';
+        }
+        response.render('forgot-pass', {message: message, successMessage: successMessage, userLoggedIn: user});
+    },
+    forgotPass: function (request, response, next) {
+        var user1 = request.session.user;
+        var message = '';
+        var successMessage = '';
+        async.waterfall([
+            function(done) {
+              crypto.randomBytes(20, function(err, buf) {
+                var token = buf.toString('hex');
+                done(err, token);
+              });
+            },
+            function(token, done) {
+              User.findOne({ email: request.body.email }, function(err, user) {
+                if (!user) {
+                  request.session.message = 'No account with that email address exists!';
+                  return response.redirect('/forgot-pass');
+                }
+                var query = { email: request.body.email };
+                User.update(query,{$set: {'resetPasswordToken': token}},{$set: {'resetPasswordExpires': Date.now() + 3600000}},function(err){
+                    done(err, token, user);
+                });
+              });
+            },
+            function(token, user, done) {
+              var smtpTransport = nodemailer.createTransport({
+                service: 'SendGrid',
+                auth: {
+                  user: 'AyanAB',
+                  pass: 'Ayan@1996'
+                }
+              });
+              var mailOptions = {
+                to: user.email,
+                from: 'gst-portal@billing.com',
+                subject: 'Account Password Reset For' + user.username,
+                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                  'http://' + request.headers.host + '/reset/' + token + '\n\n' +
+                  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+              };
+              smtpTransport.sendMail(mailOptions, function(err) {
+                request.session.successMessage = 'E-Mail has been sent to ' + user.email;
+                done(err, 'done');
+              });
+            }
+          ], function(err) {
+            if (err) return next(err);
+            response.redirect('/forgot-pass');
+          });
     },
     invoice: function (request, response) {
         var loginUser = request.session.user;

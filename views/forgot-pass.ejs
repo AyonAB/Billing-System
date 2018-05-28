@@ -39,8 +39,14 @@
 
 <body>
     <div class="login-dark" style="background-position:bottom;animation:zoomin 3s;transition:all .3s;">
-        <form method="post">
+        <form method="post" action="/forgot">
             <h2 class="sr-only">Login Form</h2>
+            <% if(message){%>
+                <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
+            <% }%>
+            <% if(successMessage){%>
+                <div class="alert alert-success alert-success text-center"><span class="badge badge-pill badge-success">Success </span><%= successMessage%></div>
+            <% }%>
             <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/img/logo_bakbak.png&quot;);background-size:contain;background-repeat:no-repeat;background-position:center;height:160px;"></div>
             <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
             <div class="form-group"><button class="btn btn-outline-primary active btn-block" type="submit" data-bs-hover-animate="shake">Verify</button></div>
