@@ -9,7 +9,8 @@ var express = require('express'),
 router.use(middleware.isLoginCheck);
 // router.get('/test', indexController.test);
 router.get('/index', indexController.index);
-router.get('/pages-forget', indexController.pagesForget);
+router.get('/forgot-pass', indexController.pagesForget);
+router.post('/forgot', indexController.forgotPass);
 router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {
           if (err) {
