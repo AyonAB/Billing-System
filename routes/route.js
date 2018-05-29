@@ -7,9 +7,10 @@ var express = require('express'),
 //router.get('/addUser', indexController.addUser);
 //router.post('/saveUser', indexController.saveUser);
 router.use(middleware.isLoginCheck);
-// router.get('/test', indexController.test);
+
 router.get('/index', indexController.index);
 router.get('/forgot-pass', indexController.pagesForget);
+router.get('/reset', indexController.pagesReset);
 router.post('/forgot', indexController.forgotPass);
 router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {

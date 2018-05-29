@@ -132,6 +132,20 @@ module.exports = {
         }
         response.render('forgot-pass', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
+    pagesReset: function (request, response) {
+        var user = request.session.user;
+        var message = '';
+        var successMessage = '';
+        if(request.session.message){
+            message = request.session.message;
+            request.session.message = '';
+        }
+        if(request.session.successMessage){
+            successMessage = request.session.successMessage;
+            request.session.successMessage = '';
+        }
+        response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
+    },
     forgotPass: function (request, response, next) {
         var user1 = request.session.user;
         var message = '';
@@ -150,7 +164,7 @@ module.exports = {
                   return response.redirect('/forgot-pass');
                 }
                 var query = { email: request.body.email };
-                User.update(query,{$set: {'resetPasswordToken': token}},{$set: {'resetPasswordExpires': Date.now() + 3600000}},function(err){
+                User.update(query,{$set: {'resetPasswordToken': token}},{$set: {'resetPasswordExpires': Date.now() + 600000}},function(err){
                     done(err, token, user);
                 });
               });
@@ -165,7 +179,7 @@ module.exports = {
               });
               var mailOptions = {
                 to: user.email,
-                from: 'gst-portal@billing.com',
+                from: 'gst.billing@icloud.com',
                 subject: 'Account Password Reset For' + user.username,
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
