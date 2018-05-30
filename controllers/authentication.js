@@ -132,20 +132,6 @@ module.exports = {
         }
         response.render('forgot-pass', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
-    pagesReset: function (request, response) {
-        var user = request.session.user;
-        var message = '';
-        var successMessage = '';
-        if(request.session.message){
-            message = request.session.message;
-            request.session.message = '';
-        }
-        if(request.session.successMessage){
-            successMessage = request.session.successMessage;
-            request.session.successMessage = '';
-        }
-        response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
-    },
     forgotPass: function (request, response, next) {
         var user1 = request.session.user;
         var message = '';
@@ -164,8 +150,8 @@ module.exports = {
                   return response.redirect('/forgot-pass');
                 }
                 var query = { email: request.body.email };
-                User.update(query,{$set: {'resetPasswordToken': token}},{$set: {'resetPasswordExpires': Date.now() + 600000}},function(err){
-                    done(err, token, user);
+                User.update(query,{$set: {'resetPasswordToken': token,'resetPasswordExpires': Date.now() + 600000}},function(err){
+                        done(err, token, user);
                 });
               });
             },
@@ -195,6 +181,18 @@ module.exports = {
             if (err) return next(err);
             response.redirect('/forgot-pass');
           });
+    },
+    pagesReset: function (request, response) {
+        var user = request.session.user;
+        var message = '';
+        var successMessage = '';
+        User.findOne({ resetPasswordToken: request.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            if (!user) {
+              request.session.message = 'Password reset token is invalid or has expired.';
+              return response.redirect('/forgot-pass');
+            }
+        });
+        response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
     invoice: function (request, response) {
         var loginUser = request.session.user;
