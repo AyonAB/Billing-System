@@ -171,16 +171,16 @@ module.exports = {
             },
             function(token, user, done) {
               var smtpTransport = nodemailer.createTransport({
-                service: 'SendGrid',
+                service: process.env.MAIL_SERVICE,
                 auth: {
-                  user: 'AyanAB',
-                  pass: 'Ayan@1996'
+                  user: process.env.MAIL_USER,
+                  pass: process.env.MAIL_PASS
                 }
               });
               var mailOptions = {
                 to: user.email,
                 from: 'gst.billing@icloud.com',
-                subject: 'Account Password Reset For' + user.username,
+                subject: 'Account Password Reset For ' + user.username,
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                   'http://' + request.headers.host + '/reset/' + token + '\n\n' +
