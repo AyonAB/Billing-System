@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const cookie = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./config/passport');
+const dotenv = require('dotenv');
+dotenv.config();
 const PORT = process.env.PORT || 3005;
 
 // Setting up express
@@ -15,7 +17,7 @@ var routes = require('./routes/route');
 
 // Database Connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://AyonAB:Ayan1996@ds241489.mlab.com:41489/billing-system');
+mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS + '@' + process.env.DB_HOST);
 
 // Middlewares for Static files
 app.use('/assets', express.static('assets'));
