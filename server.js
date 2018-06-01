@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const cookie = require('cookie-parser');
 const session = require('express-session');
 const passport = require('./config/passport');
+var path = require('path');
 const dotenv = require('dotenv');
 dotenv.config();
 const PORT = process.env.PORT || 3005;
@@ -22,15 +23,16 @@ mongoose.connect('mongodb://' + process.env.DB_USER + ':' + process.env.DB_PASS 
 // Middlewares for Static files
 app.use('/assets', express.static('assets'));
 app.use('/images', express.static('images'));
-//app.use(express.static(__dirname + '/assets'));
-//app.use(express.static(__dirname + '/images'));
+//app.use(express.static(path.join(__dirname, 'assets')));
+//app.use(express.static(path.join(__dirname, 'images')));
+//console.log(path.join(__dirname, 'images'));
 
 // Template Engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 
-//urlencoded
+//Body Parser Middleware
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(bodyParser.json());
 
