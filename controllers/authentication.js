@@ -187,12 +187,16 @@ module.exports = {
         var message = '';
         var successMessage = '';
         User.findOne({ resetPasswordToken: request.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            if(err){
+                console.log(err);
+            }
             if (!user) {
-              request.session.message = 'Password reset token is invalid or has expired.';
+              request.session.message = ' Password reset token is invalid or has expired.';
               return response.redirect('/forgot-pass');
+            } else{
+                response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
             }
         });
-        response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
     invoice: function (request, response) {
         var loginUser = request.session.user;
