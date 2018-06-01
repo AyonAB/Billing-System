@@ -1,6 +1,6 @@
 {
   "name": "billing-system",
-  "version": "1.2",
+  "version": "1.0.1",
   "description": "An online GST billing system for companies and industries.",
   "main": "server.js",
   "scripts": {
