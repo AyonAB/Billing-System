@@ -165,7 +165,7 @@ module.exports = {
               });
               var mailOptions = {
                 to: user.email,
-                from: 'gst.billing@icloud.com',
+                from: 'noreply.billingsys@gmail.com',
                 subject: 'Account Password Reset For ' + user.username,
                 text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                   'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
