@@ -150,7 +150,7 @@ module.exports = {
                   return response.redirect('/forgot-pass');
                 }
                 var query = { email: request.body.email };
-                User.update(query,{$set: {'resetPasswordToken': token,'resetPasswordExpires': Date.now() + 600000}},function(err){
+                User.update(query,{$set: {'resetPasswordToken': token,'resetPasswordExpires': Date.now() + 3600000}},function(err){
                         done(err, token, user);
                 });
               });
@@ -197,6 +197,19 @@ module.exports = {
                 response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
             }
         });
+    },
+    resetPost: function(request, response, next) {
+        var user = request.session.user;
+        var message = '';
+        var successMessage = '';
+        var newPass = request.body.password;
+        var confirmPass = request.body.confpassword;
+        if (newPass != confirmPass){
+            request.session.message = "Passwords do not match!";
+            return response.redirect();
+        } else{
+            console.log(token);
+        }
     },
     invoice: function (request, response) {
         var loginUser = request.session.user;
