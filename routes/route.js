@@ -11,6 +11,7 @@ router.use(middleware.isLoginCheck);
 router.get('/index', indexController.index);
 router.get('/forgot-pass', indexController.pagesForget);
 router.get('/reset/:token', indexController.pagesReset);
+router.post('/reset-post', indexController.resetPost);
 router.post('/forgot', indexController.forgotPass);
 router.post('/index', function(request, response, next){
       passport.authenticate('local', function(err, user, info) {
