@@ -5,6 +5,8 @@ var Bill = require('.././model/bill');
 var nodemailer = require('nodemailer');
 var async = require('async');
 var crypto = require('crypto');
+var bcrypt = require('bcryptjs');
+var saltRounds = 10;
 module.exports = {
     index: function (request, response) {
         var user = request.session.user;
@@ -198,18 +200,44 @@ module.exports = {
             }
         });
     },
-    resetPost: function(request, response, next) {
+    resetPass: function(request, response, next) {
         var user = request.session.user;
         var message = '';
         var successMessage = '';
-        var newPass = request.body.password;
-        var confirmPass = request.body.confpassword;
-        if (newPass != confirmPass){
-            request.session.message = "Passwords do not match!";
-            return response.redirect();
-        } else{
-            console.log(token);
-        }
+      async.waterfall([
+        function(done) {
+          User.findOne({ resetPasswordToken: request.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
+            if (!user) {
+              request.session.message = 'No account with that email address exists!';
+              return response.redirect('/forgot-pass');
+            }
+            var newPass = request.body.password;
+            var confirmPass = request.body.confpassword;
+            if (newPass != confirmPass){
+              request.session.message = "Passwords do not match!";
+              return response.redirect('/reset/' + request.params.token);
+            }
+            //user.resetPasswordToken = undefined;
+            //user.resetPasswordExpires = undefined;
+            var query = { resetPasswordToken: request.params.token };
+            bcrypt.hash(newPass, saltRounds, function (err, hash) {
+                if (err) {
+                    return next (err);
+                } else {
+                    User.update(query,{$set: {'password': hash}},function(err){
+                        request.session.successMessage = "Password Has Been Changed!";
+                        return response.redirect('/');
+                        //done(err, hash, user);
+                    });
+                }
+            });
+            
+          });
+        },
+      ], function(err) {
+        console.log(err);
+        response.redirect('/');
+      });
     },
     invoice: function (request, response) {
         var loginUser = request.session.user;
