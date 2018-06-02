@@ -37,6 +37,9 @@
             <% if(message){%>
                 <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
             <% }%>
+            <% if(successMessage){%>
+                <div class="alert alert-success alert-success text-center"><span class="badge badge-pill badge-success">Success </span><%= successMessage%></div>
+            <% }%>
             <h2 class="sr-only">Login Form</h2>
             <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/img/logo_bakbak.png&quot;);background-size:contain;background-position:center;background-repeat:no-repeat;max-height:160px;height:160px;min-height:10px;"></div>
             <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username"></div>
