@@ -12,7 +12,15 @@ module.exports = {
         var user = request.session.user;
         var message = '';
         var successMessage = '';
-        response.render('index', {message: message, userLoggedIn: user});
+        if(request.session.message){
+            message = request.session.message;
+            request.session.message = '';
+        }
+        if(request.session.successMessage){
+            successMessage = request.session.successMessage;
+            request.session.successMessage = '';
+        }
+        response.render('index', {message: message, successMessage: successMessage, userLoggedIn: user});
     },
     logout: function (request, response) {
         request.session.user = '';
@@ -188,6 +196,14 @@ module.exports = {
         var user = request.session.user;
         var message = '';
         var successMessage = '';
+        if(request.session.message){
+            message = request.session.message;
+            request.session.message = '';
+        }
+        if(request.session.successMessage){
+            successMessage = request.session.successMessage;
+            request.session.successMessage = '';
+        }
         User.findOne({ resetPasswordToken: request.params.token, resetPasswordExpires: { $gt: Date.now() } }, function(err, user) {
             if(err){
                 console.log(err);
@@ -196,7 +212,7 @@ module.exports = {
               request.session.message = ' Password reset token is invalid or has expired.';
               return response.redirect('/forgot-pass');
             } else{
-                response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user});
+                response.render('reset', {message: message, successMessage: successMessage, userLoggedIn: user, token: request.params.token});
             }
         });
     },
@@ -217,17 +233,17 @@ module.exports = {
               request.session.message = "Passwords do not match!";
               return response.redirect('/reset/' + request.params.token);
             }
-            //user.resetPasswordToken = undefined;
-            //user.resetPasswordExpires = undefined;
             var query = { resetPasswordToken: request.params.token };
             bcrypt.hash(newPass, saltRounds, function (err, hash) {
                 if (err) {
                     return next (err);
                 } else {
                     User.update(query,{$set: {'password': hash}},function(err){
-                        request.session.successMessage = "Password Has Been Changed!";
-                        return response.redirect('/');
-                        //done(err, hash, user);
+                        successMessage = "Password Has Been Changed!";
+                        console.log("Password Has Been Changed!");
+                        return response.redirect('/index');
+                        user.resetPasswordToken = undefined;
+                        user.resetPasswordExpires = undefined;
                     });
                 }
             });
