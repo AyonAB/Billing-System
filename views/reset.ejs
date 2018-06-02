@@ -25,7 +25,7 @@
 
 <body>
     <div class="login-dark">
-        <form method="post" action="/reset-pass">
+        <form method="post" action="/reset-pass/<%= token %>">
             <div style="animation:zoomin 3s;transition:all .3s;">
             <h2 class="sr-only">Login Form</h2>
             <% if(message){%>
