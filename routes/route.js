@@ -20,11 +20,13 @@ router.post('/index', function(request, response, next){
           }
           if (!user) {
               var message = "Invalid credentials";
-              return response.render('index',{message: info.message, userLoggedIn : null});
+              var successMessage = "";
+              return response.render('index',{message: info.message, successMessage: successMessage ,userLoggedIn : null});
           }
           if (user.active == false) {
               var message = "Deactivated Account! Contact Your Admin!";
-              return response.render('index',{message: message, userLoggedIn : null});
+              var successMessage = "";
+              return response.render('index',{message: message,  successMessage: successMessage, userLoggedIn : null});
           }
           request.logIn(user, function(err) {
               if (err) { return next(err); }
