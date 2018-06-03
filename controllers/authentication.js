@@ -238,12 +238,10 @@ module.exports = {
                 if (err) {
                     return next (err);
                 } else {
-                    User.update(query,{$set: {'password': hash}},function(err){
-                        successMessage = "Password Has Been Changed!";
+                    User.update(query,{$set: {'password': hash, 'resetPasswordToken' : undefined, 'resetPasswordExpires' : undefined}},function(err){
+                        request.session.successMessage = "Password Has Been Changed!";
                         console.log("Password Has Been Changed!");
                         return response.redirect('/index');
-                        user.resetPasswordToken = undefined;
-                        user.resetPasswordExpires = undefined;
                     });
                 }
             });
