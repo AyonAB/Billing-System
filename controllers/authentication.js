@@ -177,10 +177,10 @@ module.exports = {
                 to: user.email,
                 from: 'noreply.billingsys@gmail.com',
                 subject: 'Account Password Reset For ' + user.username,
-                text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                  'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                  'http://' + request.headers.host + '/reset/' + token + '\n\n' +
-                  'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                html: '<h2>Please Click On The Following Link To Reset Your Password:-</h2>'+
+                    '<br><p>You are receiving this because you (or someone else) have requested the reset of the password for your account.</p><br>'+
+                    'http://' + request.headers.host + '/reset/' + token +
+                    '<br><p><strong>If you did not request this, please ignore this email and your password will remain unchanged.<strong><p>'
               };
               smtpTransport.sendMail(mailOptions, function(err) {
                 request.session.successMessage = 'E-Mail has been sent to ' + user.email;
