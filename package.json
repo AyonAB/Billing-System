@@ -25,6 +25,7 @@
     "async": "^2.6.1",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.2",
+    "bootstrap-daterangepicker": "^3.0.3",
     "bootstrap-toggle": "^2.2.2",
     "cookie-parser": "^1.4.3",
     "crypto": "^1.0.1",
