@@ -4,13 +4,24 @@ var express = require('express'),
     passport = require('passport'),
     router = express.Router();
 
-//router.get('/addUser', indexController.addUser);
-//router.post('/saveUser', indexController.saveUser);
 router.use(middleware.isLoginCheck);
 
 router.get('/index', indexController.index);
 router.get('/forgot-pass', indexController.pagesForget);
 router.get('/reset/:token', indexController.pagesReset);
+router.get('/logout', indexController.logout);
+router.get('/dashboard', indexController.dashboard);
+router.get('/addbill', indexController.addBill);
+router.get('/addemp', indexController.addEmp);
+router.get('/addproduct', indexController.addProduct);
+router.get('/manage-bill', indexController.manageBill);
+router.get('/manage-emp', indexController.manageEmp);  
+router.get('/manage-product', indexController.manageProduct);
+router.get('/invoice',indexController.invoice);
+router.get('/report',indexController.report);
+router.get('/deleteProduct/:id', indexController.deleteProduct);
+router.get('/showBill/:id', indexController.showBill);
+router.get('/activeEmp/:id', indexController.activeEmp);
 router.post('/reset-pass/:token', indexController.resetPass);
 router.post('/forgot', indexController.forgotPass);
 router.post('/index', function(request, response, next){
@@ -35,18 +46,6 @@ router.post('/index', function(request, response, next){
           });
       })(request, response, next);
   });
-  router.get('/logout', indexController.logout);
-  router.get('/dashboard', indexController.dashboard);
-  router.get('/addbill', indexController.addBill);
-  router.get('/addemp', indexController.addEmp);
-  router.get('/addproduct', indexController.addProduct);
-  router.get('/manage-bill', indexController.manageBill);
-  router.get('/manage-emp', indexController.manageEmp);  
-  router.get('/manage-product', indexController.manageProduct);
-  router.get('/invoice',indexController.invoice);
-  router.get('/deleteProduct/:id', indexController.deleteProduct);
-  router.get('/showBill/:id', indexController.showBill);
-  router.get('/activeEmp/:id', indexController.activeEmp);
   router.post('/addproduct', indexController.saveProduct);
   router.post('/addbill', indexController.saveBill);
   router.post('/addemp', indexController.saveEmp);

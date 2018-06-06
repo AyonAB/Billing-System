@@ -128,6 +128,12 @@ module.exports = {
             });
         //response.render('manage-product', {message: message, userLoggedIn: loginUser});
     },
+    report: function (request, response) {
+        var loginUser = request.session.user;
+        var message = '';
+        var successMessage = '';
+        response.render('report', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
+    },
     pagesForget: function (request, response) {
         var user = request.session.user;
         var message = '';
