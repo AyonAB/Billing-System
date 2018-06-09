@@ -16,6 +16,7 @@ var user = new Schema({
     password: {type: String, required: [true, '{PATH} is required'] },
     admin: {type: Boolean, default: false},
     active: {type: Boolean, default: true},
+    position: {type: String, required: [true, '{PATH} is required']},
     address: {type: String, required: [true, '{PATH} is required']},
     email: {type: String, required: [true, '{PATH} is required']},
     mobile: {type: Number, required: [true, '{PATH} is required'],
