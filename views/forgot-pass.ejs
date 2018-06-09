@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - GST Billing System</title>
     <meta name="description" content="Admin Panel - GST Billing System">
-    <link rel="shortcut icon" href="/images/logo2.png">
+    <link rel="shortcut icon" href="assets/images/logo2.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <link rel="stylesheet" href="assets/css/styles.min.css">
@@ -27,17 +27,27 @@
     <div class="login-dark">
         <form method="post" action="/forgot">
             <div style="animation:zoomin 3s;transition:all .3s;">
-            <h2 class="sr-only">Login Form</h2>
-            <% if(message){%>
-                <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
-            <% }%>
-            <% if(successMessage){%>
-                <div class="alert alert-success alert-success text-center"><span class="badge badge-pill badge-success">Success </span><%= successMessage%></div>
-            <% }%>
-            <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/img/logo_bakbak.png&quot;);background-size:contain;background-repeat:no-repeat;background-position:center;height:160px;"></div>
-            <div class="form-group"><input class="form-control" type="email" name="email" placeholder="Email"></div>
-            <div class="form-group"><button class="btn btn-outline-primary active btn-block" type="submit" data-bs-hover-animate="shake">Verify</button></div>
-            <a href="./index" class=" forgot">Click here to Login</a>
+                <h2 class="sr-only">Login Form</h2>
+                <% if(message){%>
+                    <div class="alert alert-danger alert-error text-center">
+                        <span class="badge badge-pill badge-danger">Error </span>
+                        <%= message%>
+                    </div>
+                    <% }%>
+                        <% if(successMessage){%>
+                            <div class="alert alert-success alert-success text-center">
+                                <span class="badge badge-pill badge-success">Success </span>
+                                <%= successMessage%>
+                            </div>
+                            <% }%>
+                                <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/images/logo_bakbak.png&quot;);background-size:contain;background-repeat:no-repeat;background-position:center;height:160px;"></div>
+                                <div class="form-group">
+                                    <input class="form-control" type="email" name="email" placeholder="Email">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-primary active btn-block" type="submit" data-bs-hover-animate="shake">Verify</button>
+                                </div>
+                                <a href="./index" class=" forgot">Click here to Login</a>
             </div>
         </form>
     </div>

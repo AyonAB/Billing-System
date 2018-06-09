@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel - GST Billing System</title>
     <meta name="description" content="Admin Panel - GST Billing System">
-    <link rel="shortcart icon" href="/images/logo2.png">
+    <link rel="shortcart icon" href="assets/images/favicon.png">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css">
     <!--<link rel="stylesheet" href="assets/css/bootstrap.min.css">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
     <!--<link rel="stylesheet" href="assets/css/animate.css">-->
     <link rel="stylesheet" href="assets/css/styles.min.css">
-    <link rel="stylesheet" href="../assets/css/waitMe.css"> 
+    <link rel="stylesheet" href="assets/css/waitMe.css">
 
 
     <style>
@@ -29,63 +29,76 @@
 
 </head>
 <!-- < //style="animation:zoomin 3s;transition:all .3s;" -->
-<body  >
-    <div class="login-dark" >
+
+<body>
+    <div class="login-dark">
 
         <form method="post" action="/index" style="width:320px;margin:0px;">
-          <div style="animation:zoomin 3s;transition:all .3s;">
-            <% if(message){%>
-                <div class="alert alert-danger alert-error text-center"><span class="badge badge-pill badge-danger">Error </span><%= message%></div>
-            <% }%>
-            <% if(successMessage){%>
-                <div class="alert alert-success alert-success text-center"><span class="badge badge-pill badge-success">Success </span><%= successMessage%></div>
-            <% }%>
-            <h2 class="sr-only">Login Form</h2>
-            <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/img/logo_bakbak.png&quot;);background-size:contain;background-position:center;background-repeat:no-repeat;max-height:160px;height:160px;min-height:10px;"></div>
-            <div class="form-group"><input class="form-control" type="text" name="username" placeholder="Username"></div>
-            <div class="form-group"><input class="form-control" type="password" name="password" placeholder="Password"></div>
-            <div class="form-group"><button class="btn btn-outline-primary active btn-block btn-lg" type="submit" data-bs-hover-animate="shake" id="waitMe_ex">Log In</button></div>
-            <a class=" forgot" href="forgot-pass" >Forgot your email or password?</a>
-          </div>
+            <div style="animation:zoomin 3s;transition:all .3s;">
+                <% if(message){%>
+                    <div class="alert alert-danger alert-error text-center">
+                        <span class="badge badge-pill badge-danger">Error </span>
+                        <%= message%>
+                    </div>
+                    <% }%>
+                        <% if(successMessage){%>
+                            <div class="alert alert-success alert-success text-center">
+                                <span class="badge badge-pill badge-success">Success </span>
+                                <%= successMessage%>
+                            </div>
+                            <% }%>
+                                <h2 class="sr-only">Login Form</h2>
+                                <div data-bs-hover-animate="pulse" class="illustration" style="background-image:url(&quot;assets/images/logo_bakbak.png&quot;);background-size:contain;background-position:center;background-repeat:no-repeat;max-height:160px;height:160px;min-height:10px;"></div>
+                                <div class="form-group">
+                                    <input class="form-control" type="text" name="username" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" type="password" name="password" placeholder="Password">
+                                </div>
+                                <div class="form-group">
+                                    <button class="btn btn-outline-primary active btn-block btn-lg" type="submit" data-bs-hover-animate="shake" id="waitMe_ex">Log In</button>
+                                </div>
+                                <a class=" forgot" href="forgot-pass">Forgot your email or password?</a>
+            </div>
         </form>
-      
+
     </div>
-    
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
-    <script src="../assets/js/waitMe.js"></script>
+    <script src="assets/js/waitMe.js"></script>
     <script src="assets/js/script.min.js"></script>
     <script>
-        $('#waitMe_ex').click(function(){
-		run_waitMe($('body'), 1);
-	    });
+        $('#waitMe_ex').click(function () {
+            run_waitMe($('body'), 1);
+        });
 
-        function run_waitMe(el, num){
-		text = 'Please wait...';
-		fontSize = '';
-		switch (num) {
-			case 1:
-			maxSize = '';
-			textPos = 'vertical';
-			break;
-			case 2:
-			text = '';
-			maxSize = 30;
-			textPos = 'vertical';
-			break;
-			case 3:
-			maxSize = 30;
-			textPos = 'horizontal';
-			fontSize = '18px';
-			break;
-		}
-		el.waitMe({
-			effect: 'win8_linear',
-			maxSize: maxSize,
-			waitTime: -1,
-			onClose: function(el) {}
-		});
-	}
+        function run_waitMe(el, num) {
+            text = 'Please wait...';
+            fontSize = '';
+            switch (num) {
+                case 1:
+                    maxSize = '';
+                    textPos = 'vertical';
+                    break;
+                case 2:
+                    text = '';
+                    maxSize = 30;
+                    textPos = 'vertical';
+                    break;
+                case 3:
+                    maxSize = 30;
+                    textPos = 'horizontal';
+                    fontSize = '18px';
+                    break;
+            }
+            el.waitMe({
+                effect: 'win8_linear',
+                maxSize: maxSize,
+                waitTime: -1,
+                onClose: function (el) { }
+            });
+        }
     </script>
 </body>
 
