@@ -93,7 +93,7 @@
                         <% for(var i = 0; i < user.length; i++) { %>
                           <tr>
                             <td>
-                              <div class="row demo-swtich col-sm-3">
+                              <div class="row demo-swtich">
                                 <div class="switch">
                                   <label>
                                     <input type="checkbox" onchange="window.location.href='/activeEmp/<%= user[i]._id %>'" <% if( user[i].active == true){ %> checked <% } %> >
