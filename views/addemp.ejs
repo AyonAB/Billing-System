@@ -71,14 +71,16 @@
                           <label for="name"> Full Name :
                             <span class="danger">*</span>
                           </label>
-                          <input type="text" class="form-control required" id="name" name="name" placeholder="Enter Employee Name"> </div>
+                          <input type="text" class="form-control required" id="name" name="name" placeholder="Enter Employee Name"> 
+                        </div>
                       </div>
                       <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="username"> Username :
+                       <label for="name"> Username :
                             <span class="danger">*</span>
                           </label>
-                          <input type="text" class="form-control required" id="username" name="username" placeholder="Enter Username"> </div>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon1">@</span>
+                          <input type="text" class="form-control required" id="username" name="username" placeholder="Username" aria-describedby="basic-addon1"> </div>
                       </div>
                     </div>
                     <div class="row">
@@ -144,20 +146,25 @@
                   <section>
                     <div class="row">
                       <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="fb">Facebook Profile:</label>
-                          <input type="url" class="form-control" id="fb" name="fb">
-                        </div>
+                      <label for="fb">Facebook Profile:</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon3">https://facebook.com/</span>
+                          <input type="url" class="form-control" id="fb" name="fb" aria-describedby="basic-addon3">
+                        </div><br />
                       </div>
+                      
                       <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="twitter"> Twitter Profile:</label>
-                          <input type="url" class="form-control" id="twitter" name="twitter"> </div>
+                      <label for="twitter"> Twitter Profile:</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon3">https://twitter.com/</span>
+                          <input type="url" class="form-control" id="twitter" name="twitter" aria-describedby="basic-addon3"> </div> <br />
                       </div>
+                     
                       <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="yt">Youtube Channel :</label>
-                          <input type="url" class="form-control" id="yt" name="yt"> </div>
+                      <label for="yt">Youtube Channel :</label>
+                        <div class="input-group">
+                          <span class="input-group-addon" id="basic-addon3">https://youtube.com/</span>
+                          <input type="url" class="form-control" id="yt" name="yt" aria-describedby="basic-addon3"> </div> <br />
                       </div>
                     </div>
                   </section>
@@ -189,21 +196,21 @@
     <script type="text/javascript">
       function Validation() {
         var a = document.form.mobile.value;
-        if (a == "") {
-          alert("Please Enter the Contact Number");
-          document.form.mobile.focus();
-          return false;
-        }
-        if (isNaN(a)) {
-          alert("Enter the valid Mobile Number(Like : 95XXXXXX17)");
-          document.form.mobile.focus();
-          return false;
-        }
-        if (a.length != 10) {
-          alert("Your Mobile Number must be 10 Integers");
-          document.form.mobile.select();
-          return false;
-        }
+        // if (a == "") {
+        //   alert("Please Enter the Contact Number");
+        //   document.form.mobile.focus();
+        //   return false;
+        // }
+        // if (isNaN(a)) {
+        //   alert("Enter the valid Mobile Number(Like : 95XXXXXX17)");
+        //   document.form.mobile.focus();
+        //   return false;
+        // }
+        // if (a.length != 10) {
+        //   alert("Your Mobile Number must be 10 Integers");
+        //   document.form.mobile.select();
+        //   return false;
+        // }
       }
     </script>
 
