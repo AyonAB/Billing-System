@@ -1,15 +1,10 @@
 /*
-Template Name: Monster Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
+Template Name: Admin Panel
+Author: susanta96
+Email: susanta96@icloud.com
 File: scss
 */
-/*
-Template Name: Monster Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
-File: scss
-*/
+
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700");
 /*Theme Colors*/
 /*bootstrap Color*/
@@ -40,9 +35,9 @@ File: scss
     left: calc(50% - 3.5px); }
 
 /*
-Template Name: Monster Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
+Template Name: Admin Panel
+Author: susanta96
+Email: susanta96@icloud.com
 File: scss
 */
 /**
@@ -1632,9 +1627,9 @@ Layouts
   margin-left: 0px; }
 
 /*
-Template Name: Material Pro Admin
-Author: Themedesigner
-Email: niravjoshi87@gmail.com
+Template Name: Admin Panel
+Author: susanta96
+Email: susanta96@icloud.com
 File: scss
 */
 /*============================================================== 
@@ -1702,10 +1697,10 @@ File: scss
     -moz-box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
     border-color: rgba(120, 130, 140, 0.13); }
     .topbar .dropdown-menu .dropdown-item {
-      padding: 7px 1.5rem; }
+      padding: 6px 1.2rem; }
   .topbar ul.dropdown-user {
     padding: 0px;
-    width: 270px; }
+    width: 310px; }
     .topbar ul.dropdown-user li {
       list-style: none;
       padding: 0px;
@@ -1718,7 +1713,7 @@ File: scss
       .topbar ul.dropdown-user li .dw-user-box {
         padding: 10px 15px; }
         .topbar ul.dropdown-user li .dw-user-box .u-img {
-          width: 80px;
+          width: 75px;
           display: inline-block;
           vertical-align: top; }
           .topbar ul.dropdown-user li .dw-user-box .u-img img {
