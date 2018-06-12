@@ -66,13 +66,17 @@ module.exports = {
       productquery.exec(function(err2, productcount) {
         var billquery = Bill.count();
         billquery.exec(function(err3, billcount) {
-          response.render("dashboard", {
-            message: message,
-            successMessage: "",
-            usercount: usercount,
-            productcount: productcount,
-            billcount: billcount,
-            userLoggedIn: loginUser
+          var pricequery = Bill.find();
+          pricequery.exec(function(err4, price){
+            response.render("dashboard", {
+              message: message,
+              successMessage: "",
+              usercount: usercount,
+              productcount: productcount,
+              billcount: billcount,
+              price: price,
+              userLoggedIn: loginUser
+            });
           });
         });
       });
