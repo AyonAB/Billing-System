@@ -68,13 +68,28 @@ module.exports = {
         billquery.exec(function(err3, billcount) {
           var pricequery = Bill.find();
           pricequery.exec(function(err4, price){
+            var currentSale = 0, previousSale = 0;
+            for(var i = 0; i < price.length; i++) {
+              var billMonth = new Date(price[i].date).getMonth() + 1;
+              var currentMonth = new Date().getMonth() + 1;
+              var previousMonth = new Date().getMonth();
+              if(billMonth == currentMonth){
+                  currentSale = currentSale + price[i].price;
+                }
+              if(billMonth == previousMonth){
+                previousSale = previousSale + price[i].price;
+              }
+            }
+            request.session.currentSale = currentSale;
+            request.session.previousSale = previousSale;
             response.render("dashboard", {
               message: message,
               successMessage: "",
               usercount: usercount,
               productcount: productcount,
               billcount: billcount,
-              price: price,
+              currentSale: currentSale,
+              previousSale: previousSale,
               userLoggedIn: loginUser
             });
           });
@@ -95,6 +110,8 @@ module.exports = {
           userLoggedIn: loginUser,
           message: message,
           successMessage: successMessage,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           product: data
         });
       }
@@ -109,6 +126,8 @@ module.exports = {
       response.render("addemp", {
         message: message,
         successMessage: successMessage,
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale,
         userLoggedIn: loginUser
       });
     } else {
@@ -125,6 +144,8 @@ module.exports = {
     response.render("addproduct", {
       message: message,
       successMessage: successMessage,
+      currentSale: request.session.currentSale,
+      previousSale: request.session.previousSale,
       userLoggedIn: loginUser
     });
   },
@@ -140,6 +161,8 @@ module.exports = {
         response.render("manage-bill", {
           userLoggedIn: loginUser,
           bill: data,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           message: message,
           successMessage: successMessage
         });
@@ -162,6 +185,8 @@ module.exports = {
         response.render("manage-emp", {
           userLoggedIn: loginUser,
           user: data,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           message: message,
           successMessage: successMessage
         });
@@ -181,6 +206,8 @@ module.exports = {
         response.render("manage-product", {
           userLoggedIn: loginUser,
           product: data,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           message: message,
           successMessage: successMessage
         });
@@ -407,6 +434,8 @@ module.exports = {
         if (err) {
           // response.render('addproduct', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
           response.render("addproduct", {
+            currentSale: request.session.currentSale,
+            previousSale: request.session.previousSale,
             message: err,
             successMessage: "",
             userLoggedIn: loginUser
@@ -415,6 +444,8 @@ module.exports = {
           //response.redirect('/addproduct');
           response.render("addproduct", {
             successMessage: "New Product is successfully added.",
+            currentSale: request.session.currentSale,
+            previousSale: request.session.previousSale,
             message: "",
             userLoggedIn: loginUser
           });
@@ -446,6 +477,8 @@ module.exports = {
         if (err) {
           // response.render('addemp', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
           response.render("addemp", {
+            currentSale: request.session.currentSale,
+            previousSale: request.session.previousSale,
             message: err,
             successMessage: "",
             userLoggedIn: loginUser
@@ -453,6 +486,8 @@ module.exports = {
         } else {
           //response.redirect('/addemp');
           response.render("addemp", {
+            currentSale: request.session.currentSale,
+            previousSale: request.session.previousSale,
             successMessage: "New Employee is successfully registered.",
             message: "",
             userLoggedIn: loginUser
@@ -494,6 +529,8 @@ module.exports = {
       if (error) {
         console.log(error);
         response.render("addbill", {
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           message: error,
           successMessage: "",
           userLoggedIn: loginUser
@@ -503,6 +540,8 @@ module.exports = {
           if (err) {
             // response.render('addbill', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
             response.render("addbill", {
+              currentSale: request.session.currentSale,
+              previousSale: request.session.previousSale,
               message: err,
               successMessage: "",
               userLoggedIn: loginUser
@@ -560,6 +599,8 @@ module.exports = {
     var successMessage = "";
     if (loginUser.admin == true) {
       response.render("report", {
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale,
         message: message,
         successMessage: successMessage,
         userLoggedIn: loginUser
