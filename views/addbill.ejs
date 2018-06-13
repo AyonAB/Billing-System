@@ -166,6 +166,10 @@
     <!-- Date Picker Plugin JavaScript -->
     <script src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
     <script>
+      document.getElementById("datepicker-autoclose").value = new Date().toJSON().slice(0, 10);
+          //console.log(new Date().toJSON().slice(0,10));
+    </script>
+    <script>
         // Date Picker
             jQuery('.mydatepicker, #datepicker').datepicker();
             jQuery('#datepicker-autoclose').datepicker({
