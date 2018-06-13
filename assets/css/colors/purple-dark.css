@@ -199,7 +199,7 @@ a.link:hover, a.link:focus {
 }
 
 .user-profile .profile-text a {
-  color: #798699 !important;
+  color: #ffffff !important;  /*#798699*/
 }
 
 .card-no-border .sidebar-footer {
