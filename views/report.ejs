@@ -2,17 +2,47 @@
 <html lang="en">
 
 <head>
+  <!-- daterange picker -->
+  <link rel="stylesheet" href="../assets/daterangepicker/daterangepicker-bs3.css">
   <%- include('header'); -%>
+  <div class="page-wrapper">
+    <div class="col-md-4 align-self-center"
+    <div class="form-group">
+      <label>Date range button:</label>
+      <div class="input-group">
+        <button type="button" class="btn btn-default float-right" id="daterange-btn">
+          <i class="fa fa-calendar"></i> Date range
+          <i class="fa fa-caret-down"></i>
+        </button>
+      </div>
+    </div>
+    </div>
 
 
 
 
 
 
-
-
-
-
-
-
+  </div>
+  <!-- date-range-picker -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
+  <script src="../assets/daterangepicker/daterangepicker.js"></script>
+  <script>
+  $(function () {
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      })
+  })
+  </script>
     <%- include('footer'); -%>
