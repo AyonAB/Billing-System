@@ -2,25 +2,21 @@
 <html lang="en">
 
 <head>
-  <!-- Bootstrap Core CSS -->
-  <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/plugins/wizard/steps.css" rel="stylesheet">
-  <!--alerts CSS -->
-  <link href="../assets/plugins/sweetalert/sweetalert.css" rel="stylesheet" type="text/css">
-  <%- include('header'); -%>
-    <!-- </head>
+<link href="assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css" />
+<link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
 
-<body> -->
-    <div class="page-wrapper">
+<%- include('header'); -%>
+
+<div class="page-wrapper">
       <div class="container-fluid">
         <div class="row page-titles">
           <div class="col-md-5 col-8 align-self-center">
-            <h3 class="text-themecolor m-b-0 m-t-0">Products</h3>
+            <h3 class="text-themecolor m-b-0 m-t-0">Dashboard</h3>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
                 <a href="javascript:void(0)">Home</a>
               </li>
-              <li class="breadcrumb-item active">Add Products</li>
+              <li class="breadcrumb-item active">Add products</li>
             </ol>
           </div>
           <div class="col-md-7 col-4 align-self-center">
@@ -54,157 +50,94 @@
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
-        <!-- Validation wizard -->
-        <div class="row" id="validation">
-          <div class="col-12">
-            <div class="card wizard-content">
-              <div class="card-body">
-                <h4 class="card-title">Add New Products</h4>
-                <h6 class="card-subtitle">Add Product Right Away</h6>
-                <form method="POST" action="/addemp" name="form" class="validation-wizard wizard-circle" onclick="return Validation()">
-                  <!-- Step 1 -->
-                  <h6>Step 1</h6>
-                  <section>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="name"> Full Name :
-                            <span class="danger">*</span>
-                          </label>
-                          <input type="text" class="form-control required" id="name" name="name" placeholder="Enter Employee Name"> </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="username"> Username :
-                            <span class="danger">*</span>
-                          </label>
-                          <input type="text" class="form-control required" id="username" name="username" placeholder="Enter Username"> </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="email"> Email Address :
-                            <span class="danger">*</span>
-                          </label>
-                          <input type="email" class="form-control required" id="email" name="email" placeholder="name@example.com"> </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="mobile">Mobile Number :
-                            <span class="danger">*</span>
-                          </label>
-
-                          <input type="tel" class="form-control required" id="mobile" name="mobile" placeholder="Ph No."> </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="address"> Address :
-                            <span class="danger">*</span>
-                          </label>
-                          <input type="text" class="form-control required" id="address" name="address" placeholder="Enter location">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="joining_date">Joining Date :</label>
-                          <input type="date" class="form-control" id="joining_date" name="joining_date"> </div>
-                      </div>
-                    </div>
-                  </section>
-                  <!-- Step 2 -->
-                  <h6>Step 2</h6>
-                  <section>
-                    <div class="row">
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="password">Password :
-                            <span class="danger">*</span>
-                          </label>
-                          <input type="password" class="form-control required" id="password" name="password">
-                        </div>
-                      </div>
-                      <div class="col-md-6">
-                        <div class="form-group">
-                          <label for="position"> Position :</label>
-                          <input type="text" class="form-control required" id="position" name="position"> </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="shortDescription3">Short Description :</label>
-                          <textarea name="shortDescription" id="shortDescription3" rows="5" class="form-control"></textarea>
-                        </div>
-                      </div>
-                    </div>
-                  </section>
-                  <!-- Step 3 -->
-                  <h6>Step 3</h6>
-                  <section>
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="fb">Facebook Profile:</label>
-                          <input type="url" class="form-control" id="fb" name="fb">
-                        </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="twitter"> Twitter Profile:</label>
-                          <input type="url" class="form-control" id="twitter" name="twitter"> </div>
-                      </div>
-                      <div class="col-md-12">
-                        <div class="form-group">
-                          <label for="yt">Youtube Channel :</label>
-                          <input type="url" class="form-control" id="yt" name="yt"> </div>
-                      </div>
-                    </div>
-                  </section>
-                </form>
+        <div class="row">
+          <div class="col-lg-12">
+              <div class="card card-outline-info">
+                  <div class="card-header">
+                      <h4 class="m-b-0 text-white">Add Products Form</h4>
+                  </div>
+                  <div class="card-body">
+                      <form action="/addproduct" method="POST" name="form">
+                          <div class="form-body">
+                              <h3 class="card-title">Product Info</h3>
+                              <hr>
+                              <div class="row p-t-20">
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="brand">Brand/Company Name</label>
+                                          <input type="text" id="brand" name="brand" class="form-control" placeholder="Enter brand Name" required>
+                                          </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="pname">Product Name</label>
+                                          <input type="text" id="pname" name="pname" class="form-control" placeholder="Enter Product Name">
+                                       </div>
+                                  </div>
+                              </div>
+                              <!--/row-->
+                              <div class="row">
+                                 <!-- <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="serialno">Serial No</label>
+                                          <input type="text" id="serialno" name="serialno" class="form-control" placeholder="Enter SIN">
+                                          </div>
+                                  </div> -->
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="buy">Buying Price</label>
+                                          <input type="text" name="buy" id="buy" class="form-control" placeholder="Enter buying price" required>
+                                      </div>
+                                  </div>
+                                  <div class="col-md-6">
+                                      <div class="form-group">
+                                          <label class="control-label" for="sell">Selling Price</label>
+                                          <input type="text" name="sell" id="sell" class="form-control" placeholder="Enter selling price" required>
+                                      </div>
+                                  </div>
+                                </div>
+                            
+                              <!--/row-->
+                              <h3 class="box-title m-t-40">GST & Quantity</h3>
+                              <hr>
+                             <div class="row">
+                                <div class="col-md-6">
+                                  <div class="form-group">
+                                    <label class="control-label" for="GST">GST (%) </label>
+                                    <select class="form-control custom-select" name="GST" id="GST" required>
+                                      <option value="#" selected>Choose GST</option>
+                                        <option value="5">5%</option>
+                                        <option value="12">12%</option>
+                                        <option value="18">18%</option>
+                                        <option value="28">28%</option>
+                                    </select>
+                                  </div> 
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="control-label">Quantity</label>
+                                        <input type="number" name="qty" id="qty" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="form-actions">
+                              <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Submit</button>
+                              <button type="reset" class="btn btn-inverse">Reset</button>
+                          </div>
+                      </form>
+                  </div>
               </div>
-            </div>
           </div>
-        </div>
-        <!-- vertical wizard -->
-
       </div>
-    </div>
+      <!-- Row -->
 
 
+</div>
+</div>
 
-
-    <!--Custom JavaScript -->
-    <!-- <script src="assets/js/custom.min.js"></script> -->
-    <script src="assets/plugins/moment/min/moment.min.js"></script>
-    <script src="assets/plugins/wizard/jquery.steps.min.js"></script>
-    <script src="assets/plugins/wizard/jquery.validate.min.js"></script>
-    <!-- Sweet-Alert  -->
-    <script src="assets/plugins/sweetalert/sweetalert.min.js"></script>
-    <script src="assets/plugins/wizard/steps.js"></script>
-    <script>
-      document.getElementById("joining_date").value = new Date().toJSON().slice(0, 10);
-          //console.log(new Date().toJSON().slice(0,10));
-    </script>
-    <script type="text/javascript">
-      function Validation() {
-        var a = document.form.mobile.value;
-        if (a == "") {
-          alert("Please Enter the Contact Number");
-          document.form.mobile.focus();
-          return false;
-        }
-        if (isNaN(a)) {
-          alert("Enter the valid Mobile Number(Like : 95XXXXXX17)");
-          document.form.mobile.focus();
-          return false;
-        }
-        if (a.length != 10) {
-          alert("Your Mobile Number must be 10 Integers");
-          document.form.mobile.select();
-          return false;
-        }
-      }
-    </script>
-
-    <%- include('footer'); -%>
+<!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+  
+  
+<%- include('footer'); -%>
