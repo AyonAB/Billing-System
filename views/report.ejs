@@ -2,9 +2,15 @@
 <html lang="en">
 
 <head>
-  <!-- daterange picker -->
-  <link rel="stylesheet" href="../assets/daterangepicker/daterangepicker-bs3.css">
+  <!-- daterange picker 
+   <link rel="stylesheet" href="../assets/daterangepicker/daterangepicker-bs3.css"> -->
+   <!-- Date picker plugins css -->
+  <link href="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
+  <!-- Daterange picker plugins css -->
+  <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet" />
+  <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
   <%- include('header'); -%>
+
   <div class="page-wrapper">
     <div class="container-fluid">
       <div class="row page-titles">
@@ -44,22 +50,31 @@
         </div>
       </div>
     </div>
-      <div class="row">
-        <form action="/report" type="POST" name="report">
-          <div class="form-group">
-            <label>Generate Report:</label>
-            <div class="input-group">
-              <button type="button" class="btn btn-default float-right" id="daterange-btn">
-                <i class="fa fa-calendar"></i> Date Range for Report
-                <i class="fa fa-caret-down"></i>
-              </button>
+   
+      
+    <div class="card">
+      <div class="card-body">
+      <h4 class="card-title">Choose Date Range :</h4>
+        <div class="row">
+         <form action="/report" type="POST" name="report" class="input-group">
+           <!--<div class="col-md-2"></div>-->
+          <div class="col-md-8">
+           <div class="example">
+              <div class="input-daterange input-group" id="date-range">
+                  <input type="text" class="form-control" name="start" />
+                  <span class="input-group-addon bg-info b-0 text-white">to</span>
+                  <input type="text" class="form-control" name="end" />
+              </div>
             </div>
           </div>
-          <input type="hidden" id="startDate" name="startDate" value="" />
-          <input type="hidden" id="endDate" name="endDate" value="" />
-          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Generate Report</button>
-        </form>
+          <!--<input type="hidden" id="startDate" name="startDate" value="" />
+          <input type="hidden" id="endDate" name="endDate" value="" />-->
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Generate Report</button> 
+       </form>
         </div>
+      </div>
+    </div>
+      
         <div class="row">
           <div class="col-12">
             <div class="card">
@@ -96,7 +111,55 @@
         </div>
     </div>
   </div>
-  <!-- date-range-picker -->
+
+
+  <!-- Date Picker Plugin JavaScript -->
+    <script src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
+   <!-- Date range Plugin JavaScript -->
+    <script src="assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+    <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script>
+    // Date Picker
+    jQuery('.mydatepicker, #datepicker').datepicker();
+    jQuery('#datepicker-autoclose').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    jQuery('#date-range').datepicker({
+        toggleActive: true
+    });
+    jQuery('#datepicker-inline').datepicker({
+        todayHighlight: true
+    });
+    // Daterange picker
+    $('.input-daterange-datepicker').daterangepicker({
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse'
+    });
+    $('.input-daterange-timepicker').daterangepicker({
+        timePicker: true,
+        format: 'MM/DD/YYYY h:mm A',
+        timePickerIncrement: 30,
+        timePicker12Hour: true,
+        timePickerSeconds: false,
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse'
+    });
+    $('.input-limit-datepicker').daterangepicker({
+        format: 'MM/DD/YYYY',
+        minDate: '06/01/2015',
+        maxDate: '06/30/2015',
+        buttonClasses: ['btn', 'btn-sm'],
+        applyClass: 'btn-danger',
+        cancelClass: 'btn-inverse',
+        dateLimit: {
+            days: 6
+        }
+    });
+    </script>
+  <!-- date-range-picker 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
   <script src="../assets/daterangepicker/daterangepicker.js"></script>
   <script>
@@ -116,7 +179,7 @@
         endDate  : moment()
       })
   })
-  </script>
+  </script> 
   <script>
     $(document).ready(function() {
       var start = $('#daterange-btn').data('daterangepicker').startDate.format('YYYY-MM-DD');
@@ -124,7 +187,7 @@
       document.getElementById('startDate').value = start;
       document.getElementById('endDate').value = end;
     });
-  </script>
+  </script> -->
   <!-- This is data table -->
   <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
   <!-- start - This is for export functionality only -->
