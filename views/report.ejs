@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <!-- daterange picker 
+  <!-- daterange picker
    <link rel="stylesheet" href="../assets/daterangepicker/daterangepicker-bs3.css"> -->
    <!-- Date picker plugins css -->
   <link href="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
@@ -50,58 +50,74 @@
         </div>
       </div>
     </div>
-   
-      
+
+
     <div class="card">
       <div class="card-body">
       <h4 class="card-title">Choose Date Range :</h4>
         <div class="row">
-         <form action="/report" type="POST" name="report" class="input-group">
+         <form action="/report" method="post" name="report" class="input-group">
            <!--<div class="col-md-2"></div>-->
           <div class="col-md-8">
            <div class="example">
               <div class="input-daterange input-group" id="date-range">
                   <input type="text" class="form-control" name="start" />
-                  <span class="input-group-addon bg-info b-0 text-white">to</span>
+                  <span class="input-group-addon bg-info b-0 text-white">To</span>
                   <input type="text" class="form-control" name="end" />
               </div>
             </div>
           </div>
           <!--<input type="hidden" id="startDate" name="startDate" value="" />
           <input type="hidden" id="endDate" name="endDate" value="" />-->
-          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Generate Report</button> 
+          <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Generate Report</button>
        </form>
         </div>
       </div>
     </div>
-      
+
         <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-body">
-                <h4 class="card-title">Products Data Table</h4>
+                <h4 class="card-title">Reports Data Table</h4>
                 <h6 class="card-subtitle">Export data to Copy, CSV, Excel, PDF & Print</h6>
                 <div class="table-responsive m-t-40">
                   <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th>Operations</th>
-                        <th>Product Name</th>
-                        <th>Brand Name</th>
-                        <th>Buying Price</th>
-                        <th>Selling Price</th>
+                        <th>Customer Name</th>
+                        <th>Products</th>
+                        <th>Date</th>
+                        <th>Total Price</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Operations</th>
-                        <th>Product Name</th>
-                        <th>Brand Name</th>
-                        <th>Buying Price</th>
-                        <th>Selling Price</th>
+                        <th>Customer Name</th>
+                        <th>Products</th>
+                        <th>Date</th>
+                        <th>Total Price</th>
                       </tr>
                     </tfoot>
                     <tbody>
+                      <% if(report) { %>
+                        <% for(var i = 0; i < report.length; i++) { %>
+                          <tr>
+                            <td>
+                              <%= report[i].name %>
+                            </td>
+                            <td>
+                              <%= report[i].product %>
+                            </td>
+                            <td>
+                              <%= report[i].date %>
+                            </td>
+                            <td>
+                              <%= report[i].price %>
+                            </td>
+                          </tr>
+                        <% } %>
+                      <% } %>
                     </tbody>
                   </table>
                 </div>
@@ -128,38 +144,8 @@
     jQuery('#date-range').datepicker({
         toggleActive: true
     });
-    jQuery('#datepicker-inline').datepicker({
-        todayHighlight: true
-    });
-    // Daterange picker
-    $('.input-daterange-datepicker').daterangepicker({
-        buttonClasses: ['btn', 'btn-sm'],
-        applyClass: 'btn-danger',
-        cancelClass: 'btn-inverse'
-    });
-    $('.input-daterange-timepicker').daterangepicker({
-        timePicker: true,
-        format: 'MM/DD/YYYY h:mm A',
-        timePickerIncrement: 30,
-        timePicker12Hour: true,
-        timePickerSeconds: false,
-        buttonClasses: ['btn', 'btn-sm'],
-        applyClass: 'btn-danger',
-        cancelClass: 'btn-inverse'
-    });
-    $('.input-limit-datepicker').daterangepicker({
-        format: 'MM/DD/YYYY',
-        minDate: '06/01/2015',
-        maxDate: '06/30/2015',
-        buttonClasses: ['btn', 'btn-sm'],
-        applyClass: 'btn-danger',
-        cancelClass: 'btn-inverse',
-        dateLimit: {
-            days: 6
-        }
-    });
     </script>
-  <!-- date-range-picker 
+  <!-- date-range-picker
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
   <script src="../assets/daterangepicker/daterangepicker.js"></script>
   <script>
@@ -179,7 +165,7 @@
         endDate  : moment()
       })
   })
-  </script> 
+  </script>
   <script>
     $(document).ready(function() {
       var start = $('#daterange-btn').data('daterangepicker').startDate.format('YYYY-MM-DD');
