@@ -603,12 +603,38 @@ module.exports = {
         previousSale: request.session.previousSale,
         message: message,
         successMessage: successMessage,
+        report: '',
         userLoggedIn: loginUser
       });
     } else {
       request.session.message = "You don't have enough permission!";
       response.redirect("/dashboard");
     }
+  },
+  viewReport: function(request, response) {
+    var loginUser = request.session.user;
+    var message = "";
+    var successMessage = "";
+    var startDate = request.body.start;
+    var endDate = request.body.end;
+    console.log(startDate);
+    console.log(endDate);
+    var query = Bill.find({date:'2018-05-04'});
+    query.sort({ date: "desc" }).exec(function(err, data) {
+      if (err) {
+        console.log(err);
+        response.redirect("/report");
+      } else {
+        response.render("report", {
+          userLoggedIn: loginUser,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
+          report: data,
+          message: message,
+          successMessage: "Report successfully generated!"
+        });
+      }
+    });
   }
   /*userList: function (request, response) {
         var loginUser = request.session.user;*/
@@ -726,7 +752,7 @@ module.exports = {
          var error = userData.validateSync();
          if(request.body.password !== null){
          console.log(request.body.password);
-         }   
+         }
          var opts = {
          runValidators : true,
          strict : false,
