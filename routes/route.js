@@ -25,6 +25,7 @@ router.get("/showBill/:id", indexController.showBill);
 router.get("/activeEmp/:id", indexController.activeEmp);
 router.post("/reset-pass/:token", indexController.resetPass);
 router.post("/forgot", indexController.forgotPass);
+router.post("/report", indexController.viewReport);
 router.post("/index", function(request, response, next) {
   passport.authenticate("local", function(err, user, info) {
     if (err) {
