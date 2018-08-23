@@ -615,11 +615,11 @@ module.exports = {
     var loginUser = request.session.user;
     var message = "";
     var successMessage = "";
-    var startDate = request.body.start;
-    var endDate = request.body.end;
+    var startDate = request.body.startDate;
+    var endDate = request.body.endDate;
     console.log(startDate);
     console.log(endDate);
-    var query = Bill.find({date:'2018-05-04'});
+    var query = Bill.find({date:{ $gt: startDate, $lt: endDate }});
     query.sort({ date: "desc" }).exec(function(err, data) {
       if (err) {
         console.log(err);
