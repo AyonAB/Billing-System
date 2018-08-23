@@ -9,6 +9,7 @@
   <!-- Daterange picker plugins css -->
   <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet" />
   <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <%- include('header'); -%>
 
   <div class="page-wrapper">
@@ -60,15 +61,14 @@
            <!--<div class="col-md-2"></div>-->
           <div class="col-md-8">
            <div class="example">
-              <div class="input-daterange input-group" id="date-range">
-                  <input type="text" class="form-control" name="start" />
-                  <span class="input-group-addon bg-info b-0 text-white">To</span>
-                  <input type="text" class="form-control" name="end" />
+              <div id="reportrange" style="background: #263238; color: #ffffff; cursor: pointer; padding: 5px 10px; border: 1px solid #747d8a; width: 100%">
+                <i class="fa fa-calendar"></i>&nbsp;
+                <span></span> <i class="fa fa-caret-down"></i>
               </div>
             </div>
           </div>
-          <!--<input type="hidden" id="startDate" name="startDate" value="" />
-          <input type="hidden" id="endDate" name="endDate" value="" />-->
+          <input type="hidden" id="startDate" name="startDate" value="" />
+          <input type="hidden" id="endDate" name="endDate" value="" />
           <button type="submit" class="btn btn-success"> <i class="fa fa-check"></i> Generate Report</button>
        </form>
         </div>
@@ -145,35 +145,9 @@
         toggleActive: true
     });
     </script>
-  <!-- date-range-picker
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
-  <script src="../assets/daterangepicker/daterangepicker.js"></script>
-  <script>
-  $(function () {
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      })
-  })
-  </script>
-  <script>
-    $(document).ready(function() {
-      var start = $('#daterange-btn').data('daterangepicker').startDate.format('YYYY-MM-DD');
-      var end = $('#daterange-btn').data('daterangepicker').endDate.format('YYYY-MM-DD');
-      document.getElementById('startDate').value = start;
-      document.getElementById('endDate').value = end;
-    });
-  </script> -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
   <!-- This is data table -->
   <script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
   <!-- start - This is for export functionality only -->
@@ -235,6 +209,30 @@
       buttons: [
         'copy', 'csv', 'excel', 'pdf', 'print'
       ]
+    });
+  </script>
+  <script type="text/javascript">
+    $(function() {
+        var start = moment().subtract(29, 'days');
+        var end = moment();
+        function cb(start, end) {
+            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+            $("#startDate").val(start.format('YYYY-MM-DD'));
+            $("#endDate").val(end.format('YYYY-MM-DD'));
+        }
+        $('#reportrange').daterangepicker({
+            startDate: start,
+            endDate: end,
+            ranges: {
+              'Today': [moment(), moment()],
+              'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+              'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+              'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+              'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+            }
+        }, cb);
+        cb(start, end);
     });
   </script>
     <%- include('footer'); -%>
