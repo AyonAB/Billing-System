@@ -2,13 +2,7 @@
 <html lang="en">
 
 <head>
-  <!-- daterange picker
-   <link rel="stylesheet" href="../assets/daterangepicker/daterangepicker-bs3.css"> -->
-   <!-- Date picker plugins css -->
-  <link href="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css" />
-  <!-- Daterange picker plugins css -->
-  <link href="assets/plugins/timepicker/bootstrap-timepicker.min.css" rel="stylesheet" />
-  <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+  <!-- daterange picker -->
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <%- include('header'); -%>
 
@@ -88,19 +82,11 @@
                         <th>Customer Name</th>
                         <th>Products</th>
                         <th>Date</th>
-                        <th>Total Price</th>
+                        <th>Price</th>
                       </tr>
                     </thead>
-                    <tfoot>
-                      <tr>
-                        <th>Customer Name</th>
-                        <th>Products</th>
-                        <th>Date</th>
-                        <th>Total Price</th>
-                      </tr>
-                    </tfoot>
                     <tbody>
-                      <% if(report) { %>
+                      <% if(report) { var totalPrice = 0; %>
                         <% for(var i = 0; i < report.length; i++) { %>
                           <tr>
                             <td>
@@ -113,12 +99,19 @@
                               <%= report[i].date %>
                             </td>
                             <td>
+                              <% totalPrice = totalPrice + report[i].price; %>
                               <%= report[i].price %>
                             </td>
                           </tr>
                         <% } %>
                       <% } %>
                     </tbody>
+                    <tfoot>
+                      <tr>
+                        <th colspan="3">Total Price</th>
+                        <th><%= totalPrice %></th>
+                      </tr>
+                    </tfoot>
                   </table>
                 </div>
               </div>
@@ -129,22 +122,7 @@
   </div>
 
 
-  <!-- Date Picker Plugin JavaScript -->
-    <script src="assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js"></script>
-   <!-- Date range Plugin JavaScript -->
-    <script src="assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
-    <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script>
-    // Date Picker
-    jQuery('.mydatepicker, #datepicker').datepicker();
-    jQuery('#datepicker-autoclose').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    });
-    jQuery('#date-range').datepicker({
-        toggleActive: true
-    });
-    </script>
+
     <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
