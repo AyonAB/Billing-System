@@ -60,11 +60,11 @@ module.exports = {
       message = request.session.message;
       request.session.message = "";
     }
-    var userquery = User.count();
+    var userquery = User.countDocuments();
     userquery.exec(function(err1, usercount) {
-      var productquery = Product.count();
+      var productquery = Product.countDocuments();
       productquery.exec(function(err2, productcount) {
-        var billquery = Bill.count();
+        var billquery = Bill.countDocuments();
         billquery.exec(function(err3, billcount) {
           var pricequery = Bill.find();
           pricequery.exec(function(err4, price){
@@ -619,7 +619,7 @@ module.exports = {
     var endDate = request.body.endDate;
     console.log(startDate);
     console.log(endDate);
-    var query = Bill.find({date:{ $gt: startDate, $lt: endDate }});
+    var query = Bill.find({date:{ $gte: startDate, $lte: endDate }});
     query.sort({ date: "desc" }).exec(function(err, data) {
       if (err) {
         console.log(err);
