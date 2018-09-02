@@ -419,8 +419,8 @@ module.exports = {
       serialno: request.body.serialno,
       buy: request.body.buy,
       sell: request.body.sell,
-      CGST: request.body.CGST,
-      SGST: request.body.SGST
+      gst: request.body.gst,
+      quantity: request.body.qty
     });
     var error = product.validateSync();
     if (error) {
