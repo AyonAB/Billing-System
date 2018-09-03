@@ -70,29 +70,26 @@
                   <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th>Operations</th>
                         <th>Product Name</th>
                         <th>Brand Name</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
+                        <th>Operations</th>
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Operations</th>
                         <th>Product Name</th>
                         <th>Brand Name</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
+                        <th>Operations</th>
                       </tr>
                     </tfoot>
                     <tbody>
                       <% if(product) { %>
                         <% for(var i = 0; i < product.length; i++) { %>
                           <tr>
-                            <td>
-                              <a href="/deleteProduct/<%= product[i]._id %>" class="btn btn-sm btn-primary"> <span class="fa fa-trash"></span> </a>
-                            </td>
                             <td>
                               <%= product[i].pname %>
                             </td>
@@ -105,6 +102,52 @@
                             <td>
                               <%= product[i].sell %>
                             </td>
+                            <td class="text-center">
+                              <a href="/deleteProduct/<%= product[i]._id %>" class="btn btn-sm btn-danger"> <span class="fa fa-trash"></span> </a>
+                              <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#<%= product[i]._id %>" data-whatever="@getbootstrap"><span class="fa fa-edit"></span></button>
+                            </td>
+                            <div class="modal fade" id="<%= product[i]._id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+                              <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel1">Edit Product</h4>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  </div>
+                                  <form method="post" action="">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                          <label for="bname" class="control-label">Brand/Company Name</label>
+                                          <input type="text" class="form-control" id="bname" name="bname" value="<%= product[i].brand %>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="pname" class="control-label">Product Name</label>
+                                          <input type="text" class="form-control" id="pname" name="pname" value="<%= product[i].pname %>" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="buy" class="control-label">Buying Price</label>
+                                          <input type="text" class="form-control" id="buy" name="buy" value="<%= product[i].buy %>">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="sell" class="control-label">Selling Price</label>
+                                          <input type="text" class="form-control" id="sell" name="sell" value="<%= product[i].sell %>">
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="gst" class="control-label">GST (%)</label>
+                                          <input type="text" class="form-control" id="gst" name="gst" value="" readonly>
+                                        </div>
+                                        <div class="form-group">
+                                          <label for="quantity" class="control-label">Quantity</label>
+                                          <input type="text" class="form-control" id="quantity" name="quantity">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      <button type="submit" class="btn btn-success">Update Product</button>
+                                    </div>
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
                           </tr>
                         <% } %>
                       <% } %>
