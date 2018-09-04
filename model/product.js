@@ -9,7 +9,7 @@ var product = new Schema({
     buy: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required']},
     sell: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required']},
     Gst: {type: Number, required: [true, '{PATH} is required'] },
-    quantity: {type: Number, required: [true, '{PATH} is required'] }
+    quantity: {type: Number, min: [0, 'Can not be a negetive value'], required: [true, '{PATH} is required'] }
 });
 
 
