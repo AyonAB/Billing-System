@@ -61,4 +61,5 @@ router.post("/index", function(request, response, next) {
 router.post("/addproduct", indexController.saveProduct);
 router.post("/addbill", indexController.saveBill);
 router.post("/addemp", indexController.saveEmp);
+router.post("/updateProduct/:id", indexController.editProduct);
 module.exports = router;
