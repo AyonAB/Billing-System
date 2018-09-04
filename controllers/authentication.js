@@ -198,6 +198,14 @@ module.exports = {
     var loginUser = request.session.user;
     var message = "";
     var successMessage = "";
+    if (request.session.message) {
+      message = request.session.message;
+      request.session.message = "";
+    }
+    if (request.session.successMessage) {
+      successMessage = request.session.successMessage;
+      request.session.successMessage = "";
+    }
     var query = Product.find();
     query.sort({ buy: "desc" }).exec(function(err, data) {
       if (err) {
@@ -617,8 +625,6 @@ module.exports = {
     var successMessage = "";
     var startDate = request.body.startDate;
     var endDate = request.body.endDate;
-    console.log(startDate);
-    console.log(endDate);
     var query = Bill.find({date:{ $gte: startDate, $lte: endDate }});
     query.sort({ date: "desc" }).exec(function(err, data) {
       if (err) {
@@ -632,6 +638,30 @@ module.exports = {
           report: data,
           message: message,
           successMessage: "Report successfully generated!"
+        });
+      }
+    });
+  },
+  editProduct: function(request, response) {
+    var loginUser = request.session.user;
+    var newSell = request.body.sell;
+    var newBuy = request.body.buy;
+    var quantity = parseInt(request.body.quantity);
+    Product.findById(request.params.id, 'quantity', function(error, product){
+      if(error){
+        console.log(error);
+        response.redirect('/manage-product');
+      } else{
+        var tempQuantity = quantity + product.quantity;
+        var query = { _id: request.params.id };
+        Product.update(query,{ $set: { quantity: tempQuantity, sell: newSell, buy: newBuy } }, function(err){
+          if (err) {
+            console.log(err);
+            response.redirect("/manage-product");
+          } else {
+            request.session.successMessage = "The Product has been successfully Updated!";
+            response.redirect("/manage-product");
+          }
         });
       }
     });
