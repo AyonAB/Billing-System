@@ -113,7 +113,7 @@
                                     <h4 class="modal-title" id="exampleModalLabel1">Edit Product</h4>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                   </div>
-                                  <form method="post" action="">
+                                  <form method="post" action="/updateProduct/<%= product[i]._id %>">
                                     <div class="modal-body">
                                         <div class="form-group">
                                           <label for="bname" class="control-label">Brand/Company Name</label>
@@ -137,7 +137,7 @@
                                         </div>
                                         <div class="form-group">
                                           <label for="quantity" class="control-label">Quantity</label>
-                                          <input type="text" class="form-control" id="quantity" name="quantity">
+                                          <input type="number" class="form-control" id="quantity" name="quantity">
                                         </div>
                                     </div>
                                     <div class="modal-footer">
