@@ -54,6 +54,22 @@
         <!-- ============================================================== -->
         <!-- End Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
+        <% if(successMessage) { %>
+        <div class="row">
+          <div class="alert alert-success col-md-12">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            <h3 class="text-success"><i class="fa fa-check-circle"></i> Success</h3> <%= successMessage %>
+          </div>
+        </div>
+        <% } %>
+        <% if(message) { %>
+        <div class="row">
+          <div class="alert alert-danger col-md-12">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
+            <h3 class="text-danger"><i class="fa fa-check-circle"></i> Error</h3> <%= message %>
+          </div>
+        </div>
+        <% } %>
         <!-- Validation wizard -->
         <div class="row" id="validation">
           <div class="col-12">
@@ -71,7 +87,7 @@
                           <label for="name"> Full Name :
                             <span class="danger">*</span>
                           </label>
-                          <input type="text" class="form-control required" id="name" name="name" placeholder="Enter Employee Name"> 
+                          <input type="text" class="form-control required" id="name" name="name" placeholder="Enter Employee Name">
                         </div>
                       </div>
                       <div class="col-md-6">
@@ -152,14 +168,14 @@
                           <input type="url" class="form-control" id="fb" name="fb" aria-describedby="basic-addon3">
                         </div><br />
                       </div>
-                      
+
                       <div class="col-md-12">
                       <label for="twitter"> Twitter Profile:</label>
                         <div class="input-group">
                           <span class="input-group-addon" id="basic-addon3">https://twitter.com/</span>
                           <input type="url" class="form-control" id="twitter" name="twitter" aria-describedby="basic-addon3"> </div> <br />
                       </div>
-                     
+
                       <div class="col-md-12">
                       <label for="yt">Youtube Channel :</label>
                         <div class="input-group">
