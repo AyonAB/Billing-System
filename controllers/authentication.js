@@ -434,6 +434,8 @@ module.exports = {
     if (error) {
       response.render("addproduct", {
         message: error,
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale,
         successMessage: "",
         userLoggedIn: loginUser
       });
@@ -591,7 +593,7 @@ module.exports = {
       } else {
         var temp = !user.active;
         var query = { _id: request.params.id };
-        User.update(query, { $set: { active: temp } }, function(err) {
+        User.updateOne(query, { $set: { active: temp } }, function(err) {
           if (err) {
             console.log(err);
           } else {
@@ -654,7 +656,7 @@ module.exports = {
       } else{
         var tempQuantity = quantity + product.quantity;
         var query = { _id: request.params.id };
-        Product.update(query,{ $set: { quantity: tempQuantity, sell: newSell, buy: newBuy } }, function(err){
+        Product.updateOne(query,{ $set: { quantity: tempQuantity, sell: newSell, buy: newBuy } }, function(err){
           if (err) {
             console.log(err);
             response.redirect("/manage-product");
