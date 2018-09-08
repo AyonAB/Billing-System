@@ -480,7 +480,9 @@ module.exports = {
       response.render("addemp", {
         message: error,
         successMessage: "",
-        userLoggedIn: loginUser
+        userLoggedIn: loginUser,
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale
       });
     } else {
       user.save(function(err) {
