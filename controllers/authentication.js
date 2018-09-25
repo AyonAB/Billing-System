@@ -38,6 +38,10 @@ module.exports = {
       message = request.session.message;
       request.session.message = "";
     }
+    if (request.session.successMessage) {
+      successMessage = request.session.successMessage;
+      request.session.successMessage = "";
+    }
     var query = User.find();
     query.exec(function(err, userData) {
       if (err) {
@@ -45,8 +49,10 @@ module.exports = {
       } else {
         response.render("profile", {
           message: message,
-          successMessage: "",
+          successMessage: successMessage,
           userData: userData,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
           userLoggedIn: loginUser
         });
       }
@@ -360,8 +366,7 @@ module.exports = {
             },
             function(err, user) {
               if (!user) {
-                request.session.message =
-                  "No account with that email address exists!";
+                request.session.message = "No account with that email address exists!";
                 return response.redirect("/forgot-pass");
               }
               var newPass = request.body.password;
@@ -385,8 +390,7 @@ module.exports = {
                       }
                     },
                     function(err) {
-                      request.session.successMessage =
-                        "Password Has Been Changed!";
+                      request.session.successMessage = "Password Has Been Changed!";
                       console.log("Password Has Been Changed!");
                       return response.redirect("/index");
                     }
@@ -667,6 +671,56 @@ module.exports = {
             response.redirect("/manage-product");
           }
         });
+      }
+    });
+  },
+  updateProfile: function(request, response) {
+    var loginUser = request.session.user;
+    var name = request.body.name;
+    var email = request.body.email;
+    var phone = request.body.phone;
+    var address = request.body.address;
+    User.findById(request.params.id, function(error, user){
+      if(error){
+        console.log(error);
+        response.redirect('/profile');
+      } else{
+        if(request.body.password == ""){
+          var query = { _id: request.params.id };
+          User.updateOne(query,{ $set: { name: name, email: email, mobile: phone, address: address } }, function(err){
+            if (err) {
+              console.log(err);
+              response.redirect("/profile");
+            } else {
+              request.session.successMessage = "Your Profile has been successfully Updated!";
+              response.redirect("/profile");
+            }
+          });
+        } else{
+          var pass = request.body.password;
+          var query = { _id: request.params.id };
+          bcrypt.hash(pass, saltRounds, function(err, hash) {
+            if (err) {
+              return next(err);
+            } else {
+              User.updateOne(
+                query,
+                {
+                  $set: {
+                    password: hash,
+                    name: name,
+                    email: email,
+                    mobile: phone,
+                    address: address
+                  }
+                },
+                function(err) {
+                  request.session.successMessage = "Your Profile has been successfully Updated!";
+                  return response.redirect("/profile");
+                });
+            }
+          });
+        }
       }
     });
   }
