@@ -62,4 +62,5 @@ router.post("/addproduct", indexController.saveProduct);
 router.post("/addbill", indexController.saveBill);
 router.post("/addemp", indexController.saveEmp);
 router.post("/updateProduct/:id", indexController.editProduct);
+router.post("/updateProfile/:id", indexController.updateProfile);
 module.exports = router;
