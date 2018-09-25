@@ -45,9 +45,10 @@
         </div>
       </div>
     </div>
+    <div class="col-12">
     <% if(successMessage) { %>
     <div class="row">
-      <div class="alert alert-success col-md-12">
+      <div class="alert alert-success col-sm-12">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
         <h3 class="text-success"><i class="fa fa-check-circle"></i> Success</h3> <%= successMessage %>
       </div>
@@ -55,12 +56,13 @@
     <% } %>
     <% if(message) { %>
     <div class="row">
-      <div class="alert alert-danger col-md-12">
+      <div class="alert alert-danger col-sm-12">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">&times;</span> </button>
         <h3 class="text-danger"><i class="fa fa-check-circle"></i> Error</h3> <%= message %>
       </div>
     </div>
     <% } %>
+    </div>
     <div class="card">
       <div class="card-body">
       <h4 class="card-title">Choose Date Range :</h4>
