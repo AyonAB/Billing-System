@@ -88,20 +88,20 @@
                   <table id="example23" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
                     <thead>
                       <tr>
-                        <th>Invoices</th>
                         <th>Customer Name</th>
                         <th>Products</th>
                         <th>Total Price</th>
-                        <th>Date</th>
+                        <th>Billing Date</th>
+                        <!-- <th>Show Invoice</th> -->
                       </tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <th>Invoices</th>
                         <th>Customer Name</th>
                         <th>Products</th>
                         <th>Total Price</th>
-                        <th>Date</th>
+                        <th>Billing Date</th>
+                        <!-- <th>Show Invoice</th> -->
                       </tr>
                     </tfoot>
                     <tbody>
@@ -109,13 +109,10 @@
                         <% for(var i = 0; i < bill.length; i++) { %>
                           <tr>
                             <td>
-                              <a href="/showBill/<%= bill[i]._id %>" class="btn btn-sm btn-primary"> <span class="fa fa-file-text"></span> </a>
-                            </td>
-                            <td>
                               <%= bill[i].name %>
                             </td>
-                            <td>
-                              <%= bill[i].product %>
+                            <td><a href="/showBill/<%= bill[i]._id %>">
+                              <%= bill[i].product %></a>
                             </td>
                             <td>
                               <%= bill[i].price %>
@@ -123,6 +120,9 @@
                             <td>
                               <%= bill[i].date %>
                             </td>
+                            <!-- <td>&nbsp;&nbsp;&nbsp;
+                              <a href="/showBill/<%= bill[i]._id %>" class="btn btn-circle btn-primary"><span class="fa fa-list"></span></a>
+                            </td> -->
                           </tr>
                         <% } %>
                       <% } %>
