@@ -92,6 +92,7 @@
                         <th>Brand Name</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
+                        <th>Quantity</th>
                         <th>Operations</th>
                       </tr>
                     </thead>
@@ -101,6 +102,7 @@
                         <th>Brand Name</th>
                         <th>Buying Price</th>
                         <th>Selling Price</th>
+                        <th>Quantity</th>
                         <th>Operations</th>
                       </tr>
                     </tfoot>
@@ -119,6 +121,9 @@
                             </td>
                             <td>
                               <%= product[i].sell %>
+                            </td>
+                            <td>
+                              <%= product[i].quantity %>
                             </td>
                             <td class="text-center">
                               <a href="/deleteProduct/<%= product[i]._id %>" class="btn btn-sm btn-danger"> <span class="fa fa-trash"></span> </a>
