@@ -420,7 +420,9 @@ module.exports = {
       message: message,
       successMessage: successMessage,
       bill: bill,
-      userLoggedIn: loginUser
+      userLoggedIn: loginUser,
+      currentSale: request.session.currentSale,
+      previousSale: request.session.previousSale,
     });
   },
   saveProduct: function(request, response) {
@@ -520,14 +522,14 @@ module.exports = {
     console.log(arr.length);
     for (var i = 0; i < arr.length; i++) {
       var query = Product.findOne({ pname: arr[i] });
-      query.select("sell CGST SGST");
+      query.select("sell gst");
       query.exec(function(err, product) {
         var tempPrice = product.sell;
-        tempPrice += (tempPrice * (product.CGST + product.SGST)) / 100;
+        tempPrice += (tempPrice * product.gst) / 100;
         bill.price += Math.round(tempPrice);
         bill.sell.push(product.sell);
-        bill.CGST.push(product.CGST);
-        bill.SGST.push(product.SGST);
+        bill.CGST.push(product.gst/2);
+        bill.SGST.push(product.gst/2);
         if (err) return handleError(err);
       });
     }
@@ -565,6 +567,8 @@ module.exports = {
           } else {
             //response.redirect('/addemp');
             response.render("invoice", {
+              currentSale: request.session.currentSale,
+              previousSale: request.session.previousSale,
               successMessage: "",
               message: "",
               bill: bill,

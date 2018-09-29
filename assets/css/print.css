@@ -1,0 +1,22 @@
+#print{
+    display : none;
+    margin: none;
+}
+#back{
+    display : none;
+    margin: none;
+}
+
+@media print { .title-logo { 
+    width: 460px; 
+    float: left; 
+    } 
+    .details-container { 
+        width: 250px; 
+        float: right; 
+        } 
+    .invoice {
+    
+        float: center;
+    }
+    }
