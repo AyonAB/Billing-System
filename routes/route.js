@@ -20,6 +20,8 @@ router.get("/manage-bill", indexController.manageBill);
 router.get("/manage-emp", indexController.manageEmp);
 router.get("/manage-product", indexController.manageProduct);
 router.get("/invoice", indexController.invoice);
+router.get("/selectproduct", indexController.selProd);
+//router.get("/selectquantity", indexController.selquan);
 router.get("/deleteProduct/:id", indexController.deleteProduct);
 router.get("/showBill/:id", indexController.showBill);
 router.get("/activeEmp/:id", indexController.activeEmp);
@@ -60,6 +62,7 @@ router.post("/index", function(request, response, next) {
 });
 router.post("/addproduct", indexController.saveProduct);
 router.post("/addbill", indexController.saveBill);
+router.post("/selprod", indexController.selectProd);
 router.post("/addemp", indexController.saveEmp);
 router.post("/updateProduct/:id", indexController.editProduct);
 router.post("/updateProfile/:id", indexController.updateProfile);
