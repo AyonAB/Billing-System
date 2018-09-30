@@ -124,6 +124,26 @@ module.exports = {
     });
     //response.render('addbill', {message: message, successMessage: successMessage, userLoggedIn: loginUser});
   },
+  selProd: function(request, response) {
+    var loginUser = request.session.user;
+    var message = "";
+    var successMessage = "";
+    var query = Product.find();
+    query.sort({ pname: "desc" }).exec(function(err, data) {
+      if (err) {
+        console.log(err);
+      } else {
+        response.render("selectproduct", {
+          userLoggedIn: loginUser,
+          message: message,
+          successMessage: successMessage,
+          currentSale: request.session.currentSale,
+          previousSale: request.session.previousSale,
+          product: data
+        });
+      }
+    });
+  },
   addEmp: function(request, response) {
     var loginUser = request.session.user;
     var message = "";
@@ -577,6 +597,37 @@ module.exports = {
           }
         });
       }
+    }, 3000);
+  },
+  selectProd: function(request, response) {
+    var loginUser = request.session.user;
+    var arrProd = [];
+    var bill = new Bill();
+    arrProd = request.body.product;
+    for (var i = 0; i < arrProd.length; i++) {
+      var query = Product.findOne({ pname: arrProd[i] });
+      query.select("sell gst");
+      query.exec(function(err, product) {
+        var tempPrice = product.sell;
+        tempPrice += (tempPrice * product.gst) / 100;
+        bill.price += Math.round(tempPrice);
+        bill.sell.push(product.sell);
+        bill.gst.push(product.gst);
+        if (err) return handleError(err);
+      });
+    }
+    bill.date = request.body.date;
+    bill.product = request.body.product;
+    request.session.currentBill = bill;
+    setTimeout(function() {
+      response.render("selectquantity", {
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale,
+        successMessage: "",
+        message: "",
+        arrProd: arrProd,
+        userLoggedIn: loginUser
+      });
     }, 3000);
   },
   deleteProduct: function(request, response) {
