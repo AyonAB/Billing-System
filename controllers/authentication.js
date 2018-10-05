@@ -601,31 +601,47 @@ module.exports = {
   },
   selectProd: function(request, response) {
     var loginUser = request.session.user;
-    var arrProd = [];
+    request.session.date = request.body.date;
+    request.session.product = request.body.product;
+      response.render("selectquantity", {
+        currentSale: request.session.currentSale,
+        previousSale: request.session.previousSale,
+        successMessage: "",
+        message: "",
+        arrProd: request.body.product,
+        userLoggedIn: loginUser
+      });
+  },
+  selectQuan: function(request, response) {
+    var loginUser = request.session.user;
     var bill = new Bill();
-    arrProd = request.body.product;
+    var quan = [];
+    quan = request.body.quantity;
+    var arrProd = [];
+    arrProd = request.session.product;
     for (var i = 0; i < arrProd.length; i++) {
       var query = Product.findOne({ pname: arrProd[i] });
       query.select("sell gst");
       query.exec(function(err, product) {
         var tempPrice = product.sell;
         tempPrice += (tempPrice * product.gst) / 100;
+        tempPrice = tempPrice * quan[i];
+        console.log("Quantity = " + i);
         bill.price += Math.round(tempPrice);
         bill.sell.push(product.sell);
         bill.gst.push(product.gst);
         if (err) return handleError(err);
       });
     }
-    bill.date = request.body.date;
-    bill.product = request.body.product;
-    request.session.currentBill = bill;
+    bill.quantity = quan;
+    bill.date = request.session.date;
+    bill.product = arrProd;
     setTimeout(function() {
-      response.render("selectquantity", {
+      response.render("addbill", {
         currentSale: request.session.currentSale,
         previousSale: request.session.previousSale,
         successMessage: "",
         message: "",
-        arrProd: arrProd,
         userLoggedIn: loginUser
       });
     }, 3000);
