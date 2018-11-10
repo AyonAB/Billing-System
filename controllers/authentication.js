@@ -619,14 +619,13 @@ module.exports = {
     quan = request.body.quantity;
     var arrProd = [];
     arrProd = request.session.product;
-    for (var i = 0; i < arrProd.length; i++) {
+    for (let i = 0; i < arrProd.length; i++) {
       var query = Product.findOne({ pname: arrProd[i] });
       query.select("sell gst");
       query.exec(function(err, product) {
-        var tempPrice = product.sell;
+        let tempPrice = product.sell;
         tempPrice += (tempPrice * product.gst) / 100;
         tempPrice = tempPrice * quan[i];
-        console.log("Quantity = " + i);
         bill.price += Math.round(tempPrice);
         bill.sell.push(product.sell);
         bill.gst.push(product.gst);
@@ -642,6 +641,7 @@ module.exports = {
         previousSale: request.session.previousSale,
         successMessage: "",
         message: "",
+        bill: bill,
         userLoggedIn: loginUser
       });
     }, 3000);
