@@ -536,34 +536,22 @@ module.exports = {
   },
   saveBill: function(request, response) {
     var loginUser = request.session.user;
-    var arr = [];
-    var bill = new Bill();
-    arr = request.body.product;
-    console.log(arr.length);
-    for (var i = 0; i < arr.length; i++) {
-      var query = Product.findOne({ pname: arr[i] });
-      query.select("sell gst");
-      query.exec(function(err, product) {
-        var tempPrice = product.sell;
-        tempPrice += (tempPrice * product.gst) / 100;
-        bill.price += Math.round(tempPrice);
-        bill.sell.push(product.sell);
-        bill.CGST.push(product.gst/2);
-        bill.SGST.push(product.gst/2);
-        if (err) return handleError(err);
-      });
-    }
-    bill.name = request.body.name;
-    bill.cname = request.body.cname;
-    bill.address = request.body.address;
-    bill.city = request.body.city;
-    bill.postal = request.body.postal;
-    bill.mobile = request.body.mobile;
-    bill.email = request.body.email;
-    bill.date = request.body.date;
-    bill.product = request.body.product;
-    setTimeout(function() {
-      var error = bill.validateSync();
+    var currentBill = new Bill({
+      name : request.body.name,
+      address : request.body.address,
+      city : request.body.city,
+      postal : request.body.postal,
+      mobile : request.body.mobile,
+      email : request.body.email,
+      date : request.session.date,
+      product : request.session.product,
+      sell : request.session.sell,
+      quantity : request.session.quantity,
+      gst : request.session.gst,
+      price : request.session.price
+    });
+    console.log(currentBill);
+      var error = currentBill.validateSync();
       if (error) {
         console.log(error);
         response.render("addbill", {
@@ -574,7 +562,7 @@ module.exports = {
           userLoggedIn: loginUser
         });
       } else {
-        bill.save(function(err) {
+        currentBill.save(function(err) {
           if (err) {
             // response.render('addbill', {message: 'OOPS something went wrong !!! Please try again', user: loginUser});
             response.render("addbill", {
@@ -591,13 +579,12 @@ module.exports = {
               previousSale: request.session.previousSale,
               successMessage: "",
               message: "",
-              bill: bill,
+              bill: currentBill,
               userLoggedIn: loginUser
             });
           }
         });
       }
-    }, 3000);
   },
   selectProd: function(request, response) {
     var loginUser = request.session.user;
@@ -614,8 +601,10 @@ module.exports = {
   },
   selectQuan: function(request, response) {
     var loginUser = request.session.user;
-    var bill = new Bill();
     var quan = [];
+    var sell = [];
+    var gst = [];
+    let price = 0;
     quan = request.body.quantity;
     var arrProd = [];
     arrProd = request.session.product;
@@ -626,22 +615,23 @@ module.exports = {
         let tempPrice = product.sell;
         tempPrice += (tempPrice * product.gst) / 100;
         tempPrice = tempPrice * quan[i];
-        bill.price += Math.round(tempPrice);
-        bill.sell.push(product.sell);
-        bill.gst.push(product.gst);
+        price += Math.round(tempPrice);
+        request.session.price = price;
+        sell.push(product.sell);
+        gst.push(product.gst);
         if (err) return handleError(err);
       });
     }
-    bill.quantity = quan;
-    bill.date = request.session.date;
-    bill.product = arrProd;
+    request.session.quantity = quan;
+    request.session.sell = sell;
+    request.session.gst = gst;
     setTimeout(function() {
+      console.log(request.session.price);
       response.render("addbill", {
         currentSale: request.session.currentSale,
         previousSale: request.session.previousSale,
         successMessage: "",
         message: "",
-        bill: bill,
         userLoggedIn: loginUser
       });
     }, 3000);
