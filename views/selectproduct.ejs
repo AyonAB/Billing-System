@@ -96,7 +96,7 @@
                                 <div class="col-md-6">
                                 <label class="control-label" for="datepicker-autoclose">Invoice Date</label>
                                   <div class="input-group">
-                                    <input type="text" class="form-control" id="datepicker-autoclose" name="date" placeholder="mm/dd/yyyy" required>
+                                    <input type="text" class="form-control" id="datepicker-autoclose" name="date" placeholder="mm/dd/yyyy" required readonly>
                                     <span class="input-group-addon"><i class="icon-calender"></i></span>
                                     </div>
                                 </div>
@@ -111,8 +111,6 @@
           </div>
       </div>
       <!-- Row -->
-
-
 </div>
 </div>
 
@@ -129,14 +127,14 @@
       document.getElementById("datepicker-autoclose").value = new Date().toJSON().slice(0, 10);
           //console.log(new Date().toJSON().slice(0,10));
     </script>
-    <script>
+    <!--<script>
         // Date Picker
             jQuery('.mydatepicker, #datepicker').datepicker();
             jQuery('#datepicker-autoclose').datepicker({
                 autoclose: true,
                 todayHighlight: true
             });
-    </script>
+    </script>-->
     <script>
     jQuery(document).ready(function() {
       // For select 2
@@ -202,36 +200,5 @@
             templateSelection: formatRepoSelection // omitted for brevity, see the source of this page
         });
     });
-    </script>
-     <script type="text/javascript">
-        function Validation()
-        {
-            var a = document.form.mobile.value;
-            var b = document.form.postal.value;
-            if(isNaN(a))
-            {
-                alert("Enter the valid Mobile Number(Like : 9566137117)!");
-                document.form.mobile.focus();
-                return false;
-            }
-            if(a.length != 10)
-            {
-                alert("Your Mobile Number must 10 Integers!");
-                document.form.mobile.select();
-                return false;
-            }
-            if(isNaN(b))
-            {
-                alert("Enter the valid Postal Code!");
-                document.form.postal.focus();
-                return false;
-            }
-            if(b.length != 6)
-            {
-                alert("Your Postal Code must be 6 Integers!");
-                document.form.postal.select();
-                return false;
-            }
-        }
     </script>
 <%- include('footer'); -%>
