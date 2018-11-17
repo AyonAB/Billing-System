@@ -115,7 +115,7 @@
                                         <tr>
                                             <th class="text-center">Sl.No.</th>
                                             <th>Description</th>    
-                                            <!-- <th class="text-right">Quantity</th> -->
+                                            <th class="text-right">Quantity</th>
                                             <th class="text-right">Unit Cost</th>
                                             <th class="text-right">CGST</th>
                                             <th class="text-right">SGST</th>
@@ -128,11 +128,11 @@
                                                 <tr>
                                                     <td class="text-center"><%= i+1 %></td>
                                                     <td><%= bill.product[i] %></td>
-                                                    
+                                                    <td class="text-right"> <%= bill.quantity[i] %> </td>
                                                     <td class="text-right"> <%= bill.sell[i] %> </td>
-                                                    <td class="text-right"> <%= bill.CGST[i] %> </td>
-                                                    <td class="text-right"> <%= bill.SGST[i] %> </td>
-                                                    <% var TAX = (bill.sell[i] * (bill.CGST[i] + bill.SGST[i]))/100; %>
+                                                    <td class="text-right"> <%= (bill.gst[i])/2 %> </td>
+                                                    <td class="text-right"> <%= (bill.gst[i])/2 %> </td>
+                                                    <% var TAX = (bill.sell[i] * bill.gst[i])/100; %>
                                                     <td class="text-right"> <%= (bill.sell[i] + TAX) %> </td>
                                                 </tr>
                                             <% } %>
